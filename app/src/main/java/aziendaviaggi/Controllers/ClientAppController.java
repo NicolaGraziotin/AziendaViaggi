@@ -10,10 +10,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 
-public class AgenziaAppController extends ControllerFactory {
+public class ClientAppController extends ControllerFactory {
 
     @FXML
-    private Pane AgenziaAppl;
+    private Pane ClientAppl;
 
     @FXML
     private ListView<String> ListV;
@@ -25,28 +25,11 @@ public class AgenziaAppController extends ControllerFactory {
     }
 
     @FXML
-    private void insert(ActionEvent event) {
-        changeScene(event, "/agenziaInsert.fxml");
-    }
-
-    @FXML
-    private void delete(ActionEvent event) {
-        ObservableList<String> items = ListV.getItems();
-        if (items.isEmpty()) {
-            alertThrower("Non ci sono piu' pacchetti!");
-        } else {
-            String deleting = ListV.getSelectionModel().getSelectedItem();
-            items.remove(deleting);
-        }
-    }
-
-    @FXML
-    private void modify(ActionEvent event) {
-
+    private void select(ActionEvent event) {
     }
 
     @FXML
     private void back(ActionEvent event) {
-        changeScene(event, "/agenziaRegistration.fxml");
+        changeScene(event, "/clientRegistration.fxml");
     }
 }

@@ -15,6 +15,9 @@ import javafx.stage.Stage;
 
 public class ControllerFactory implements Initializable {
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) { };
+    
     protected void changeScene(ActionEvent event, String url) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(url));
@@ -25,9 +28,6 @@ public class ControllerFactory implements Initializable {
             e.printStackTrace();
         }
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) { };
 
     protected void alertThrower(String msg) {
         Alert alert = new Alert(AlertType.INFORMATION);

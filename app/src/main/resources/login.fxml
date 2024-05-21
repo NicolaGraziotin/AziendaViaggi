@@ -6,30 +6,30 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="LoginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml" fx:controller="aziendaviaggi.Controllers.LoginController">
+<Pane fx:id="LoginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.Controllers.LoginController">
    <children>
-      <Label fx:id="LabLogin1" layoutX="222.0" layoutY="127.0" text="Inserisci la tua email per accedere">
+      <Label fx:id="LabelLogi" layoutX="222.0" layoutY="127.0" text="Inserisci la tua email per accedere">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="TexLogin" layoutX="222.0" layoutY="191.0" prefHeight="25.0" prefWidth="355.0">
+      <TextField fx:id="TextLogi" layoutX="222.0" layoutY="191.0" prefHeight="25.0" prefWidth="355.0">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Button fx:id="BtnLogAg" layoutX="222.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleLogAgenzia" text="Login Agenzia">
+      <Button fx:id="ButtonAgen" layoutX="222.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleLogAgenzia" text="Login Agenzia">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="BtnLogCl" layoutX="448.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleLogCliente" text="Login Cliente">
+      <Button fx:id="ButtonClie" layoutX="448.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleLogCliente" text="Login Cliente">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label fx:id="LabLogin2" layoutX="251.0" layoutY="354.0" text="Se non sei registrato seleziona un metodo per registrarti" />
-      <Button fx:id="BtnRegAg" layoutX="251.0" layoutY="384.0" mnemonicParsing="false" text="Registrazione Agenzia" onAction="#handleRegAgenzia"/>
-      <Button fx:id="BtnRegCl" layoutX="420.0" layoutY="384.0" mnemonicParsing="false" text="Registrazione Cliente" onAction="#handleRegCliente"/>
+      <Label fx:id="LabelRegi" layoutX="251.0" layoutY="354.0" text="Se non sei registrato seleziona un metodo per registrarti" />
+      <Button fx:id="ButtonRegA" layoutX="251.0" layoutY="384.0" mnemonicParsing="false" text="Registrazione Agenzia" onAction="#handleRegAgenzia"/>
+      <Button fx:id="ButtonRegC" layoutX="420.0" layoutY="384.0" mnemonicParsing="false" text="Registrazione Cliente" onAction="#handleRegCliente"/>
    </children>
 </Pane>
