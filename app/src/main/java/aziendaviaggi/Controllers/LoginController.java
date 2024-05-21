@@ -3,6 +3,7 @@ package aziendaviaggi.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
+
 import java.util.stream.Collectors;
 
 public class LoginController extends ControllerFactory {
