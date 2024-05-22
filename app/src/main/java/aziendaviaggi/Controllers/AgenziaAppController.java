@@ -71,6 +71,6 @@ public class AgenziaAppController extends ControllerFactory {
 
     @FXML
     private void back(ActionEvent event) {
-        changeScene(event, "/agenziaRegistration.fxml");
+        changeScene(event, "/login.fxml");
     }
 }

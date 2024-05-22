@@ -9,27 +9,27 @@
 
 <Pane fx:id="AgenziaAppl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.Controllers.AgenziaAppController">
    <children>
-      <Label fx:id="LabelPacc" layoutX="275.0" layoutY="30.0" text="Pacchetti turistici">
+      <Label layoutX="275.0" layoutY="30.0" text="Pacchetti turistici">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="ButtonElim" layoutX="680.0" layoutY="210.0" mnemonicParsing="false" onAction="#delete" prefHeight="60.0" prefWidth="80.0" text="Elimina">
+      <Button layoutX="680.0" layoutY="210.0" mnemonicParsing="false" onAction="#delete" prefHeight="60.0" prefWidth="80.0" text="Elimina">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonIndi" layoutX="680.0" layoutY="510.0" mnemonicParsing="false" onAction="#back" prefHeight="60.0" prefWidth="80.0" text="Indietro">
+      <Button layoutX="680.0" layoutY="510.0" mnemonicParsing="false" onAction="#back" prefHeight="60.0" prefWidth="80.0" text="Indietro">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonModi" layoutX="680.0" layoutY="310.0" mnemonicParsing="false" onAction="#modify" prefHeight="60.0" prefWidth="80.0" text="Modifica">
+      <Button layoutX="680.0" layoutY="310.0" mnemonicParsing="false" onAction="#modify" prefHeight="60.0" prefWidth="80.0" text="Modifica">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonInse" layoutX="680.0" layoutY="410.0" mnemonicParsing="false" onAction="#insert" prefHeight="60.0" prefWidth="80.0" text="Inserisci">
+      <Button layoutX="680.0" layoutY="410.0" mnemonicParsing="false" onAction="#insert" prefHeight="60.0" prefWidth="80.0" text="Inserisci">
          <font>
             <Font size="14.0" />
          </font>

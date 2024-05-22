@@ -8,28 +8,28 @@
 
 <Pane fx:id="LoginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.Controllers.LoginController">
    <children>
-      <Label fx:id="LabelLogi" layoutX="222.0" layoutY="127.0" text="Inserisci la tua email per accedere">
+      <Label layoutX="222.0" layoutY="127.0" text="Inserisci la tua email per accedere">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="TextLogi" layoutX="222.0" layoutY="191.0" prefHeight="25.0" prefWidth="355.0">
+      <TextField fx:id="Email" layoutX="222.0" layoutY="191.0" prefHeight="25.0" prefWidth="355.0">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Button fx:id="ButtonAgen" layoutX="222.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleLogAgenzia" text="Login Agenzia">
+      <Button layoutX="222.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleLogAgenzia" text="Login Agenzia">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonClie" layoutX="448.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleLogCliente" text="Login Cliente">
+      <Button layoutX="448.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleLogCliente" text="Login Cliente">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label fx:id="LabelRegi" layoutX="251.0" layoutY="354.0" text="Se non sei registrato seleziona un metodo per registrarti" />
-      <Button fx:id="ButtonRegA" layoutX="251.0" layoutY="384.0" mnemonicParsing="false" text="Registrazione Agenzia" onAction="#handleRegAgenzia"/>
-      <Button fx:id="ButtonRegC" layoutX="420.0" layoutY="384.0" mnemonicParsing="false" text="Registrazione Cliente" onAction="#handleRegCliente"/>
+      <Label layoutX="251.0" layoutY="354.0" text="Se non sei registrato seleziona un metodo per registrarti" />
+      <Button layoutX="251.0" layoutY="384.0" mnemonicParsing="false" text="Registrazione Agenzia" onAction="#handleRegAgenzia"/>
+      <Button layoutX="420.0" layoutY="384.0" mnemonicParsing="false" text="Registrazione Cliente" onAction="#handleRegCliente"/>
    </children>
 </Pane>

@@ -9,17 +9,17 @@
 
 <Pane fx:id="ClientAppl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.Controllers.ClientAppController">
    <children>
-      <Label fx:id="LabelPacc" layoutX="275.0" layoutY="30.0" text="Pacchetti turistici">
+      <Label layoutX="275.0" layoutY="30.0" text="Pacchetti turistici">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="ButtonIndi" layoutX="680.0" layoutY="510.0" mnemonicParsing="false" onAction="#back" prefHeight="60.0" prefWidth="80.0" text="Indietro">
+      <Button layoutX="680.0" layoutY="510.0" mnemonicParsing="false" onAction="#back" prefHeight="60.0" prefWidth="80.0" text="Indietro">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonSele" layoutX="680.0" layoutY="410.0" mnemonicParsing="false" onAction="#select" prefHeight="60.0" prefWidth="80.0" text="Seleziona">
+      <Button layoutX="680.0" layoutY="410.0" mnemonicParsing="false" onAction="#select" prefHeight="60.0" prefWidth="80.0" text="Seleziona">
          <font>
             <Font size="14.0" />
          </font>

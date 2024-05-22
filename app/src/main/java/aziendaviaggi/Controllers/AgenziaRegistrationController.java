@@ -2,7 +2,6 @@ package aziendaviaggi.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.layout.Pane;
 
 public class AgenziaRegistrationController extends ControllerFactory {
 
