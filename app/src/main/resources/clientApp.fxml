@@ -14,12 +14,12 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="ButtonIndi" layoutX="679.0" layoutY="508.0" mnemonicParsing="false" onAction="#back" prefHeight="60.0" prefWidth="80.0" text="Indietro">
+      <Button fx:id="ButtonIndi" layoutX="680.0" layoutY="510.0" mnemonicParsing="false" onAction="#back" prefHeight="60.0" prefWidth="80.0" text="Indietro">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonSele" layoutX="679.0" layoutY="397.0" mnemonicParsing="false" onAction="#select" prefHeight="60.0" prefWidth="80.0" text="Seleziona">
+      <Button fx:id="ButtonSele" layoutX="680.0" layoutY="410.0" mnemonicParsing="false" onAction="#select" prefHeight="60.0" prefWidth="80.0" text="Seleziona">
          <font>
             <Font size="14.0" />
          </font>

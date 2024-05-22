@@ -2,39 +2,44 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <Pane fx:id="AgenziaAppl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.Controllers.AgenziaAppController">
    <children>
-      <Label fx:id="LabelEmai" layoutX="122.0" layoutY="39.0" text="Pacchetti turistici">
+      <Label fx:id="LabelPacc" layoutX="275.0" layoutY="30.0" text="Pacchetti turistici">
          <font>
-            <Font size="14.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="ButtonElim" layoutX="593.0" layoutY="362.0" mnemonicParsing="false" onAction="#delete" prefHeight="60.0" prefWidth="80.0" text="Elimina">
+      <Button fx:id="ButtonElim" layoutX="680.0" layoutY="210.0" mnemonicParsing="false" onAction="#delete" prefHeight="60.0" prefWidth="80.0" text="Elimina">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonIndi" layoutX="458.0" layoutY="457.0" mnemonicParsing="false" onAction="#back" prefHeight="60.0" prefWidth="80.0" text="Indietro">
+      <Button fx:id="ButtonIndi" layoutX="680.0" layoutY="510.0" mnemonicParsing="false" onAction="#back" prefHeight="60.0" prefWidth="80.0" text="Indietro">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <ListView fx:id="ListV" layoutX="32.0" layoutY="76.0" prefHeight="500.0" prefWidth="300.0" />
-      <ScrollBar fx:id="ScrolB" layoutX="17.0" layoutY="76.0" orientation="VERTICAL" prefHeight="500.0" prefWidth="15.0" />
-      <Button fx:id="ButtonModi" layoutX="458.0" layoutY="362.0" mnemonicParsing="false" onAction="#modify" prefHeight="60.0" prefWidth="80.0" text="Modifica">
+      <Button fx:id="ButtonModi" layoutX="680.0" layoutY="310.0" mnemonicParsing="false" onAction="#modify" prefHeight="60.0" prefWidth="80.0" text="Modifica">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonInse" layoutX="593.0" layoutY="457.0" mnemonicParsing="false" onAction="#insert" prefHeight="60.0" prefWidth="80.0" text="Inserisci">
+      <Button fx:id="ButtonInse" layoutX="680.0" layoutY="410.0" mnemonicParsing="false" onAction="#insert" prefHeight="60.0" prefWidth="80.0" text="Inserisci">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
+      <TableView fx:id="TableV" editable="true" layoutX="30.0" layoutY="70.0" prefHeight="500.0" prefWidth="630.0">
+         <columns>
+            <TableColumn fx:id="ColumnNome" editable="true" minWidth="0.0" prefWidth="220.0" resizable="false" text="Nome" />
+            <TableColumn fx:id="ColumnDesc" editable="true" prefWidth="280.0" resizable="false" text="Descrizione" />
+            <TableColumn fx:id="ColumnPrez" editable="true" minWidth="0.0" prefWidth="130.0" resizable="false" text="Prezzo" />
+         </columns>
+      </TableView>
    </children>
 </Pane>
