@@ -54,7 +54,7 @@ public class AgenziaInsertController extends ControllerFactory {
 
     @FXML
     private void back(ActionEvent event) {
-        changeScene(event, "/agenziaApp.fxml");
+        changeScene(event, "/fxml/agenziaApp.fxml");
     }
 
     @Override

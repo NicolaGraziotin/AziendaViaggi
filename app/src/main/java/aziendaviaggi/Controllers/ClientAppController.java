@@ -49,6 +49,6 @@ public class ClientAppController extends ControllerFactory {
 
     @FXML
     private void back(ActionEvent event) {
-        changeScene(event, "/login.fxml");
+        changeScene(event, "/fxml/login.fxml");
     }
 }
