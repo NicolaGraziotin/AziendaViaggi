@@ -11,12 +11,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
 
 public class ClientAppController extends ControllerFactory {
-
-    @FXML
-    private Pane ClientAppl;
 
     @FXML
     private TableView<Pacchetto> TableV;

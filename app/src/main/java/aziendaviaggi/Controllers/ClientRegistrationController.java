@@ -5,9 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 
 public class ClientRegistrationController extends ControllerFactory {
-    
-    @FXML
-    private Pane ClientRegi;
 
     @FXML
     private void back(ActionEvent event) {
