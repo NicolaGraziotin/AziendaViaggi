@@ -3,8 +3,11 @@ package aziendaviaggi;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class SQLDatabaseConnection {
+
+    private static Statement statement;
 
     public void connect() throws ClassNotFoundException, SQLException {
         try {
@@ -20,14 +23,17 @@ public class SQLDatabaseConnection {
             String connectionURL = "jdbc:sqlserver://" + hostname + ":" + port + ";instance=" + sqlInstanceName
                     + ";databaseName=" + sqlDatabase+";encrypt=true;trustServerCertificate=true";
 
-            Connection conn = DriverManager.getConnection(connectionURL, sqlUser, sqlPassword);
+            Connection connection = DriverManager.getConnection(connectionURL, sqlUser, sqlPassword);
+            statement = connection.createStatement();
             System.out.println("Connessione stabilita.");
         } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    public static Statement getStatement() {
+        return statement;
     }
 }
