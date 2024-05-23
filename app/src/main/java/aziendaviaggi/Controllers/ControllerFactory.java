@@ -36,4 +36,8 @@ public class ControllerFactory implements Initializable {
         alert.setContentText(msg);
         alert.showAndWait();
     }
+
+    protected String valueFormatter(String msg) {
+        return "'" + msg + "'";
+    }
 }

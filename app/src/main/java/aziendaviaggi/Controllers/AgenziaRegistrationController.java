@@ -39,10 +39,6 @@ public class AgenziaRegistrationController extends ControllerFactory {
         }
     }
 
-    private String valueFormatter(String msg) {
-        return "'" + msg + "'";
-    }
-
     private int progressiveCode() throws SQLException {
         ResultSet res = this.statement.executeQuery("SELECT MAX(CodAgenzia) AS Max FROM AGENZIE_VIAGGIO");
         res.next();
