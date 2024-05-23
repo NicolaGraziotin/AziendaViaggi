@@ -17,21 +17,12 @@ public class LoginController extends ControllerFactory {
 
     @FXML
     private void loginAgenzia(ActionEvent event) {
-        try {
-            if (this.statement.executeQuery("SELECT Email FROM AGENZIE_VIAGGIO WHERE Email='" + Email.getText() + "'")
-                    .next()) {
-                changeScene(event, "/fxml/agenziaApp.fxml");
-            } else {
-                alertThrower("Email non valida.");
-            }
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        }
+        loginCheck(event, "/fxml/agenziaApp.fxml", "AGENZIE_VIAGGIO");
     }
 
     @FXML
     private void loginCliente(ActionEvent event) {
-        changeScene(event, "/fxml/clientApp.fxml");
+        loginCheck(event, "/fxml/clientApp.fxml", "CLIENTI");
     }
 
     @FXML
@@ -42,5 +33,18 @@ public class LoginController extends ControllerFactory {
     @FXML
     private void registrationCliente(ActionEvent event) {
         changeScene(event, "/fxml/clientRegistration.fxml");
+    }
+
+    private void loginCheck (ActionEvent event, String scene, String table) {
+        try {
+            if (this.statement.executeQuery("SELECT Email FROM "+table+" WHERE Email='" + Email.getText() + "'")
+                    .next()) {
+                changeScene(event, scene);
+            } else {
+                alertThrower("Email non valida.");
+            }
+        } catch (SQLException e) {
+            alertThrower(e.getMessage());
+        }
     }
 }
