@@ -23,6 +23,8 @@ dependencies {
 
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.1-jre")
+
+    implementation("com.microsoft.sqlserver:mssql-jdbc:12.7.0.jre11-preview")
 }
 
 javafx {

@@ -17,6 +17,7 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
         Parent root = loader.load();
         Image icon = new Image("/logo.png");
+        new SQLDatabaseConnection().connect();
 
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("Azienda Viaggi");
