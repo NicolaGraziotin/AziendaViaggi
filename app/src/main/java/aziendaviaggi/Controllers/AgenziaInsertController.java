@@ -1,11 +1,14 @@
 package aziendaviaggi.Controllers;
 
 import java.net.URL;
+import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import aziendaviaggi.SQLDatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -37,31 +40,56 @@ public class AgenziaInsertController extends ControllerFactory {
     private ChoiceBox<String> Trasporto;
 
     @FXML
-    private void enter(ActionEvent event) {
-        /*
-         * Control for empty TextField or ChoiceBox
-         */
-        for (Node node : AgenziaInse.getChildren()) {
-            if (node instanceof TextField && ((TextField) node).getText().isEmpty()
-                || node instanceof ChoiceBox<?> && ((ChoiceBox<?>) node).getSelectionModel().getSelectedItem() == null) {
-                alertThrower("Inserisci " + node.getId() + " valido!");
-                return;
-            }
-        }
+    private TextField Agenzia;
 
-        System.out.println("daje");
+    private Statement statement = SQLDatabaseConnection.getStatement();
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Agenzia.setText(LoginController.CodAgenzia);
+        Alloggio.getItems().addAll("0", "1");
+        Destinazione.getItems().addAll("0", "1");
+        Guida.getItems().addAll("" ,"0", "1");
+        Trasporto.getItems().addAll("0", "1");
+    }
+
+    @FXML
+    private void enter(ActionEvent event) {
+        try {
+            System.out.println("VALUES ("
+            + progressiveCode() + ", "
+            + valueFormatter(Nome.getText()) + ", "
+            + valueFormatter(Descrizione.getText()) + ", "
+            + Float.parseFloat(Prezzo.getText()) + ", "
+            + Integer.parseInt(LoginController.CodAgenzia) + ", "
+            + Trasporto.getSelectionModel().getSelectedItem() + ", "
+            + Alloggio.getSelectionModel().getSelectedItem() + ", "
+            + Destinazione.getSelectionModel().getSelectedItem()
+            + ")");
+            this.statement.executeUpdate("INSERT INTO PACCHETTI_TURISTICI" + "VALUES ("
+                    + progressiveCode() + ", "
+                    + valueFormatter(Nome.getText()) + ", "
+                    + valueFormatter(Descrizione.getText()) + ", "
+                    + Float.parseFloat(Prezzo.getText()) + ", "
+                    + Integer.parseInt(LoginController.CodAgenzia) + ", "
+                    + Trasporto.getSelectionModel().getSelectedItem() + ", "
+                    + Alloggio.getSelectionModel().getSelectedItem() + ", "
+                    + Destinazione.getSelectionModel().getSelectedItem()
+                    + ")");
+        } catch (SQLException e) {
+            alertThrower(e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void back(ActionEvent event) {
         changeScene(event, "/fxml/agenziaApp.fxml");
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        Alloggio.getItems().addAll("Casa", "Hotel");
-        Destinazione.getItems().addAll("Italia", "Spagna");
-        Guida.getItems().addAll("Nicola", "Roberta");
-        Trasporto.getItems().addAll("Aereo", "Traghetto");
+    
+    private int progressiveCode() throws SQLException {
+        ResultSet res = this.statement.executeQuery("SELECT MAX(CodPacchetto) AS Max FROM PACCHETTI_TURISTICI");
+        res.next();
+        return res.getInt("Max") + 1;
     }
 }

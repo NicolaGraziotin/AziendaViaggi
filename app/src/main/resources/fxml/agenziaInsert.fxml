@@ -61,5 +61,11 @@
       <ChoiceBox fx:id="Alloggio" layoutX="410.0" layoutY="240.0" prefWidth="150.0" />
       <ChoiceBox fx:id="Guida" layoutX="232.0" layoutY="240.0" prefWidth="150.0" />
       <ChoiceBox fx:id="Trasporto" layoutX="58.0" layoutY="240.0" prefWidth="150.0" />
+      <Label layoutX="628.0" layoutY="80.0" text="Agenzia">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Agenzia" layoutX="578.0" layoutY="120.0" editable="false" disable="true" />
    </children>
 </Pane>

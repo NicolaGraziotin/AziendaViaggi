@@ -26,8 +26,6 @@ public class AgenziaAppController extends ControllerFactory {
     @FXML
     private TableColumn<Pacchetto, String> ColumnPrez;
 
-    
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ColumnNome.setCellValueFactory(new PropertyValueFactory<Pacchetto,String>("nome"));

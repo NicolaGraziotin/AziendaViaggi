@@ -30,10 +30,12 @@ public class AgenziaRegistrationController extends ControllerFactory {
     @FXML
     private void enter(ActionEvent event) {
         try {
-            this.statement.executeUpdate("INSERT INTO AGENZIE_VIAGGIO " + "VALUES (" + valueFormatter(Email.getText())
-                    + ", " + String.valueOf(progressiveCode()) + ", " + valueFormatter(Nome.getText()) + ", "
+            this.statement.executeUpdate("INSERT INTO AGENZIE_VIAGGIO " + "VALUES ("
+                    + valueFormatter(Email.getText()) + ", "
+                    + String.valueOf(progressiveCode())+ ", "
+                    + valueFormatter(Nome.getText()) + ", "
                     + valueFormatter(Sede.getText()) + ")");
-            changeScene(event, "/fxml/agenziaApp.fxml");
+            changeScene(event, "/fxml/login.fxml");
         } catch (SQLException e) {
             alertThrower(e.getMessage());
         }
@@ -42,6 +44,6 @@ public class AgenziaRegistrationController extends ControllerFactory {
     private int progressiveCode() throws SQLException {
         ResultSet res = this.statement.executeQuery("SELECT MAX(CodAgenzia) AS Max FROM AGENZIE_VIAGGIO");
         res.next();
-        return res.getInt("Max")+1;
+        return res.getInt("Max") + 1;
     }
 }

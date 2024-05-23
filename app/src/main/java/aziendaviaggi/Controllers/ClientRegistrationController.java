@@ -38,7 +38,7 @@ public class ClientRegistrationController extends ControllerFactory {
             this.statement.executeUpdate("INSERT INTO CLIENTI " + "VALUES (" + valueFormatter(Email.getText())
                     + ", " + valueFormatter(CodiceFiscale.getText()) + ", " + valueFormatter(Nome.getText()) + ", "
                     + valueFormatter(Cognome.getText()) + ", " +valueFormatter(NumeroTelefono.getText())+ ")");
-            changeScene(event, "/fxml/clientApp.fxml");
+            changeScene(event, "/fxml/login.fxml");
         } catch (SQLException e) {
             alertThrower(e.getMessage());
         }
