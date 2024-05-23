@@ -18,18 +18,18 @@
             <Font size="18.0" />
          </font>
       </TextField>
-      <Button layoutX="222.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleLogAgenzia" text="Login Agenzia">
+      <Button layoutX="222.0" layoutY="269.0" mnemonicParsing="false" onAction="#loginAgenzia" text="Login Agenzia">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="448.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleLogCliente" text="Login Cliente">
+      <Button layoutX="448.0" layoutY="269.0" mnemonicParsing="false" onAction="#loginCliente" text="Login Cliente">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
       <Label layoutX="251.0" layoutY="354.0" text="Se non sei registrato seleziona un metodo per registrarti" />
-      <Button layoutX="251.0" layoutY="384.0" mnemonicParsing="false" text="Registrazione Agenzia" onAction="#handleRegAgenzia"/>
-      <Button layoutX="420.0" layoutY="384.0" mnemonicParsing="false" text="Registrazione Cliente" onAction="#handleRegCliente"/>
+      <Button layoutX="251.0" layoutY="384.0" mnemonicParsing="false" text="Registrazione Agenzia" onAction="#registrationAgenzia"/>
+      <Button layoutX="420.0" layoutY="384.0" mnemonicParsing="false" text="Registrazione Cliente" onAction="#registrationCliente"/>
    </children>
 </Pane>

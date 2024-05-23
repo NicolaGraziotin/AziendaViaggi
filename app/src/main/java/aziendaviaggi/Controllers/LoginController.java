@@ -1,5 +1,9 @@
 package aziendaviaggi.Controllers;
 
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import aziendaviaggi.SQLDatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -9,31 +13,34 @@ public class LoginController extends ControllerFactory {
     @FXML
     private TextField Email;
 
+    private Statement statement = SQLDatabaseConnection.getStatement();
+
     @FXML
-    private void handleLogAgenzia(ActionEvent event) {
-        emailCheck(event, "/fxml/agenziaApp.fxml");
+    private void loginAgenzia(ActionEvent event) {
+        try {
+            if (this.statement.executeQuery("SELECT Email FROM AGENZIE_VIAGGIO WHERE Email='" + Email.getText() + "'")
+                    .next()) {
+                changeScene(event, "/fxml/agenziaApp.fxml");
+            } else {
+                alertThrower("Email non valida.");
+            }
+        } catch (SQLException e) {
+            alertThrower(e.getMessage());
+        }
     }
 
     @FXML
-    private void handleLogCliente(ActionEvent event) {
-        emailCheck(event, "/fxml/clientApp.fxml");
+    private void loginCliente(ActionEvent event) {
+        changeScene(event, "/fxml/clientApp.fxml");
     }
 
     @FXML
-    private void handleRegAgenzia(ActionEvent event) {
+    private void registrationAgenzia(ActionEvent event) {
         changeScene(event, "/fxml/agenziaRegistration.fxml");
     }
 
     @FXML
-    private void handleRegCliente(ActionEvent event) {
+    private void registrationCliente(ActionEvent event) {
         changeScene(event, "/fxml/clientRegistration.fxml");
-    }
-
-    private void emailCheck(ActionEvent event, String scene) {
-        if (Email.getText().isEmpty()) {
-            alertThrower("Inserire " + Email.getId() + " valida!");
-        } else {
-            changeScene(event, scene);
-        }
     }
 }
