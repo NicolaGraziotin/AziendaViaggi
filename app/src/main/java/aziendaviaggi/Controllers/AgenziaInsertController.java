@@ -47,38 +47,29 @@ public class AgenziaInsertController extends ControllerFactory {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Agenzia.setText(LoginController.CodAgenzia);
-        Alloggio.getItems().addAll("0", "1");
-        Destinazione.getItems().addAll("0", "1");
-        Guida.getItems().addAll("" ,"0", "1");
-        Trasporto.getItems().addAll("0", "1");
+        choiceBoxInit("CodAlloggio", "ALLOGGI", Alloggio);
+        choiceBoxInit("CodDestinazione", "DESTINAZIONI", Destinazione);
+        Guida.getItems().add("");
+        choiceBoxInit("CodGuida", "GUIDE_TURISTICHE", Guida);
+        choiceBoxInit("CodTrasporto", "TRASPORTI", Trasporto);
     }
 
     @FXML
     private void enter(ActionEvent event) {
         try {
-            System.out.println("VALUES ("
-            + progressiveCode() + ", "
-            + valueFormatter(Nome.getText()) + ", "
-            + valueFormatter(Descrizione.getText()) + ", "
-            + Float.parseFloat(Prezzo.getText()) + ", "
-            + Integer.parseInt(LoginController.CodAgenzia) + ", "
-            + Trasporto.getSelectionModel().getSelectedItem() + ", "
-            + Alloggio.getSelectionModel().getSelectedItem() + ", "
-            + Destinazione.getSelectionModel().getSelectedItem()
-            + ")");
-            this.statement.executeUpdate("INSERT INTO PACCHETTI_TURISTICI" + "VALUES ("
+            this.statement.executeUpdate("INSERT INTO PACCHETTI_TURISTICI " + "VALUES ("
                     + progressiveCode() + ", "
                     + valueFormatter(Nome.getText()) + ", "
                     + valueFormatter(Descrizione.getText()) + ", "
                     + Float.parseFloat(Prezzo.getText()) + ", "
-                    + Integer.parseInt(LoginController.CodAgenzia) + ", "
+                    + LoginController.CodAgenzia + ", "
+                    + Guida.getSelectionModel().getSelectedItem() + ", "
                     + Trasporto.getSelectionModel().getSelectedItem() + ", "
                     + Alloggio.getSelectionModel().getSelectedItem() + ", "
                     + Destinazione.getSelectionModel().getSelectedItem()
                     + ")");
         } catch (SQLException e) {
             alertThrower(e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -86,10 +77,21 @@ public class AgenziaInsertController extends ControllerFactory {
     private void back(ActionEvent event) {
         changeScene(event, "/fxml/agenziaApp.fxml");
     }
-    
+
     private int progressiveCode() throws SQLException {
         ResultSet res = this.statement.executeQuery("SELECT MAX(CodPacchetto) AS Max FROM PACCHETTI_TURISTICI");
         res.next();
         return res.getInt("Max") + 1;
+    }
+
+    private void choiceBoxInit(String column, String table, ChoiceBox<String> choice) {
+        try {
+            ResultSet res = this.statement.executeQuery("SELECT " + column + " FROM " + table);
+            while (res.next()) {
+                choice.getItems().add(res.getString(column));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
