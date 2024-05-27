@@ -19,6 +19,9 @@ public class ControllerApp extends Controller {
     protected TableView<Pacchetto> TableV;
 
     @FXML
+    protected TableColumn<Pacchetto, String> ColumnAgen;
+
+    @FXML
     protected TableColumn<Pacchetto, String> ColumnDesc;
 
     @FXML
@@ -29,6 +32,7 @@ public class ControllerApp extends Controller {
 
     @Override
     public final void initialize(URL location, ResourceBundle resources) {
+        cellInit(ColumnAgen, "codAgenzia");
         cellInit(ColumnNome, "nome");
         cellInit(ColumnDesc, "descrizione");
         cellInit(ColumnPrez, "prezzo");
@@ -42,15 +46,16 @@ public class ControllerApp extends Controller {
     }
 
     protected final void cellInit(TableColumn<Pacchetto, String> cell, String value) {
-        cell.setCellValueFactory(new PropertyValueFactory<Pacchetto,String>(value));
+        cell.setCellValueFactory(new PropertyValueFactory<Pacchetto, String>(value));
     }
 
-    protected final ObservableList<Pacchetto> fillTableView () {
+    protected final ObservableList<Pacchetto> fillTableView() {
         ObservableList<Pacchetto> list = FXCollections.observableArrayList();
         try {
             ResultSet res = this.statement.executeQuery("SELECT * FROM PACCHETTI_TURISTICI");
             while (res.next()) {
-                list.add(new Pacchetto(res.getString("Nome"), res.getString("Descrizione"), res.getString("Prezzo")));
+                list.add(new Pacchetto(res.getString("CodPacchetto"), res.getString("Nome"),
+                        res.getString("Descrizione"), res.getString("Prezzo"), res.getString("CodAgenzia")));
             }
         } catch (Exception e) {
             e.printStackTrace();

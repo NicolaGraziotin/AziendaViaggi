@@ -2,6 +2,7 @@ package aziendaviaggi.Controllers;
 
 import java.sql.SQLException;
 
+import aziendaviaggi.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -23,14 +24,17 @@ public class ClientRegistrationController extends ControllerRegistration {
 
     @FXML
     private void enter(ActionEvent event) {
-        if (!checkInsert(ClientRegi)) return;
+        if (!Utils.checkInsert(ClientRegi))
+            return;
         try {
-            this.statement.executeUpdate("INSERT INTO CLIENTI " + "VALUES (" + valueFormatter(Email.getText())
-                    + ", " + valueFormatter(CodiceFiscale.getText()) + ", " + valueFormatter(Nome.getText()) + ", "
-                    + valueFormatter(Cognome.getText()) + ", " + valueFormatter(NumeroTelefono.getText()) + ")");
+            this.statement.executeUpdate("INSERT INTO CLIENTI " + "VALUES (" + Utils.valueFormatter(Email.getText())
+                    + ", " + Utils.valueFormatter(CodiceFiscale.getText()) + ", " + Utils.valueFormatter(Nome.getText())
+                    + ", "
+                    + Utils.valueFormatter(Cognome.getText()) + ", " + Utils.valueFormatter(NumeroTelefono.getText())
+                    + ")");
             back(event);
         } catch (SQLException e) {
-            alertThrower(e.getMessage());
+            Utils.alertThrower(e.getMessage());
         }
     }
 }

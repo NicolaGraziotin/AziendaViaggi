@@ -2,6 +2,9 @@ package aziendaviaggi.Controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import aziendaviaggi.Utils;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -52,12 +55,13 @@ public class AgenziaInsertController extends Controller {
 
     @FXML
     private void enter(ActionEvent event) {
-        if (!checkInsert(AgenziaInse)) return;
+        if (!Utils.checkInsert(AgenziaInse))
+            return;
         try {
             this.statement.executeUpdate("INSERT INTO PACCHETTI_TURISTICI " + "VALUES ("
                     + progressiveCode() + ", "
-                    + valueFormatter(Nome.getText()) + ", "
-                    + valueFormatter(Descrizione.getText()) + ", "
+                    + Utils.valueFormatter(Nome.getText()) + ", "
+                    + Utils.valueFormatter(Descrizione.getText()) + ", "
                     + Float.parseFloat(Prezzo.getText()) + ", "
                     + LoginController.CodAgenzia + ", "
                     + Guida.getSelectionModel().getSelectedItem() + ", "
@@ -67,7 +71,7 @@ public class AgenziaInsertController extends Controller {
                     + ")");
             back(event);
         } catch (SQLException e) {
-            alertThrower(e.getMessage());
+            Utils.alertThrower(e.getMessage());
         }
     }
 

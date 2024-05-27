@@ -3,6 +3,7 @@ package aziendaviaggi.Controllers;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import aziendaviaggi.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -20,28 +21,31 @@ public class LoginController extends Controller {
 
     @FXML
     private void loginAgenzia(ActionEvent event) {
-        if (!checkInsert(LoginPane)) return;
+        if (!Utils.checkInsert(LoginPane))
+            return;
         try {
-            ResultSet result = this.statement.executeQuery("SELECT Email,CodAgenzia FROM AGENZIE_VIAGGIO WHERE Email='" + Email.getText() + "'");
+            ResultSet result = this.statement
+                    .executeQuery("SELECT Email,CodAgenzia FROM AGENZIE_VIAGGIO WHERE Email='" + Email.getText() + "'");
             if (result.next()) {
                 CodAgenzia = result.getString("CodAgenzia");
                 changeScene(event, "agenziaApp");
             }
         } catch (SQLException e) {
-            alertThrower(e.getMessage());
+            Utils.alertThrower(e.getMessage());
         }
     }
 
     @FXML
     private void loginCliente(ActionEvent event) {
-        if (!checkInsert(LoginPane)) return;
+        if (!Utils.checkInsert(LoginPane))
+            return;
         try {
             if (this.statement.executeQuery("SELECT Email FROM CLIENTI WHERE Email='" + Email.getText() + "'")
                     .next()) {
                 changeScene(event, "clientApp");
             }
         } catch (SQLException e) {
-            alertThrower(e.getMessage());
+            Utils.alertThrower(e.getMessage());
         }
     }
 

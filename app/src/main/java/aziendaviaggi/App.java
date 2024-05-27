@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class App extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         new SQLDatabaseConnection().connect();
@@ -22,6 +22,10 @@ public class App extends Application {
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("Azienda Viaggi");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setOnCloseRequest(event -> {
+            if (!Utils.confirmThrower("Sei sicuro di volere uscire?"))
+                event.consume();
+        });
         primaryStage.show();
     }
 

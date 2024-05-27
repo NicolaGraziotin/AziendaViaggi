@@ -1,14 +1,22 @@
 package aziendaviaggi.Objects;
 
 public class Pacchetto {
+    private String codPacchetto;
     private String nome;
     private String descrizione;
     private String prezzo;
+    private String codAgenzia;
 
-    public Pacchetto(String nome, String descrizione, String prezzo) {
-        this.nome = new String(nome);
-        this.descrizione = new String(descrizione);
-        this.prezzo = new String(prezzo);
+    public Pacchetto(String codPacchetto, String nome, String descrizione, String prezzo, String codAgenzia) {
+        this.codPacchetto = codPacchetto;
+        this.nome = nome;
+        this.descrizione = descrizione;
+        this.prezzo = prezzo;
+        this.codAgenzia = codAgenzia;
+    }
+
+    public String getCodPacchetto() {
+        return this.codPacchetto;
     }
 
     public String getNome() {
@@ -21,5 +29,9 @@ public class Pacchetto {
 
     public String getPrezzo() {
         return this.prezzo;
+    }
+
+    public String getCodAgenzia() {
+        return codAgenzia;
     }
 }

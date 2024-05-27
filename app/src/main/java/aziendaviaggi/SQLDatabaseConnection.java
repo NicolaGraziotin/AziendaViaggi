@@ -21,7 +21,7 @@ public class SQLDatabaseConnection {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
             String connectionURL = "jdbc:sqlserver://" + hostname + ":" + port + ";instance=" + sqlInstanceName
-                    + ";databaseName=" + sqlDatabase+";encrypt=true;trustServerCertificate=true";
+                    + ";databaseName=" + sqlDatabase + ";encrypt=true;trustServerCertificate=true";
 
             Connection connection = DriverManager.getConnection(connectionURL, sqlUser, sqlPassword);
             statement = connection.createStatement();
