@@ -45,13 +45,14 @@ public class AgenziaInsertController extends Controller {
         Agenzia.setText(LoginController.CodAgenzia);
         choiceBoxInit("CodAlloggio", "ALLOGGI", Alloggio);
         choiceBoxInit("CodDestinazione", "DESTINAZIONI", Destinazione);
-        Guida.getItems().add("");
+        Guida.getItems().add("NULL");
         choiceBoxInit("CodGuida", "GUIDE_TURISTICHE", Guida);
         choiceBoxInit("CodTrasporto", "TRASPORTI", Trasporto);
     }
 
     @FXML
     private void enter(ActionEvent event) {
+        if (!checkInsert(AgenziaInse)) return;
         try {
             this.statement.executeUpdate("INSERT INTO PACCHETTI_TURISTICI " + "VALUES ("
                     + progressiveCode() + ", "
@@ -72,7 +73,7 @@ public class AgenziaInsertController extends Controller {
 
     @FXML
     private void back(ActionEvent event) {
-        changeScene(event, "/fxml/agenziaApp.fxml");
+        changeScene(event, "agenziaApp");
     }
 
     private int progressiveCode() throws SQLException {

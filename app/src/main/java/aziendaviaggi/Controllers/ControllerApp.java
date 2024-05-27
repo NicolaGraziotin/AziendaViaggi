@@ -38,7 +38,7 @@ public class ControllerApp extends Controller {
 
     @FXML
     protected final void back(ActionEvent event) {
-        changeScene(event, "/fxml/login.fxml");
+        changeScene(event, "login");
     }
 
     protected final void cellInit(TableColumn<Pacchetto, String> cell, String value) {

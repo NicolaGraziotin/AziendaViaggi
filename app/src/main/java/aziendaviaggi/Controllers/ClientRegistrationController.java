@@ -5,8 +5,12 @@ import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 
 public class ClientRegistrationController extends ControllerRegistration {
+
+    @FXML
+    private Pane ClientRegi;
 
     @FXML
     private TextField CodiceFiscale;
@@ -19,6 +23,7 @@ public class ClientRegistrationController extends ControllerRegistration {
 
     @FXML
     private void enter(ActionEvent event) {
+        if (!checkInsert(ClientRegi)) return;
         try {
             this.statement.executeUpdate("INSERT INTO CLIENTI " + "VALUES (" + valueFormatter(Email.getText())
                     + ", " + valueFormatter(CodiceFiscale.getText()) + ", " + valueFormatter(Nome.getText()) + ", "

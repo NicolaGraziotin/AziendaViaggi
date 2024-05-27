@@ -6,8 +6,12 @@ import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 
 public class LoginController extends Controller {
+
+    @FXML
+    private Pane LoginPane;
 
     @FXML
     private TextField Email;
@@ -16,13 +20,12 @@ public class LoginController extends Controller {
 
     @FXML
     private void loginAgenzia(ActionEvent event) {
+        if (!checkInsert(LoginPane)) return;
         try {
             ResultSet result = this.statement.executeQuery("SELECT Email,CodAgenzia FROM AGENZIE_VIAGGIO WHERE Email='" + Email.getText() + "'");
             if (result.next()) {
                 CodAgenzia = result.getString("CodAgenzia");
-                changeScene(event, "/fxml/agenziaApp.fxml");
-            } else {
-                alertThrower("Email non valida.");
+                changeScene(event, "agenziaApp");
             }
         } catch (SQLException e) {
             alertThrower(e.getMessage());
@@ -31,12 +34,11 @@ public class LoginController extends Controller {
 
     @FXML
     private void loginCliente(ActionEvent event) {
+        if (!checkInsert(LoginPane)) return;
         try {
             if (this.statement.executeQuery("SELECT Email FROM CLIENTI WHERE Email='" + Email.getText() + "'")
                     .next()) {
-                changeScene(event, "/fxml/clientApp.fxml");
-            } else {
-                alertThrower("Email non valida.");
+                changeScene(event, "clientApp");
             }
         } catch (SQLException e) {
             alertThrower(e.getMessage());
@@ -45,11 +47,11 @@ public class LoginController extends Controller {
 
     @FXML
     private void registrationAgenzia(ActionEvent event) {
-        changeScene(event, "/fxml/agenziaRegistration.fxml");
+        changeScene(event, "agenziaRegistration");
     }
 
     @FXML
     private void registrationCliente(ActionEvent event) {
-        changeScene(event, "/fxml/clientRegistration.fxml");
+        changeScene(event, "clientRegistration");
     }
 }

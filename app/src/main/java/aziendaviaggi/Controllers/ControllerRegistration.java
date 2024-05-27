@@ -13,7 +13,8 @@ public class ControllerRegistration extends Controller {
     protected TextField Nome;
 
     @FXML
-    protected void back(ActionEvent event) {
-        changeScene(event, "/fxml/login.fxml");
+    protected final void back(ActionEvent event) {
+        changeScene(event, "login");
     }
+
 }

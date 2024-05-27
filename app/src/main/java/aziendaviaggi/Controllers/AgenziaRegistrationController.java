@@ -6,14 +6,19 @@ import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 
 public class AgenziaRegistrationController extends ControllerRegistration {
+
+    @FXML
+    private Pane AgenziaRegi;
 
     @FXML
     private TextField Sede;
 
     @FXML
     private void enter(ActionEvent event) {
+        if (!checkInsert(AgenziaRegi)) return;
         try {
             this.statement.executeUpdate("INSERT INTO AGENZIE_VIAGGIO " + "VALUES ("
                     + valueFormatter(Email.getText()) + ", "

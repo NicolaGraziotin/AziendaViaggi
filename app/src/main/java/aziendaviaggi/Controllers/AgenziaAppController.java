@@ -9,7 +9,7 @@ public class AgenziaAppController extends ControllerApp {
 
     @FXML
     private void insert(ActionEvent event) {
-        changeScene(event, "/fxml/agenziaInsert.fxml");
+        changeScene(event, "agenziaInsert");
     }
 
     @FXML
