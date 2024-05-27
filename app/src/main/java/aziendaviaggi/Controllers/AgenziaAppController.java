@@ -18,7 +18,7 @@ public class AgenziaAppController extends ControllerApp {
     @FXML
     private void delete(ActionEvent event) {
         ObservableList<Pacchetto> selected = TableV.getSelectionModel().getSelectedItems();
-        if (checkCode(selected) && Utils.confirmThrower("Sei sicuro di volere eliminare il pacchetto?")) {
+        if (checkCode(selected, "eliminare") && Utils.confirmThrower("Sei sicuro di volere eliminare il pacchetto?")) {
             remove(selected);
         }
     }
@@ -26,7 +26,7 @@ public class AgenziaAppController extends ControllerApp {
     @FXML
     private void modify(ActionEvent event) {
         ObservableList<Pacchetto> selected = TableV.getSelectionModel().getSelectedItems();
-        checkCode(selected);
+        checkCode(selected, "modificare");
     }
 
     private void remove(ObservableList<Pacchetto> selected) {
@@ -42,10 +42,10 @@ public class AgenziaAppController extends ControllerApp {
         });
     }
 
-    private boolean checkCode(ObservableList<Pacchetto> selected) {
+    private boolean checkCode(ObservableList<Pacchetto> selected, String msg) {
         try {
             if (!LoginController.CodAgenzia.equals(selected.get(0).getCodAgenzia())) {
-                Utils.alertThrower("Non puoi eliminare un pacchetto non inserito da te!");
+                Utils.alertThrower("Non puoi " + msg + " un pacchetto non inserito da te!");
                 return false;
             }
         } catch (IndexOutOfBoundsException ex) {

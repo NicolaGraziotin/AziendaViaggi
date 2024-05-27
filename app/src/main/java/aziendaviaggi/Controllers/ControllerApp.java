@@ -55,7 +55,9 @@ public class ControllerApp extends Controller {
             ResultSet res = this.statement.executeQuery("SELECT * FROM PACCHETTI_TURISTICI");
             while (res.next()) {
                 list.add(new Pacchetto(res.getString("CodPacchetto"), res.getString("Nome"),
-                        res.getString("Descrizione"), res.getString("Prezzo"), res.getString("CodAgenzia")));
+                        res.getString("Descrizione"), res.getString("Prezzo"), res.getString("CodAgenzia"),
+                        res.getString("CodGuida"), res.getString("CodTrasporto"), res.getString("CodAlloggio"),
+                        res.getString("CodDestinazione")));
             }
         } catch (Exception e) {
             e.printStackTrace();
