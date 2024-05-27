@@ -64,6 +64,7 @@ public class AgenziaInsertController extends Controller {
                     + Alloggio.getSelectionModel().getSelectedItem() + ", "
                     + Destinazione.getSelectionModel().getSelectedItem()
                     + ")");
+            back(event);
         } catch (SQLException e) {
             alertThrower(e.getMessage());
         }
@@ -87,7 +88,7 @@ public class AgenziaInsertController extends Controller {
                 choice.getItems().add(res.getString(column));
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 }

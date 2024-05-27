@@ -1,6 +1,8 @@
 package aziendaviaggi.Controllers;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import aziendaviaggi.Objects.Pacchetto;
@@ -8,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -32,15 +35,7 @@ public class ControllerApp extends Controller {
         cellInit(ColumnDesc, "descrizione");
         cellInit(ColumnPrez, "prezzo");
 
-        ObservableList<Pacchetto> list = FXCollections.observableArrayList(
-            new Pacchetto("Hawaii", "Isola con spiaggia privata", "1000"),
-            new Pacchetto("Hawaii", "Isola con spiaggia privata", "1000"),
-            new Pacchetto("Hawaii", "Isola con spiaggia privata", "1000"),
-            new Pacchetto("Hawaii", "Isola con spiaggia privata", "1000"),
-            new Pacchetto("Hawaii", "Isola con spiaggia privata", "1000")
-        );
-
-        TableV.setItems(list);
+        TableV.setItems(fillTableView());
     }
 
     @FXML
@@ -50,5 +45,18 @@ public class ControllerApp extends Controller {
 
     protected final void cellInit(TableColumn<Pacchetto, String> cell, String value) {
         cell.setCellValueFactory(new PropertyValueFactory<Pacchetto,String>(value));
+    }
+
+    protected final ObservableList<Pacchetto> fillTableView () {
+        ObservableList<Pacchetto> list = FXCollections.observableArrayList();
+        try {
+            ResultSet res = this.statement.executeQuery("SELECT * FROM PACCHETTI_TURISTICI");
+            while (res.next()) {
+                list.add(new Pacchetto(res.getString("Nome"), res.getString("Descrizione"), res.getString("Prezzo")));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }
