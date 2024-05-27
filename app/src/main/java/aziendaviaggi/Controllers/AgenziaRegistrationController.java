@@ -7,31 +7,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-public class AgenziaRegistrationController extends Controller {
-
-    @FXML
-    private TextField Email;
-
-    @FXML
-    private TextField Nome;
+public class AgenziaRegistrationController extends ControllerRegistration {
 
     @FXML
     private TextField Sede;
-
-    @FXML
-    private void back(ActionEvent event) {
-        changeScene(event, "/fxml/login.fxml");
-    }
 
     @FXML
     private void enter(ActionEvent event) {
         try {
             this.statement.executeUpdate("INSERT INTO AGENZIE_VIAGGIO " + "VALUES ("
                     + valueFormatter(Email.getText()) + ", "
-                    + String.valueOf(progressiveCode())+ ", "
+                    + String.valueOf(progressiveCode()) + ", "
                     + valueFormatter(Nome.getText()) + ", "
                     + valueFormatter(Sede.getText()) + ")");
-            changeScene(event, "/fxml/login.fxml");
+            back(event);
         } catch (SQLException e) {
             alertThrower(e.getMessage());
         }
