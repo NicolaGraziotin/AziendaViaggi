@@ -2,19 +2,15 @@ package aziendaviaggi.Controllers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-import aziendaviaggi.SQLDatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-public class LoginController extends ControllerFactory {
+public class LoginController extends Controller {
 
     @FXML
     private TextField Email;
-
-    private Statement statement = SQLDatabaseConnection.getStatement();
 
     public static String CodAgenzia;
 

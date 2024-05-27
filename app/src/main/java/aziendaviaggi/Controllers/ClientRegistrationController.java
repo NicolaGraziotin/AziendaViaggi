@@ -1,14 +1,12 @@
 package aziendaviaggi.Controllers;
 
 import java.sql.SQLException;
-import java.sql.Statement;
 
-import aziendaviaggi.SQLDatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-public class ClientRegistrationController extends ControllerFactory {
+public class ClientRegistrationController extends Controller {
 
     @FXML
     private TextField Email;
@@ -24,8 +22,6 @@ public class ClientRegistrationController extends ControllerFactory {
 
     @FXML
     private TextField Cognome;
-
-    private Statement statement = SQLDatabaseConnection.getStatement();
 
     @FXML
     private void back(ActionEvent event) {

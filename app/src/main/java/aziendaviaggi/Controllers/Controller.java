@@ -2,8 +2,10 @@ package aziendaviaggi.Controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
+import aziendaviaggi.SQLDatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,7 +15,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
-public class ControllerFactory implements Initializable {
+public class Controller implements Initializable {
+
+    protected Statement statement = SQLDatabaseConnection.getStatement();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) { };

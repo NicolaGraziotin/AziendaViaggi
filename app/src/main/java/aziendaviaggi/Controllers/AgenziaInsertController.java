@@ -1,19 +1,17 @@
 package aziendaviaggi.Controllers;
 
 import java.net.URL;
-import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import aziendaviaggi.SQLDatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
-public class AgenziaInsertController extends ControllerFactory {
+public class AgenziaInsertController extends Controller {
 
     @FXML
     private Pane AgenziaInse;
@@ -41,8 +39,6 @@ public class AgenziaInsertController extends ControllerFactory {
 
     @FXML
     private TextField Agenzia;
-
-    private Statement statement = SQLDatabaseConnection.getStatement();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

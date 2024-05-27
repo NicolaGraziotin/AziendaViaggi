@@ -12,7 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ClientAppController extends ControllerFactory {
+public class ClientAppController extends Controller {
 
     @FXML
     private TableView<Pacchetto> TableV;

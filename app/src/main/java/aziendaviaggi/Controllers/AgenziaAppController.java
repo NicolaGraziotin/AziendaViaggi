@@ -12,7 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class AgenziaAppController extends ControllerFactory {
+public class AgenziaAppController extends Controller {
     
     @FXML
     private TableView<Pacchetto> TableV;
@@ -28,9 +28,9 @@ public class AgenziaAppController extends ControllerFactory {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ColumnNome.setCellValueFactory(new PropertyValueFactory<Pacchetto,String>("nome"));
-        ColumnDesc.setCellValueFactory(new PropertyValueFactory<Pacchetto,String>("descrizione"));
-        ColumnPrez.setCellValueFactory(new PropertyValueFactory<Pacchetto,String>("prezzo"));
+        cellInit(ColumnNome, "nome");
+        cellInit(ColumnDesc, "descrizione");
+        cellInit(ColumnPrez, "prezzo");
 
         ObservableList<Pacchetto> list = FXCollections.observableArrayList(
             new Pacchetto("Hawaii", "Isola con spiaggia privata", "1000"),
@@ -70,5 +70,9 @@ public class AgenziaAppController extends ControllerFactory {
     @FXML
     private void back(ActionEvent event) {
         changeScene(event, "/fxml/login.fxml");
+    }
+
+    private void cellInit(TableColumn<Pacchetto, String> cell, String value) {
+        cell.setCellValueFactory(new PropertyValueFactory<Pacchetto,String>(value));
     }
 }
