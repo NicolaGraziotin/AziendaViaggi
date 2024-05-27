@@ -57,10 +57,10 @@
       <TextField fx:id="Nome" layoutX="59.0" layoutY="120.0" />
       <TextField fx:id="Descrizione" layoutX="233.0" layoutY="120.0" />
       <TextField fx:id="Prezzo" layoutX="411.0" layoutY="120.0" />
-      <ChoiceBox fx:id="Destinazione" layoutX="578.0" layoutY="240.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="Alloggio" layoutX="410.0" layoutY="240.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="Guida" layoutX="232.0" layoutY="240.0" prefWidth="150.0" />
       <ChoiceBox fx:id="Trasporto" layoutX="58.0" layoutY="240.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="Guida" layoutX="232.0" layoutY="240.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="Alloggio" layoutX="410.0" layoutY="240.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="Destinazione" layoutX="578.0" layoutY="240.0" prefWidth="150.0" />
       <Label layoutX="628.0" layoutY="80.0" text="Agenzia">
          <font>
             <Font size="14.0" />
