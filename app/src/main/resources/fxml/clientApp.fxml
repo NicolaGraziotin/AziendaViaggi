@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="ClientAppl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.Controllers.Client.ClientAppController">
+<Pane fx:id="ClientAppl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="aziendaviaggi.Controllers.Client.ClientAppController">
    <children>
       <Label layoutX="275.0" layoutY="30.0" text="Pacchetti turistici">
          <font>
@@ -24,12 +24,29 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <TableView fx:id="TableV" editable="true" layoutX="30.0" layoutY="70.0" prefHeight="500.0" prefWidth="630.0">
+      <TableView fx:id="TableV" editable="false" layoutX="40.0" layoutY="80.0" onMouseClicked="#update" prefHeight="239.0" prefWidth="630.0">
          <columns>
-            <TableColumn fx:id="ColumnAgen" minWidth="-1.0" prefWidth="100.0" text="Agenzia" />
-            <TableColumn fx:id="ColumnNome" editable="true" minWidth="0.0" prefWidth="137.0" resizable="false" text="Nome" />
-            <TableColumn fx:id="ColumnDesc" editable="true" prefWidth="273.0" resizable="false" text="Descrizione" />
-            <TableColumn fx:id="ColumnPrez" editable="true" minWidth="0.0" prefWidth="119.0" resizable="false" text="Prezzo" />
+            <TableColumn fx:id="ColumnAgen" editable="false" minWidth="-1.0" prefWidth="100.0" text="Agenzia" />
+            <TableColumn fx:id="ColumnNome" minWidth="0.0" prefWidth="137.0" resizable="false" text="Nome" />
+            <TableColumn fx:id="ColumnDesc" prefWidth="273.0" resizable="false" text="Descrizione" />
+            <TableColumn fx:id="ColumnPrez" minWidth="0.0" prefWidth="119.0" resizable="false" text="Prezzo" />
+         </columns>
+      </TableView>
+      <TableView fx:id="TableV2" editable="false" layoutX="40.0" layoutY="332.0" prefHeight="97.0" prefWidth="630.0">
+         <columns>
+            <TableColumn fx:id="ColumnGuid" prefWidth="123.0" text="Guida" />
+            <TableColumn fx:id="ColumnTras" prefWidth="167.0" text="Trasporto" />
+            <TableColumn fx:id="ColumnAllo" prefWidth="186.0" text="Alloggio" />
+            <TableColumn fx:id="ColumnDest" prefWidth="153.0" text="Destinazione" />
+         </columns>
+      </TableView>
+      <TableView fx:id="TableV3" editable="false" layoutX="40.0" layoutY="438.0" prefHeight="151.0" prefWidth="630.0">
+         <columns>
+            <TableColumn fx:id="ColumnAtt" prefWidth="87.0" text="Attivita" />
+            <TableColumn fx:id="ColumnNomeAtt" prefWidth="174.0" text="Nome" />
+            <TableColumn fx:id="ColumnDescAtt" prefWidth="187.0" text="Descrizione" />
+            <TableColumn fx:id="ColumnOrar" prefWidth="89.0" text="Orario" />
+            <TableColumn fx:id="ColumnDura" prefWidth="92.0" text="Durata" />
          </columns>
       </TableView>
    </children>

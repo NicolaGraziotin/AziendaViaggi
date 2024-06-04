@@ -3,7 +3,6 @@ package aziendaviaggi.Controllers.Agenzia;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import aziendaviaggi.Utils;
 import aziendaviaggi.Controllers.Controller;
 import aziendaviaggi.Controllers.LoginController;
 

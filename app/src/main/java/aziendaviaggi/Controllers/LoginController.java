@@ -3,7 +3,6 @@ package aziendaviaggi.Controllers;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import aziendaviaggi.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

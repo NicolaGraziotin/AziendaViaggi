@@ -23,6 +23,9 @@ public class ControllerApp extends Controller {
     protected TableView<Pacchetto> TableV2;
 
     @FXML
+    protected TableView<Pacchetto> TableV3;
+
+    @FXML
     protected TableColumn<Pacchetto, String> ColumnAgen;
 
     @FXML
@@ -45,6 +48,21 @@ public class ControllerApp extends Controller {
 
     @FXML
     protected TableColumn<Pacchetto, String> ColumnDest;
+    
+    @FXML
+    protected TableColumn<Pacchetto, String> ColumnAtt;
+    
+    @FXML
+    protected TableColumn<Pacchetto, String> ColumnNomeAtt;
+    
+    @FXML
+    protected TableColumn<Pacchetto, String> ColumnDescAtt;
+    
+    @FXML
+    protected TableColumn<Pacchetto, String> ColumnOrar;
+    
+    @FXML
+    protected TableColumn<Pacchetto, String> ColumnDura;
 
     @Override
     public final void initialize(URL location, ResourceBundle resources) {

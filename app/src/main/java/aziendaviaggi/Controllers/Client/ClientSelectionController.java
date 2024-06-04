@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import java.sql.SQLException;
 
-import aziendaviaggi.Utils;
 import aziendaviaggi.Controllers.Controller;
 import aziendaviaggi.Objects.Pacchetto;
 import javafx.event.ActionEvent;

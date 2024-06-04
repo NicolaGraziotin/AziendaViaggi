@@ -1,6 +1,5 @@
 package aziendaviaggi.Controllers.Client;
 
-import aziendaviaggi.Utils;
 import aziendaviaggi.Controllers.Controller;
 import aziendaviaggi.Controllers.LoginController;
 import javafx.event.ActionEvent;
