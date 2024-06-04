@@ -1,9 +1,11 @@
-package aziendaviaggi.Controllers;
+package aziendaviaggi.Controllers.Agenzia;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import aziendaviaggi.Utils;
+import aziendaviaggi.Controllers.Controller;
+import aziendaviaggi.Controllers.LoginController;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -80,13 +82,13 @@ public class AgenziaInsertController extends Controller {
         changeScene(event, "agenziaApp");
     }
 
-    private int progressiveCode() throws SQLException {
+    protected int progressiveCode() throws SQLException {
         ResultSet res = this.statement.executeQuery("SELECT MAX(CodPacchetto) AS Max FROM PACCHETTI_TURISTICI");
         res.next();
         return res.getInt("Max") + 1;
     }
 
-    private void choiceBoxInit(String column, String table, ChoiceBox<String> choice) {
+    protected void choiceBoxInit(String column, String table, ChoiceBox<String> choice) {
         try {
             ResultSet res = this.statement.executeQuery("SELECT " + column + " FROM " + table);
             while (res.next()) {

@@ -1,8 +1,9 @@
-package aziendaviaggi.Controllers;
+package aziendaviaggi.Controllers.Client;
 
 import java.sql.SQLException;
 
 import aziendaviaggi.Utils;
+import aziendaviaggi.Controllers.ControllerRegistration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

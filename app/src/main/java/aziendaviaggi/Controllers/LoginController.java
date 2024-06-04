@@ -29,6 +29,8 @@ public class LoginController extends Controller {
             if (result.next()) {
                 CodAgenzia = result.getString("CodAgenzia");
                 changeScene(event, "agenziaApp");
+            } else {
+                Utils.alertThrower("Email non valida!");
             }
         } catch (SQLException e) {
             Utils.alertThrower(e.getMessage());
@@ -43,6 +45,8 @@ public class LoginController extends Controller {
             if (this.statement.executeQuery("SELECT Email FROM CLIENTI WHERE Email='" + Email.getText() + "'")
                     .next()) {
                 changeScene(event, "clientApp");
+            } else {
+                Utils.alertThrower("Email non valida!");
             }
         } catch (SQLException e) {
             Utils.alertThrower(e.getMessage());
