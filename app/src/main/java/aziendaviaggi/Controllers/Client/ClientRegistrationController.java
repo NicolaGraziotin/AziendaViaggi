@@ -25,17 +25,17 @@ public class ClientRegistrationController extends ControllerRegistration {
 
     @FXML
     private void enter(ActionEvent event) {
-        if (!Utils.checkInsert(ClientRegi))
+        if (!checkInsert(ClientRegi))
             return;
         try {
-            this.statement.executeUpdate("INSERT INTO CLIENTI " + "VALUES (" + Utils.valueFormatter(Email.getText())
-                    + ", " + Utils.valueFormatter(CodiceFiscale.getText()) + ", " + Utils.valueFormatter(Nome.getText())
+            this.statement.executeUpdate("INSERT INTO CLIENTI " + "VALUES (" + valueFormatter(Email.getText())
+                    + ", " + valueFormatter(CodiceFiscale.getText()) + ", " + valueFormatter(Nome.getText())
                     + ", "
-                    + Utils.valueFormatter(Cognome.getText()) + ", " + Utils.valueFormatter(NumeroTelefono.getText())
+                    + valueFormatter(Cognome.getText()) + ", " + valueFormatter(NumeroTelefono.getText())
                     + ")");
             back(event);
         } catch (SQLException e) {
-            Utils.alertThrower(e.getMessage());
+            alertThrower(e.getMessage());
         }
     }
 }

@@ -48,9 +48,9 @@ public class AgenziaAppController extends ControllerApp {
                 return true;
             }
         } catch (NullPointerException e) {
-            Utils.alertThrower("Non hai selezionato un pacchetto!");
+            alertThrower("Non hai selezionato un pacchetto!");
         } catch (Exception e) {
-            Utils.alertThrower("Non puoi " + msg + " un pacchetto non inserito da te!");
+            alertThrower("Non puoi " + msg + " un pacchetto non inserito da te!");
         }
         return false;
     }

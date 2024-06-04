@@ -57,13 +57,13 @@ public class AgenziaModifyController extends AgenziaInsertController {
 
     @FXML
     private void enter(ActionEvent event) {
-        if (!Utils.checkInsert(AgenziaInse))
+        if (!checkInsert(AgenziaInse))
             return;
         try {
             this.statement.executeUpdate("INSERT INTO PACCHETTI_TURISTICI " + "VALUES ("
                     + progressiveCode() + ", "
-                    + Utils.valueFormatter(Nome.getText()) + ", "
-                    + Utils.valueFormatter(Descrizione.getText()) + ", "
+                    + valueFormatter(Nome.getText()) + ", "
+                    + valueFormatter(Descrizione.getText()) + ", "
                     + Float.parseFloat(Prezzo.getText()) + ", "
                     + LoginController.CodAgenzia + ", "
                     + Guida.getSelectionModel().getSelectedItem() + ", "
@@ -73,7 +73,7 @@ public class AgenziaModifyController extends AgenziaInsertController {
                     + ")");
             back(event);
         } catch (SQLException e) {
-            Utils.alertThrower(e.getMessage());
+            alertThrower(e.getMessage());
         }
     }
 }

@@ -20,17 +20,17 @@ public class AgenziaRegistrationController extends ControllerRegistration {
 
     @FXML
     private void enter(ActionEvent event) {
-        if (!Utils.checkInsert(AgenziaRegi))
+        if (!checkInsert(AgenziaRegi))
             return;
         try {
             this.statement.executeUpdate("INSERT INTO AGENZIE_VIAGGIO " + "VALUES ("
-                    + Utils.valueFormatter(Email.getText()) + ", "
+                    + valueFormatter(Email.getText()) + ", "
                     + String.valueOf(progressiveCode()) + ", "
-                    + Utils.valueFormatter(Nome.getText()) + ", "
-                    + Utils.valueFormatter(Sede.getText()) + ")");
+                    + valueFormatter(Nome.getText()) + ", "
+                    + valueFormatter(Sede.getText()) + ")");
             back(event);
         } catch (SQLException e) {
-            Utils.alertThrower(e.getMessage());
+            alertThrower(e.getMessage());
         }
     }
 

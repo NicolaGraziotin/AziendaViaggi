@@ -12,11 +12,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class ControllerApp extends Controller {
 
     @FXML
     protected TableView<Pacchetto> TableV;
+
+    @FXML
+    protected TableView<Pacchetto> TableV2;
 
     @FXML
     protected TableColumn<Pacchetto, String> ColumnAgen;
@@ -26,9 +30,21 @@ public class ControllerApp extends Controller {
 
     @FXML
     protected TableColumn<Pacchetto, String> ColumnNome;
-
+    
     @FXML
     protected TableColumn<Pacchetto, String> ColumnPrez;
+
+    @FXML
+    protected TableColumn<Pacchetto, String> ColumnGuid;
+
+    @FXML
+    protected TableColumn<Pacchetto, String> ColumnTras;
+
+    @FXML
+    protected TableColumn<Pacchetto, String> ColumnAllo;
+
+    @FXML
+    protected TableColumn<Pacchetto, String> ColumnDest;
 
     @Override
     public final void initialize(URL location, ResourceBundle resources) {
@@ -37,12 +53,24 @@ public class ControllerApp extends Controller {
         cellInit(ColumnDesc, "descrizione");
         cellInit(ColumnPrez, "prezzo");
 
+        cellInit(ColumnGuid, "codGuida");
+        cellInit(ColumnTras, "codTrasporto");
+        cellInit(ColumnAllo, "codAlloggio");
+        cellInit(ColumnDest, "codDestinazione");
+
         TableV.setItems(fillTableView());
     }
 
     @FXML
     protected final void back(ActionEvent event) {
         changeScene(event, "login");
+    }
+
+    @FXML
+    protected final void update(MouseEvent event) {
+        Pacchetto sel = TableV.getSelectionModel().getSelectedItem();
+        ObservableList<Pacchetto> list = FXCollections.observableArrayList(sel);
+        TableV2.setItems(list);
     }
 
     protected final void cellInit(TableColumn<Pacchetto, String> cell, String value) {

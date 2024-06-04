@@ -70,7 +70,7 @@ public class ClientSelectionController extends Controller {
     @FXML
     private void pay(ActionEvent event) {
         if (Assicurazione.getValue() == null || Documento.getValue() == null) {
-            Utils.alertThrower("Assicurazione e Documento sono campi obbligatori");
+            alertThrower("Assicurazione e Documento sono campi obbligatori");
             return;
         }
         changeScene(event, "clientSummary");

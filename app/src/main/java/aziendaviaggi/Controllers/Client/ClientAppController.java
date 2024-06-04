@@ -16,7 +16,7 @@ public class ClientAppController extends ControllerApp {
         if (actual != null) {
             changeScene(event, "clientSelection");
         } else {
-            Utils.alertThrower("Non hai selezionato un pacchetto!");
+            alertThrower("Non hai selezionato un pacchetto!");
         }
     }
 }

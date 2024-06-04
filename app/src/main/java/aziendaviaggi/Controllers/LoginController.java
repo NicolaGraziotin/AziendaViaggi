@@ -19,9 +19,11 @@ public class LoginController extends Controller {
 
     public static String CodAgenzia;
 
+    public static String EmailCliente;
+
     @FXML
     private void loginAgenzia(ActionEvent event) {
-        if (!Utils.checkInsert(LoginPane))
+        if (!checkInsert(LoginPane))
             return;
         try {
             ResultSet result = this.statement
@@ -30,26 +32,27 @@ public class LoginController extends Controller {
                 CodAgenzia = result.getString("CodAgenzia");
                 changeScene(event, "agenziaApp");
             } else {
-                Utils.alertThrower("Email non valida!");
+                alertThrower("Email non valida!");
             }
         } catch (SQLException e) {
-            Utils.alertThrower(e.getMessage());
+            alertThrower(e.getMessage());
         }
     }
 
     @FXML
     private void loginCliente(ActionEvent event) {
-        if (!Utils.checkInsert(LoginPane))
+        if (!checkInsert(LoginPane))
             return;
         try {
-            if (this.statement.executeQuery("SELECT Email FROM CLIENTI WHERE Email='" + Email.getText() + "'")
-                    .next()) {
+            ResultSet result = this.statement.executeQuery("SELECT Email FROM CLIENTI WHERE Email='" + Email.getText() + "'");
+            if (result.next()) {
+                EmailCliente = result.getString("Email");
                 changeScene(event, "clientApp");
             } else {
-                Utils.alertThrower("Email non valida!");
+                alertThrower("Email non valida!");
             }
         } catch (SQLException e) {
-            Utils.alertThrower(e.getMessage());
+            alertThrower(e.getMessage());
         }
     }
 
