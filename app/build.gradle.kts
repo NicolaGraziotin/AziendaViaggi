@@ -8,8 +8,9 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
+    java
     application
-    id("org.openjfx.javafxplugin") version "0.1.0"
+    //id("org.danilopianini.gradle-java-qa") version "1.52.0"
 }
 
 repositories {
@@ -17,27 +18,30 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    // Use JUnit Jupiter for testing.
-    testImplementation("org.junit.jupiter:junit-jupiter:5.9.1")
+val javaFXModules = listOf(
+    "base",
+    "controls",
+    "fxml",
+    "swing",
+    "media",
+    "graphics"
+)
+val supportedPlatforms = listOf("linux", "mac", "win") // All required for OOP
 
-    // This dependency is used by the application.
-    implementation("com.google.guava:guava:31.1-jre")
+dependencies {
 
     implementation("com.microsoft.sqlserver:mssql-jdbc:12.7.0.jre11-preview")
-}
 
-javafx {
-    version = "17.0.11"
-    modules = listOf("javafx.controls", "javafx.fxml", "javafx.base")
+    // Use JavaFX
+    val javaFxVersion = 21
+    for (platform in supportedPlatforms) {
+        for (module in javaFXModules) {
+            implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
+        }
+    }
 }
 
 application {
     // Define the main class for the application.
     mainClass.set("aziendaviaggi.App")
-}
-
-tasks.named<Test>("test") {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
 }

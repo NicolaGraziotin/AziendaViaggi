@@ -1,4 +1,10 @@
 {
+    "java.configuration.updateBuildConfiguration": "automatic",
     "java.compile.nullAnalysis.mode": "automatic",
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib//*.jar",
+            ".gradle//*.jar"
+        ]
+    }
 }
