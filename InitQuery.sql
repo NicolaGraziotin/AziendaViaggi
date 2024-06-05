@@ -1,36 +1,36 @@
 INSERT INTO AGENZIE_VIAGGIO
 	VALUES
-	('admin', '00', 'Nicola', 'Misano'),
-	('amazon@admin.it', 'AMZ', 'Amazon', 'Milano'),
-	('edenviaggi@admin.it', 'EDN', 'Eden Viaggi', 'Roma'),
-	('lastminute@admin.it', 'LST', 'Last Minute', 'Torino')
+	('admin', 'AG000', 'Nicola', 'Misano'),
+	('amazon@admin.it', 'AG001', 'Amazon', 'Milano'),
+	('edenviaggi@admin.it', 'AG002', 'Eden Viaggi', 'Roma'),
+	('lastminute@admin.it', 'AG003', 'Last Minute', 'Torino')
 GO
 
 INSERT INTO ALLOGGI
 	VALUES
-	('HO01', 'Hotel Bella Vista', 'Roma', 'Via Roma', '10', '15', 'S', 'Mezza pensione', 'N'),
-	('AP02', 'Appartamento Sole', 'Firenze', 'Via Firenze', '25', '5', 'N', 'Solo pernottamento', 'S'),
-	('HO03', 'Hotel Mare', 'Napoli', 'Via Napoli', '8', '20', 'S', 'All inclusive', 'N'),
-	('AP04', 'Appartamento Giallo', 'Milano', 'Via Milano', '12', '10', 'N', 'Colazione inclusa', 'S'),
-	('HO05', 'Hotel Montagna', 'Torino', 'Via Torino', '15', '30', 'S', 'Solo pernottamento', 'N')
+	('HO001', 'Hotel Bella Vista', 'Roma', 'Via Roma', '10', '15', 'S', 'Mezza pensione', 'N'),
+	('AP002', 'Appartamento Sole', 'Firenze', 'Via Firenze', '25', '5', 'N', 'Solo pernottamento', 'S'),
+	('HO003', 'Hotel Mare', 'Napoli', 'Via Napoli', '8', '20', 'S', 'All inclusive', 'N'),
+	('AP004', 'Appartamento Giallo', 'Milano', 'Via Milano', '12', '10', 'N', 'Colazione inclusa', 'S'),
+	('HO005', 'Hotel Montagna', 'Torino', 'Via Torino', '15', '30', 'S', 'Solo pernottamento', 'N')
 GO
 
 INSERT INTO ASSICURAZIONI
 	VALUES
-	('AV01', 'Viaggio', 'Assistenza stradale', '50'),
-	('AV02', 'Viaggio', 'Annullamento', '100'),
-	('AV03', 'Viaggio', 'Bagaglio smarrito', '30'),
-	('AV04', 'Viaggio', 'Assicurazione medica', '80'),
-	('AV05', 'Viaggio', 'Rimborso spese di viaggio', '120')
+	('AV001', 'Viaggio', 'Assistenza stradale', '50'),
+	('AV002', 'Viaggio', 'Annullamento', '100'),
+	('AV003', 'Viaggio', 'Bagaglio smarrito', '30'),
+	('AV004', 'Viaggio', 'Assicurazione medica', '80'),
+	('AV005', 'Viaggio', 'Rimborso spese di viaggio', '120')
 GO
 
 INSERT INTO ATTIVITA
 	VALUES
-	('AT01', 'Escursione sul vulcano', 'Trekking sul vulcano', '09:00', '4'),
-	('AT02', 'Tour enogastronomico', 'Visita a cantine e degustazione', '14:00', '3'),
-	('AT03', 'Giro in barca', 'Navigazione lungo la costa', '10:30', '5'),
-	('AT04', 'Visita guidata alla città', 'Tour storico della città', '11:00', '2'),
-	('AT05', 'Attività di snorkeling', 'Esplorazione subacquea', '15:30', '2')
+	('AT001', 'Escursione sul vulcano', 'Trekking sul vulcano', '09:00', '4'),
+	('AT002', 'Tour enogastronomico', 'Visita a cantine e degustazione', '14:00', '3'),
+	('AT003', 'Giro in barca', 'Navigazione lungo la costa', '10:30', '5'),
+	('AT004', 'Visita guidata alla città', 'Tour storico della città', '11:00', '2'),
+	('AT005', 'Attività di snorkeling', 'Esplorazione subacquea', '15:30', '2')
 GO
 
 INSERT INTO CLIENTI
@@ -46,27 +46,27 @@ GO
 
 INSERT INTO DESTINAZIONI
 	VALUES
-	('D01', 'Italia', 'Roma', 'Storia e cultura millenaria.'),
-	('D02', 'Francia', 'Parigi', 'Città dell amore e dell arte.'),
-	('D03', 'Spagna', 'Barcellona', 'Arte e vita notturna.'),
-	('D04', 'Stati Uniti', 'New York', 'La città che non dorme.'),
-	('D05', 'Giappone', 'Tokyo', 'Futuristica e tradizionale.')
+	('D001', 'Italia', 'Roma', 'Storia e cultura millenaria.'),
+	('D002', 'Francia', 'Parigi', 'Città dell amore e dell arte.'),
+	('D003', 'Spagna', 'Barcellona', 'Arte e vita notturna.'),
+	('D004', 'Stati Uniti', 'New York', 'La città che non dorme.'),
+	('D005', 'Giappone', 'Tokyo', 'Futuristica e tradizionale.')
 GO
 
 INSERT INTO GUIDE_TURISTICHE
 	VALUES
-	('G01', 'Marco', 'Bianchi', 'Italiano', 'Tour storico'),
-	('G02', 'Sophie', 'Dubois', 'Francese', 'Tour gastronomico'),
-	('G03', 'Juan', 'Martinez', 'Spagnolo', 'Tour culturale'),
-	('G04', 'Emily', 'Johnson', 'Inglese', 'Tour in barca'),
-	('G05', 'Hiroshi', 'Tanaka', 'Giapponese', 'Tour di shopping')
+	('G001', 'Marco', 'Bianchi', 'Italiano', 'Tour storico'),
+	('G002', 'Sophie', 'Dubois', 'Francese', 'Tour gastronomico'),
+	('G003', 'Juan', 'Martinez', 'Spagnolo', 'Tour culturale'),
+	('G004', 'Emily', 'Johnson', 'Inglese', 'Tour in barca'),
+	('G005', 'Hiroshi', 'Tanaka', 'Giapponese', 'Tour di shopping')
 GO
 
 INSERT INTO TRASPORTI
 	VALUES
-	('T01', 'Mediterranea Lines', 'Napoli', 'Palermo', '09:00', 'S', 'N', 'N'),
-	('T02', 'Eurolines', 'Roma', 'Berlino', '14:30', 'N', 'S', 'N'),
-	('T03', 'Air France', 'Parigi', 'New York', '11:45', 'N', 'N', 'S'),
-	('T04', 'Italo', 'Milano', 'Firenze', '10:15', 'N', 'S', 'N'),
-	('T05', 'Japan Airlines', 'Tokyo', 'Seoul', '13:20', 'N', 'N', 'S')
+	('T001', 'Mediterranea Lines', 'Napoli', 'Palermo', '09:00', 'S', 'N', 'N'),
+	('T002', 'Eurolines', 'Roma', 'Berlino', '14:30', 'N', 'S', 'N'),
+	('T003', 'Air France', 'Parigi', 'New York', '11:45', 'N', 'N', 'S'),
+	('T004', 'Italo', 'Milano', 'Firenze', '10:15', 'N', 'S', 'N'),
+	('T005', 'Japan Airlines', 'Tokyo', 'Seoul', '13:20', 'N', 'N', 'S')
 GO

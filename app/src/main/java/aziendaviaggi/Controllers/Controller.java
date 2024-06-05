@@ -2,6 +2,8 @@ package aziendaviaggi.Controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
@@ -62,5 +64,20 @@ public class Controller implements Initializable {
             }
         }
         return true;
+    }
+
+    protected String progressiveCode(String column, String table, String prefix) {
+        String num = "0";
+        try {
+            ResultSet res = this.statement.executeQuery("SELECT MAX(" + column + ") AS Max FROM "+ table);
+            if (res.next() && res.getString("Max") != null) {
+                num = res.getString("Max").replaceAll("\\D", "");
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return prefix + String.format("%03d", Integer.parseInt(num) + 1);
     }
 }

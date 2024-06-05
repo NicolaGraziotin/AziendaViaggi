@@ -25,7 +25,7 @@ public class SQLDatabaseConnection {
 
             Connection connection = DriverManager.getConnection(connectionURL, sqlUser, sqlPassword);
             statement = connection.createStatement();
-            System.out.println("Connessione stabilita.");
+            System.out.println("Connessione al DataBase stabilita.");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {

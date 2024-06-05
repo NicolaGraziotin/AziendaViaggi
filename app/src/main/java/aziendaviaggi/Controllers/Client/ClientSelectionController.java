@@ -69,8 +69,7 @@ public class ClientSelectionController extends Controller {
     
     @FXML
     private void pay(ActionEvent event) {
-        if (Assicurazione.getValue() == null || Documento.getValue() == null) {
-            alertThrower("Assicurazione e Documento sono campi obbligatori");
+        if (!checkInsert(ClientSelect)) {
             return;
         }
         changeScene(event, "clientSummary");
@@ -90,12 +89,14 @@ public class ClientSelectionController extends Controller {
     private void update(ActionEvent event) {
         try {
             ResultSet res = this.statement.executeQuery("SELECT Prezzo FROM ASSICURAZIONI WHERE CodAssicurazione = "
-                    + Assicurazione.getValue());
+                    + valueFormatter(Assicurazione.getValue()));
             if (res.next()) {
                 System.out.println(res.getString("Prezzo"));
                 PrezzoTotale.setText(String.valueOf(Float.parseFloat(Prezzo.getText()) + Float.parseFloat(res.getString("Prezzo"))));
             }
         } catch (SQLException e) {
+            alertThrower(e.getMessage());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -106,6 +107,8 @@ public class ClientSelectionController extends Controller {
             while (res.next()) {
                 choice.getItems().add(res.getString(column));
             }
+        } catch (SQLException e) {
+            alertThrower(e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -117,6 +120,8 @@ public class ClientSelectionController extends Controller {
             while (res.next()) {
                 Documento.getItems().add(res.getString("NumeroDocumento"));
             }
+        } catch (SQLException e) {
+            alertThrower(e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,6 +1,7 @@
 package aziendaviaggi.Controllers.Agenzia;
 
 import aziendaviaggi.Controllers.LoginController;
+import aziendaviaggi.Objects.Pacchetto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -41,12 +42,21 @@ public class AgenziaModifyController extends AgenziaInsertController {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Agenzia.setText(LoginController.CodAgenzia);
         choiceBoxInit("CodAlloggio", "ALLOGGI", Alloggio);
         choiceBoxInit("CodDestinazione", "DESTINAZIONI", Destinazione);
         Guida.getItems().add("NULL");
         choiceBoxInit("CodGuida", "GUIDE_TURISTICHE", Guida);
         choiceBoxInit("CodTrasporto", "TRASPORTI", Trasporto);
+
+        Pacchetto selected = AgenziaAppController.getSelectedPacchetto();
+        Nome.setText(selected.getNome());
+        Descrizione.setText(selected.getDescrizione());
+        Prezzo.setText(selected.getPrezzo());
+        Agenzia.setText(LoginController.CodAgenzia);
+        Trasporto.getSelectionModel().select(selected.getCodTrasporto());
+        Guida.getSelectionModel().select(selected.getCodGuida());
+        Alloggio.getSelectionModel().select(selected.getCodAlloggio());
+        Destinazione.getSelectionModel().select(selected.getCodDestinazione());
     }
 
     @FXML
@@ -59,20 +69,23 @@ public class AgenziaModifyController extends AgenziaInsertController {
         if (!checkInsert(AgenziaInse))
             return;
         try {
-            this.statement.executeUpdate("INSERT INTO PACCHETTI_TURISTICI " + "VALUES ("
-                    + progressiveCode() + ", "
-                    + valueFormatter(Nome.getText()) + ", "
-                    + valueFormatter(Descrizione.getText()) + ", "
-                    + Float.parseFloat(Prezzo.getText()) + ", "
-                    + LoginController.CodAgenzia + ", "
-                    + Guida.getSelectionModel().getSelectedItem() + ", "
-                    + Trasporto.getSelectionModel().getSelectedItem() + ", "
-                    + Alloggio.getSelectionModel().getSelectedItem() + ", "
-                    + Destinazione.getSelectionModel().getSelectedItem()
-                    + ")");
+            String codPacchetto = AgenziaAppController.getSelectedPacchetto().getCodPacchetto();
+            this.statement.executeUpdate("UPDATE PACCHETTI_TURISTICI SET "
+                    + "Nome = " + valueFormatter(Nome.getText())
+                    + ", Descrizione = " + valueFormatter(Descrizione.getText())
+                    + ", Prezzo = " + valueFormatter(Prezzo.getText())
+                    + ", CodAgenzia = " + valueFormatter(LoginController.CodAgenzia)
+                    + ", CodGuida = " + guidaCheck(Guida.getSelectionModel().getSelectedItem())
+                    + ", CodTrasporto = " + valueFormatter(Trasporto.getSelectionModel().getSelectedItem())
+                    + ", CodAlloggio = " + valueFormatter(Alloggio.getSelectionModel().getSelectedItem())
+                    + ", CodDestinazione = " + valueFormatter(Destinazione.getSelectionModel().getSelectedItem())
+                    + " WHERE CodPacchetto = " + valueFormatter(codPacchetto));
+            System.out.println("Pacchetto " + codPacchetto + " modificato con successo.");
             back(event);
         } catch (SQLException e) {
             alertThrower(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

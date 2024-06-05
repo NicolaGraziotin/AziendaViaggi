@@ -18,7 +18,7 @@
             <DropShadow />
          </effect>
       </Button>
-      <Button layoutX="666.0" layoutY="526.0" mnemonicParsing="false" onAction="#select" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #8cbcff;" text="Inserisci">
+      <Button layoutX="666.0" layoutY="526.0" mnemonicParsing="false" onAction="#select" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #8cbcff;" text="Prosegui">
          <font>
             <Font size="20.0" />
          </font>

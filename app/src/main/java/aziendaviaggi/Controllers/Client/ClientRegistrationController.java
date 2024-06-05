@@ -27,14 +27,19 @@ public class ClientRegistrationController extends ControllerRegistration {
         if (!checkInsert(ClientRegi))
             return;
         try {
-            this.statement.executeUpdate("INSERT INTO CLIENTI " + "VALUES (" + valueFormatter(Email.getText())
-                    + ", " + valueFormatter(CodiceFiscale.getText()) + ", " + valueFormatter(Nome.getText())
-                    + ", "
-                    + valueFormatter(Cognome.getText()) + ", " + valueFormatter(NumeroTelefono.getText())
+            this.statement.executeUpdate("INSERT INTO CLIENTI " + "VALUES ("
+                    + valueFormatter(Email.getText()) + ", "
+                    + valueFormatter(CodiceFiscale.getText()) + ", "
+                    + valueFormatter(Nome.getText()) + ", "
+                    + valueFormatter(Cognome.getText()) + ", "
+                    + valueFormatter(NumeroTelefono.getText())
                     + ")");
+            System.out.println("Cliente " + CodiceFiscale.getText() + " registrato con successo.");
             back(event);
         } catch (SQLException e) {
             alertThrower(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

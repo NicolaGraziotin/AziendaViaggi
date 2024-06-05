@@ -12,6 +12,8 @@ import javafx.fxml.FXML;
 
 public class AgenziaAppController extends ControllerApp {
 
+    private static Pacchetto selectedPacchetto;
+
     @FXML
     private void insert(ActionEvent event) {
         changeScene(event, "agenziaInsert");
@@ -20,15 +22,15 @@ public class AgenziaAppController extends ControllerApp {
     @FXML
     private void delete(ActionEvent event) {
         Pacchetto selected = TableV.getSelectionModel().getSelectedItem();
-        if (checkCode(selected, "eliminare") && Utils.confirmThrower("Sei sicuro di volere eliminare il pacchetto?")) {
+        if (checkSelected(selected, "eliminare") && Utils.confirmThrower("Sei sicuro di volere eliminare il pacchetto?"))
             remove(selected);
-        }
     }
 
     @FXML
     private void modify(ActionEvent event) {
-        Pacchetto selected = TableV.getSelectionModel().getSelectedItem();
-        checkCode(selected, "modificare");
+        selectedPacchetto = TableV.getSelectionModel().getSelectedItem();
+        if (checkSelected(selectedPacchetto, "modificare"))
+            changeScene(event, "agenziaModify");
     }
 
     private void remove(Pacchetto selected) {
@@ -42,7 +44,7 @@ public class AgenziaAppController extends ControllerApp {
         }
     }
 
-    private boolean checkCode(Pacchetto selected, String msg) {
+    private boolean checkSelected(Pacchetto selected, String msg) {
         try {
             if (LoginController.CodAgenzia.equals(selected.getCodAgenzia())) {
                 return true;
@@ -53,5 +55,9 @@ public class AgenziaAppController extends ControllerApp {
             alertThrower("Non puoi " + msg + " un pacchetto non inserito da te!");
         }
         return false;
+    }
+
+    public static Pacchetto getSelectedPacchetto() {
+        return selectedPacchetto;
     }
 }

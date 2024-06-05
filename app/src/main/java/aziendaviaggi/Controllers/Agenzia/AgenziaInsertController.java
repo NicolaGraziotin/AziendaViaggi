@@ -60,7 +60,7 @@ public class AgenziaInsertController extends Controller {
             return;
         try {
             this.statement.executeUpdate("INSERT INTO PACCHETTI_TURISTICI " + "VALUES ("
-                    + valueFormatter(progressiveCode()) + ", "
+                    + valueFormatter(progressiveCode("CodPacchetto", "PACCHETTI_TURISTICI", "P")) + ", "
                     + valueFormatter(Nome.getText()) + ", "
                     + valueFormatter(Descrizione.getText()) + ", "
                     + valueFormatter(Prezzo.getText()) + ", "
@@ -79,13 +79,6 @@ public class AgenziaInsertController extends Controller {
     @FXML
     private void back(ActionEvent event) {
         changeScene(event, "agenziaApp");
-    }
-
-    protected String progressiveCode() throws SQLException {
-        String num;
-        ResultSet res = this.statement.executeQuery("SELECT MAX(CodPacchetto) AS Max FROM PACCHETTI_TURISTICI");
-        num = res.next() ? res.getString("Max").replaceAll("\\D", "") : "00";
-        return "P" + String.format("%02d", Integer.parseInt(num) + 1);
     }
 
     protected String guidaCheck(String guida) {

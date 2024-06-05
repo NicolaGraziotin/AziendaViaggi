@@ -1,6 +1,5 @@
 package aziendaviaggi.Controllers.Agenzia;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import aziendaviaggi.Controllers.ControllerRegistration;
@@ -22,20 +21,18 @@ public class AgenziaRegistrationController extends ControllerRegistration {
         if (!checkInsert(AgenziaRegi))
             return;
         try {
+            String code = progressiveCode("CodAgenzia", "AGENZIE_VIAGGIO", "AG");
             this.statement.executeUpdate("INSERT INTO AGENZIE_VIAGGIO " + "VALUES ("
                     + valueFormatter(Email.getText()) + ", "
-                    + String.valueOf(progressiveCode()) + ", "
+                    + valueFormatter(code) + ", "
                     + valueFormatter(Nome.getText()) + ", "
                     + valueFormatter(Sede.getText()) + ")");
+            System.out.println("Agenzia " + code + " registrata con successo.");
             back(event);
         } catch (SQLException e) {
             alertThrower(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    }
-
-    private int progressiveCode() throws SQLException {
-        ResultSet res = this.statement.executeQuery("SELECT MAX(CodAgenzia) AS Max FROM AGENZIE_VIAGGIO");
-        res.next();
-        return res.getInt("Max") + 1;
     }
 }

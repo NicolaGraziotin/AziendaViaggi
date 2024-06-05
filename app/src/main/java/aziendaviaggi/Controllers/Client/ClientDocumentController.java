@@ -32,13 +32,13 @@ public class ClientDocumentController extends Controller {
     @FXML
     private ChoiceBox<String> Tipo;
 
-    private String cartaIdentita = "n";
-    private String passaporto = "n";
+    private String cartaIdentita = "N";
+    private String passaporto = "N";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Email.setText(LoginController.EmailCliente);
-        Tipo.getItems().addAll("Carta d'identità", "Passaporto");
+        Tipo.getItems().addAll("Carta d'identita", "Passaporto");
     }
 
     @FXML
@@ -51,10 +51,10 @@ public class ClientDocumentController extends Controller {
         if (!checkInsert(ClientDocu))
             return;
         try {
-            if (Tipo.getSelectionModel().getSelectedItem().equals("Carta d'identità"))
-                this.cartaIdentita = "s";
+            if (Tipo.getSelectionModel().getSelectedItem().equals("Carta d'identita"))
+                this.cartaIdentita = "S";
             else
-                this.passaporto = "s";
+                this.passaporto = "S";
             this.statement.executeUpdate(
                     "INSERT INTO DOCUMENTI_VIAGGIO " + "VALUES (" + valueFormatter(NumeroDocumento.getText()) + ", "
                             + valueFormatter(Email.getText()) + ", "
@@ -63,7 +63,11 @@ public class ClientDocumentController extends Controller {
                             + valueFormatter(this.cartaIdentita) + ", "
                             + valueFormatter(this.passaporto)
                             + ")");
+            System.out.println("Documento " + NumeroDocumento.getText() + " registrato con successo.");
+            back(event);
         } catch (SQLException e) {
+            alertThrower(e.getMessage());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
