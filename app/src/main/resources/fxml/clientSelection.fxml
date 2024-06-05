@@ -72,7 +72,7 @@
       <TextField fx:id="Guida" disable="true" layoutX="233.0" layoutY="240.0" />
       <TextField fx:id="Alloggio" disable="true" layoutX="411.0" layoutY="240.0" />
       <TextField fx:id="Destinazione" disable="true" layoutX="578.0" layoutY="240.0" />
-      <ChoiceBox fx:id="Assicurazione" layoutX="58.0" layoutY="341.0" prefWidth="150.0" onAction="#updatePrice"/>
+      <ChoiceBox fx:id="Assicurazione" layoutX="58.0" layoutY="341.0" prefWidth="150.0" onAction="#update"/>
       <ChoiceBox fx:id="Documento" layoutX="232.0" layoutY="341.0" prefWidth="150.0" />
       <TextField fx:id="PrezzoTotale" disable="true" layoutX="411.0" layoutY="341.0" />
       <Button layoutX="578.0" layoutY="450.0" mnemonicParsing="false" onAction="#pay" prefHeight="60.0" prefWidth="149.0" text="Effettua pagamento">

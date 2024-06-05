@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import java.sql.SQLException;
 
 import aziendaviaggi.Controllers.Controller;
+import aziendaviaggi.Controllers.LoginController;
 import aziendaviaggi.Objects.Pacchetto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -63,7 +64,7 @@ public class ClientSelectionController extends Controller {
         Alloggio.setText(actual.getCodAlloggio());
         Destinazione.setText(actual.getCodDestinazione());
         choiceBoxInit("CodAssicurazione", "ASSICURAZIONI", Assicurazione);
-        choiceBoxInit("NumeroDocumento", "DOCUMENTI_VIAGGIO", Documento);
+        documentInit();
     }
     
     @FXML
@@ -86,7 +87,7 @@ public class ClientSelectionController extends Controller {
     }
 
     @FXML
-    private void updatePrice(ActionEvent event) {
+    private void update(ActionEvent event) {
         try {
             ResultSet res = this.statement.executeQuery("SELECT Prezzo FROM ASSICURAZIONI WHERE CodAssicurazione = "
                     + Assicurazione.getValue());
@@ -104,6 +105,17 @@ public class ClientSelectionController extends Controller {
             ResultSet res = this.statement.executeQuery("SELECT " + column + " FROM " + table);
             while (res.next()) {
                 choice.getItems().add(res.getString(column));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void documentInit() {
+        try {
+            ResultSet res = this.statement.executeQuery("SELECT NumeroDocumento FROM DOCUMENTI_VIAGGIO WHERE Email = " + valueFormatter(LoginController.EmailCliente));
+            while (res.next()) {
+                Documento.getItems().add(res.getString("NumeroDocumento"));
             }
         } catch (Exception e) {
             e.printStackTrace();

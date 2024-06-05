@@ -60,15 +60,15 @@ public class AgenziaInsertController extends Controller {
             return;
         try {
             this.statement.executeUpdate("INSERT INTO PACCHETTI_TURISTICI " + "VALUES ("
-                    + progressiveCode() + ", "
+                    + valueFormatter(progressiveCode()) + ", "
                     + valueFormatter(Nome.getText()) + ", "
                     + valueFormatter(Descrizione.getText()) + ", "
-                    + Float.parseFloat(Prezzo.getText()) + ", "
-                    + LoginController.CodAgenzia + ", "
-                    + Guida.getSelectionModel().getSelectedItem() + ", "
-                    + Trasporto.getSelectionModel().getSelectedItem() + ", "
-                    + Alloggio.getSelectionModel().getSelectedItem() + ", "
-                    + Destinazione.getSelectionModel().getSelectedItem()
+                    + valueFormatter(Prezzo.getText()) + ", "
+                    + valueFormatter(LoginController.CodAgenzia) + ", "
+                    + guidaCheck(Guida.getSelectionModel().getSelectedItem()) + ", "
+                    + valueFormatter(Trasporto.getSelectionModel().getSelectedItem()) + ", "
+                    + valueFormatter(Alloggio.getSelectionModel().getSelectedItem()) + ", "
+                    + valueFormatter(Destinazione.getSelectionModel().getSelectedItem())
                     + ")");
             back(event);
         } catch (SQLException e) {
@@ -81,10 +81,15 @@ public class AgenziaInsertController extends Controller {
         changeScene(event, "agenziaApp");
     }
 
-    protected int progressiveCode() throws SQLException {
+    protected String progressiveCode() throws SQLException {
+        String num;
         ResultSet res = this.statement.executeQuery("SELECT MAX(CodPacchetto) AS Max FROM PACCHETTI_TURISTICI");
-        res.next();
-        return res.getInt("Max") + 1;
+        num = res.next() ? res.getString("Max").replaceAll("\\D", "") : "00";
+        return "P" + String.format("%02d", Integer.parseInt(num) + 1);
+    }
+
+    protected String guidaCheck(String guida) {
+        return guida == "NULL" ? guida : valueFormatter(guida);
     }
 
     protected void choiceBoxInit(String column, String table, ChoiceBox<String> choice) {
