@@ -4,60 +4,73 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <Pane fx:id="AgenziaAppl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.Controllers.Agenzia.AgenziaAppController">
    <children>
-      <Label layoutX="275.0" layoutY="30.0" text="Pacchetti turistici">
+      <Label layoutX="249.0" layoutY="29.0" text="Pacchetti turistici">
          <font>
-            <Font size="18.0" />
+            <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="680.0" layoutY="210.0" mnemonicParsing="false" onAction="#delete" prefHeight="60.0" prefWidth="80.0" text="Elimina">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="680.0" layoutY="510.0" mnemonicParsing="false" onAction="#back" prefHeight="60.0" prefWidth="80.0" text="Indietro">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="680.0" layoutY="310.0" mnemonicParsing="false" onAction="#modify" prefHeight="60.0" prefWidth="80.0" text="Modifica">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="680.0" layoutY="410.0" mnemonicParsing="false" onAction="#insert" prefHeight="60.0" prefWidth="80.0" text="Inserisci">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <TableView fx:id="TableV" editable="false" layoutX="30.0" layoutY="70.0" onMouseClicked="#update" prefHeight="239.0" prefWidth="630.0">
+      <TableView fx:id="TableV" editable="false" layoutX="14.0" layoutY="70.0" onMouseClicked="#update" prefHeight="240.0" prefWidth="620.0">
          <columns>
             <TableColumn fx:id="ColumnAgen" minWidth="-1.0" prefWidth="100.0" text="Agenzia" />
             <TableColumn fx:id="ColumnNome" minWidth="0.0" prefWidth="137.0" resizable="false" text="Nome" />
             <TableColumn fx:id="ColumnDesc" prefWidth="273.0" resizable="false" text="Descrizione" />
-            <TableColumn fx:id="ColumnPrez" minWidth="0.0" prefWidth="119.0" resizable="false" text="Prezzo" />
+            <TableColumn fx:id="ColumnPrez" minWidth="0.0" prefWidth="109.0" resizable="false" text="Prezzo" />
          </columns>
       </TableView>
-      <TableView fx:id="TableV2" editable="false" layoutX="30.0" layoutY="322.0" prefHeight="97.0" prefWidth="630.0">
+      <TableView fx:id="TableV2" editable="false" layoutX="13.0" layoutY="322.0" prefHeight="100.0" prefWidth="620.0">
         <columns>
           <TableColumn fx:id="ColumnGuid" prefWidth="123.0" text="Guida" />
           <TableColumn fx:id="ColumnTras" prefWidth="167.0" text="Trasporto" />
             <TableColumn fx:id="ColumnAllo" prefWidth="186.0" text="Alloggio" />
-            <TableColumn fx:id="ColumnDest" prefWidth="153.0" text="Destinazione" />
+            <TableColumn fx:id="ColumnDest" prefWidth="143.0" text="Destinazione" />
         </columns>
       </TableView>
-      <TableView fx:id="TableV3" editable="false" layoutX="30.0" layoutY="428.0" prefHeight="151.0" prefWidth="630.0">
+      <TableView fx:id="TableV3" editable="false" layoutX="13.0" layoutY="436.0" prefHeight="150.0" prefWidth="620.0">
          <columns>
             <TableColumn fx:id="ColumnAtt" prefWidth="87.0" text="Attivita" />
             <TableColumn fx:id="ColumnNomeAtt" prefWidth="174.0" text="Nome" />
-            <TableColumn fx:id="ColumnDescAtt" prefWidth="187.0" text="Descrizione" />
-            <TableColumn fx:id="ColumnOrar" prefWidth="89.0" text="Orario" />
-            <TableColumn fx:id="ColumnDura" prefWidth="92.0" text="Durata" />
+            <TableColumn fx:id="ColumnDescAtt" prefWidth="168.0" text="Descrizione" />
+            <TableColumn fx:id="ColumnOrar" prefWidth="94.0" text="Orario" />
+            <TableColumn fx:id="ColumnDura" prefWidth="96.0" text="Durata" />
          </columns>
       </TableView>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: #fcba03;" text="Indietro">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button layoutX="666.0" layoutY="526.0" mnemonicParsing="false" onAction="#insert" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #8cbcff;" text="Inserisci">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button layoutX="666.0" layoutY="428.0" mnemonicParsing="false" onAction="#modify" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #8cbcff;" text="Modifica">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button layoutX="666.0" layoutY="322.0" mnemonicParsing="false" onAction="#delete" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #8cbcff;" text="Elimina">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
    </children>
 </Pane>

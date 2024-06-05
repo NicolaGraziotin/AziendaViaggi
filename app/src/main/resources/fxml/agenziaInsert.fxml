@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -24,16 +25,6 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="593.0" layoutY="457.0" mnemonicParsing="false" onAction="#enter" prefHeight="60.0" prefWidth="80.0" text="Invio">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="360.0" layoutY="457.0" mnemonicParsing="false" onAction="#back" prefHeight="60.0" prefWidth="80.0" text="Indietro">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
       <Label layoutX="289.0" layoutY="200.0" text="Guida">
          <font>
             <Font size="14.0" />
@@ -62,10 +53,26 @@
       <TextField fx:id="Nome" layoutX="59.0" layoutY="120.0" />
       <TextField fx:id="Descrizione" layoutX="233.0" layoutY="120.0" />
       <TextField fx:id="Prezzo" layoutX="411.0" layoutY="120.0" />
-      <TextField fx:id="Agenzia" layoutX="578.0" layoutY="120.0" disable="true" />
+      <TextField fx:id="Agenzia" disable="true" layoutX="578.0" layoutY="120.0" />
       <ChoiceBox fx:id="Trasporto" layoutX="58.0" layoutY="240.0" prefWidth="150.0" />
       <ChoiceBox fx:id="Guida" layoutX="232.0" layoutY="240.0" prefWidth="150.0" />
       <ChoiceBox fx:id="Alloggio" layoutX="410.0" layoutY="240.0" prefWidth="150.0" />
       <ChoiceBox fx:id="Destinazione" layoutX="578.0" layoutY="240.0" prefWidth="150.0" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: #fcba03;" text="Indietro">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button layoutX="666.0" layoutY="526.0" mnemonicParsing="false" onAction="#enter" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #8cbcff;" text="Prosegui">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
    </children>
 </Pane>

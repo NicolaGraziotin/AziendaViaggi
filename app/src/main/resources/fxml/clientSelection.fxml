@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -72,23 +73,32 @@
       <TextField fx:id="Guida" disable="true" layoutX="233.0" layoutY="240.0" />
       <TextField fx:id="Alloggio" disable="true" layoutX="411.0" layoutY="240.0" />
       <TextField fx:id="Destinazione" disable="true" layoutX="578.0" layoutY="240.0" />
-      <ChoiceBox fx:id="Assicurazione" layoutX="58.0" layoutY="341.0" prefWidth="150.0" onAction="#update"/>
+      <ChoiceBox fx:id="Assicurazione" layoutX="58.0" layoutY="341.0" onAction="#update" prefWidth="150.0" />
       <ChoiceBox fx:id="Documento" layoutX="232.0" layoutY="341.0" prefWidth="150.0" />
       <TextField fx:id="PrezzoTotale" disable="true" layoutX="411.0" layoutY="341.0" />
-      <Button layoutX="578.0" layoutY="450.0" mnemonicParsing="false" onAction="#pay" prefHeight="60.0" prefWidth="149.0" text="Effettua pagamento">
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: #fcba03;" text="Indietro">
          <font>
             <Font size="14.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
       </Button>
-      <Button layoutX="325.0" layoutY="450.0" mnemonicParsing="false" onAction="#insertDocument" prefHeight="60.0" prefWidth="150.0" text="Inserisci documento">
+      <Button layoutX="666.0" layoutY="526.0" mnemonicParsing="false" onAction="#pay" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #8cbcff;" text="Prosegui">
          <font>
-            <Font size="14.0" />
+            <Font size="20.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
       </Button>
-      <Button layoutX="58.0" layoutY="450.0" mnemonicParsing="false" onAction="#back" prefHeight="60.0" prefWidth="150.0" text="Indietro">
+      <Button layoutX="383.0" layoutY="526.0" mnemonicParsing="false" onAction="#insertDocument" prefHeight="60.0" prefWidth="204.0" style="-fx-background-color: #8cbcff;" text="Inserisci documento">
          <font>
-            <Font size="14.0" />
+            <Font size="20.0" />
          </font>
+         <effect>
+            <DropShadow />
+         </effect>
       </Button>
    </children>
 </Pane>
