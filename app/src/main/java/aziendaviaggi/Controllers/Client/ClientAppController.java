@@ -7,15 +7,29 @@ import javafx.fxml.FXML;
 
 public class ClientAppController extends ControllerApp {
 
-    public static Pacchetto actual;
+    private static Pacchetto selectedPacchetto;
 
     @FXML
     private void select(ActionEvent event) {
-        actual = TableV.getSelectionModel().getSelectedItem();
-        if (actual != null) {
+        selectedPacchetto = TableV.getSelectionModel().getSelectedItem();
+        if (selectedPacchetto != null) {
             changeScene(event, "clientSelection");
         } else {
             alertThrower("Non hai selezionato un pacchetto!");
         }
+    }
+
+    @FXML
+    private void review(ActionEvent event) {
+        selectedPacchetto = TableV.getSelectionModel().getSelectedItem();
+        if (selectedPacchetto != null) {
+            changeScene(event, "clientReview");
+        } else {
+            alertThrower("Non hai selezionato un pacchetto!");
+        }
+    }
+
+    public static Pacchetto getActual() {
+        return selectedPacchetto;
     }
 }

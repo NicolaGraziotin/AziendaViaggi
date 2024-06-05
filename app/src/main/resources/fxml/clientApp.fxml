@@ -18,7 +18,7 @@
             <DropShadow />
          </effect>
       </Button>
-      <Button layoutX="666.0" layoutY="526.0" mnemonicParsing="false" onAction="#select" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #8cbcff;" text="Prosegui">
+      <Button layoutX="666.0" layoutY="526.0" mnemonicParsing="false" onAction="#select" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #8cbcff;" text="Prenota">
          <font>
             <Font size="20.0" />
          </font>
@@ -56,5 +56,13 @@
             <Font size="20.0" />
          </font>
       </Label>
+      <Button layoutX="649.0" layoutY="436.0" mnemonicParsing="false" onAction="#review" prefHeight="60.0" prefWidth="137.0" style="-fx-background-color: #8cbcff;" text="Recensione">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
    </children>
 </Pane>

@@ -54,7 +54,7 @@ public class ClientSelectionController extends Controller {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Pacchetto actual = ClientAppController.actual;
+        Pacchetto actual = ClientAppController.getActual();
         Nome.setText(actual.getNome());
         Descrizione.setText(actual.getDescrizione());
         Prezzo.setText(actual.getPrezzo());
