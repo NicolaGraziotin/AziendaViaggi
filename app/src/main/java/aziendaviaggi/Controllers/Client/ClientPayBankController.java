@@ -1,26 +1,16 @@
 package aziendaviaggi.Controllers.Client;
 
-import aziendaviaggi.Controllers.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 
-public class ClientPayBankController extends Controller {
+public class ClientPayBankController extends ClientPayController {
 
     @FXML
     private Pane ClientPayBank;
-
-    @FXML
-    private TextField Importo;
-
-    @FXML
-    private DatePicker Data;
 
     @FXML
     private TextField Beneficiario;
@@ -36,16 +26,6 @@ public class ClientPayBankController extends Controller {
 
     @FXML
     private TextField Cognome;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        Importo.setText(ClientSelectionController.getPrezzo());
-    }
-
-    @FXML
-    void back(ActionEvent event) {
-        changeScene(event, "clientSelection");
-    }
 
     @FXML
     void pay(ActionEvent event) {
