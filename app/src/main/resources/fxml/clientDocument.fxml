@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="ClientDocu" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.Controllers.Client.ClientDocumentController">
+<Pane fx:id="ClientDocument" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.Controllers.Client.ClientDocumentController">
    <children>
       <Label layoutX="110.0" layoutY="101.0" text="Numero Documento">
          <font>

@@ -29,7 +29,7 @@ public class ClientCardController extends Controller {
 
     @FXML
     private void back(ActionEvent event) {
-        changeScene(event, "clientSelection");
+        changeScene(event, "ClientSelection");
     }
 
     @FXML
@@ -41,14 +41,14 @@ public class ClientCardController extends Controller {
             String codCarta = progressiveCode("CodCartaCredito", "CARTE_CREDITO", "CC");
             this.statement.executeUpdate("INSERT INTO CARTE_CREDITO " + "VALUES ("
                     + valueFormatter(codCarta) + ", "
-                    + valueFormatter(LoginController.EmailCliente) + ", "
+                    + valueFormatter(LoginController.getEmailCliente()) + ", "
                     + valueFormatter(Intestatario.getText()) + ", "
                     + valueFormatter(Numero.getText()) + ", "
                     + valueFormatter(DataScadenza.getValue().toString()) + ", "
                     + valueFormatter(CVV.getText())
                     + ")");
             System.out.println("Carta " + codCarta + " aggiunta con successo!");
-            changeScene(event, "clientSelection");
+            changeScene(event, "ClientSelection");
         } catch (SQLException e) {
             alertThrower(e.getMessage());
         } catch (Exception e) {

@@ -13,7 +13,7 @@ public class ClientAppController extends ControllerApp {
     private void select(ActionEvent event) {
         selectedPacchetto = TableV.getSelectionModel().getSelectedItem();
         if (selectedPacchetto != null) {
-            changeScene(event, "clientSelection");
+            changeScene(event, "ClientSelection");
         } else {
             alertThrower("Non hai selezionato un pacchetto!");
         }
@@ -23,7 +23,7 @@ public class ClientAppController extends ControllerApp {
     private void review(ActionEvent event) {
         selectedPacchetto = TableV.getSelectionModel().getSelectedItem();
         if (selectedPacchetto != null) {
-            changeScene(event, "clientReview");
+            changeScene(event, "ClientReview");
         } else {
             alertThrower("Non hai selezionato un pacchetto!");
         }

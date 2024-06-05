@@ -11,14 +11,14 @@ import javafx.scene.layout.Pane;
 public class AgenziaRegistrationController extends ControllerRegistration {
 
     @FXML
-    private Pane AgenziaRegi;
+    private Pane AgenziaRegistration;
 
     @FXML
     private TextField Sede;
 
     @FXML
     private void enter(ActionEvent event) {
-        if (!checkInsert(AgenziaRegi))
+        if (!checkInsert(AgenziaRegistration))
             return;
         try {
             String code = progressiveCode("CodAgenzia", "AGENZIE_VIAGGIO", "AG");

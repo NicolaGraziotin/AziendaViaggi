@@ -11,25 +11,25 @@ import javafx.scene.layout.Pane;
 public class LoginController extends Controller {
 
     @FXML
-    private Pane LoginPane;
+    private Pane Login;
 
     @FXML
     private TextField Email;
 
-    public static String CodAgenzia;
+    private static String CodAgenzia;
 
-    public static String EmailCliente;
+    private static String EmailCliente;
 
     @FXML
     private void loginAgenzia(ActionEvent event) {
-        if (!checkInsert(LoginPane))
+        if (!checkInsert(Login))
             return;
         try {
             ResultSet result = this.statement
                     .executeQuery("SELECT Email,CodAgenzia FROM AGENZIE_VIAGGIO WHERE Email='" + Email.getText() + "'");
             if (result.next()) {
                 CodAgenzia = result.getString("CodAgenzia");
-                changeScene(event, "agenziaApp");
+                changeScene(event, "AgenziaApp");
             } else {
                 alertThrower("Email non valida!");
             }
@@ -40,13 +40,13 @@ public class LoginController extends Controller {
 
     @FXML
     private void loginCliente(ActionEvent event) {
-        if (!checkInsert(LoginPane))
+        if (!checkInsert(Login))
             return;
         try {
             ResultSet result = this.statement.executeQuery("SELECT Email FROM CLIENTI WHERE Email='" + Email.getText() + "'");
             if (result.next()) {
                 EmailCliente = result.getString("Email");
-                changeScene(event, "clientApp");
+                changeScene(event, "ClientApp");
             } else {
                 alertThrower("Email non valida!");
             }
@@ -57,11 +57,19 @@ public class LoginController extends Controller {
 
     @FXML
     private void registrationAgenzia(ActionEvent event) {
-        changeScene(event, "agenziaRegistration");
+        changeScene(event, "AgenziaRegistration");
     }
 
     @FXML
     private void registrationCliente(ActionEvent event) {
-        changeScene(event, "clientRegistration");
+        changeScene(event, "ClientRegistration");
+    }
+
+    public static String getCodAgenzia() {
+        return CodAgenzia;
+    }
+
+    public static String getEmailCliente() {
+        return EmailCliente;
     }
 }

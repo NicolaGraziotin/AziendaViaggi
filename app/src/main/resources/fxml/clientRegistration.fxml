@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="ClientRegi" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.Controllers.Client.ClientRegistrationController">
+<Pane fx:id="ClientRegistration" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.Controllers.Client.ClientRegistrationController">
    <children>
       <Label layoutX="158.0" layoutY="101.0" text="Email">
          <font>

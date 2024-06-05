@@ -34,12 +34,12 @@ public class ClientReviewController extends Controller {
     public void initialize(URL location, ResourceBundle resources) {
         Pacchetto selected = ClientAppController.getActual();
         Pacchetto.setText(selected.getCodPacchetto());
-        Email.setText(LoginController.EmailCliente);
+        Email.setText(LoginController.getEmailCliente());
     }
 
     @FXML
     private void back(ActionEvent event) {
-        changeScene(event, "clientApp");
+        changeScene(event, "ClientApp");
     }
 
     @FXML
@@ -56,7 +56,7 @@ public class ClientReviewController extends Controller {
                     + valueFormatter(Voto.getText()) + ", "
                     + valueFormatter(Commento.getText()) + ")");
             System.out.println("Recensione " + codRecensione + " inserita con successo");
-            changeScene(event, "clientApp");
+            changeScene(event, "ClientApp");
         } catch (SQLException e) {
             alertThrower(e.getMessage());
         } catch (Exception e) {

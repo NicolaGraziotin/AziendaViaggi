@@ -16,7 +16,7 @@ public class AgenziaAppController extends ControllerApp {
 
     @FXML
     private void insert(ActionEvent event) {
-        changeScene(event, "agenziaInsert");
+        changeScene(event, "AgenziaInsert");
     }
 
     @FXML
@@ -30,7 +30,7 @@ public class AgenziaAppController extends ControllerApp {
     private void modify(ActionEvent event) {
         selectedPacchetto = TableV.getSelectionModel().getSelectedItem();
         if (checkSelected(selectedPacchetto, "modificare"))
-            changeScene(event, "agenziaModify");
+            changeScene(event, "AgenziaModify");
     }
 
     private void remove(Pacchetto selected) {
@@ -46,7 +46,7 @@ public class AgenziaAppController extends ControllerApp {
 
     private boolean checkSelected(Pacchetto selected, String msg) {
         try {
-            if (LoginController.CodAgenzia.equals(selected.getCodAgenzia())) {
+            if (LoginController.getCodAgenzia().equals(selected.getCodAgenzia())) {
                 return true;
             }
         } catch (NullPointerException e) {

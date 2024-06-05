@@ -11,7 +11,7 @@ import javafx.scene.layout.Pane;
 public class ClientRegistrationController extends ControllerRegistration {
 
     @FXML
-    private Pane ClientRegi;
+    private Pane ClientRegistration;
 
     @FXML
     private TextField CodiceFiscale;
@@ -24,7 +24,7 @@ public class ClientRegistrationController extends ControllerRegistration {
 
     @FXML
     private void enter(ActionEvent event) {
-        if (!checkInsert(ClientRegi))
+        if (!checkInsert(ClientRegistration))
             return;
         try {
             this.statement.executeUpdate("INSERT INTO CLIENTI " + "VALUES ("

@@ -12,7 +12,7 @@ public class GUI extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
         new SQLDatabaseConnection().connect();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
         Parent root = loader.load();
         Image icon = new Image("/logo.png");
 

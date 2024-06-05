@@ -33,7 +33,7 @@ public class ClientBankController extends Controller {
 
     @FXML
     void back(ActionEvent event) {
-        changeScene(event, "clientSelection");
+        changeScene(event, "ClientSelection");
     }
 
     @FXML
@@ -45,7 +45,7 @@ public class ClientBankController extends Controller {
             String codBonifico = progressiveCode("CodBonifico", "BONIFICI_BANCARI", "BB");
             this.statement.executeUpdate("INSERT INTO BONIFICI_BANCARI " + "VALUES ("
                     + valueFormatter(codBonifico) + ", "
-                    + valueFormatter(LoginController.EmailCliente) + ", "
+                    + valueFormatter(LoginController.getEmailCliente()) + ", "
                     + valueFormatter(NomeOrdinante.getText()) + ", "
                     + valueFormatter(ContoOrdinante.getText()) + ", "
                     + valueFormatter(NomeBeneficiario.getText()) + ", "
@@ -53,7 +53,7 @@ public class ClientBankController extends Controller {
                     + valueFormatter(Causale.getText())
                     + ")");
             System.out.println("Bonifico " + codBonifico + " aggiunto con successo!");
-            changeScene(event, "clientSelection");
+            changeScene(event, "ClientSelection");
         } catch (SQLException e) {
             alertThrower(e.getMessage());
         } catch (Exception e) {

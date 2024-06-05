@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 public class ClientDocumentController extends Controller {
 
     @FXML
-    private Pane ClientDocu;
+    private Pane ClientDocument;
 
     @FXML
     private TextField NumeroDocumento;
@@ -37,18 +37,18 @@ public class ClientDocumentController extends Controller {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Email.setText(LoginController.EmailCliente);
+        Email.setText(LoginController.getEmailCliente());
         Tipo.getItems().addAll("Carta d'identita", "Passaporto");
     }
 
     @FXML
     private void back(ActionEvent event) {
-        changeScene(event, "clientSelection");
+        changeScene(event, "ClientSelection");
     }
 
     @FXML
     private void enter(ActionEvent event) {
-        if (!checkInsert(ClientDocu))
+        if (!checkInsert(ClientDocument))
             return;
         try {
             if (Tipo.getSelectionModel().getSelectedItem().equals("Carta d'identita"))

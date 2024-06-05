@@ -14,7 +14,7 @@ public class ControllerRegistration extends Controller {
 
     @FXML
     protected final void back(ActionEvent event) {
-        changeScene(event, "login");
+        changeScene(event, "Login");
     }
 
 }

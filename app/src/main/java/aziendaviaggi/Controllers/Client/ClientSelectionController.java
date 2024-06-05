@@ -51,7 +51,7 @@ public class ClientSelectionController extends Controller {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         actual = ClientAppController.getActual();
-        Email.setText(LoginController.EmailCliente);
+        Email.setText(LoginController.getEmailCliente());
         Pacchetto.setText(actual.getCodPacchetto());
         choiceBoxInit("CodAssicurazione", "ASSICURAZIONI", Assicurazione);
         documentInit();
@@ -80,7 +80,7 @@ public class ClientSelectionController extends Controller {
                     + chooseMethod("BB")
                     + ")");
             System.out.println("Prenotazione " + codPrenotazione + " aggiunta con successo!");
-            changeScene(event, "clientApp");
+            changeScene(event, "ClientApp");
         } catch (SQLException e) {
             alertThrower(e.getMessage());
         } catch (Exception e) {
@@ -96,22 +96,22 @@ public class ClientSelectionController extends Controller {
 
     @FXML
     private void insertDocumento(ActionEvent event) {
-        changeScene(event, "clientDocument");
+        changeScene(event, "ClientDocument");
     }
 
     @FXML
     private void insertBonifico(ActionEvent event) {
-        changeScene(event, "clientBank");
+        changeScene(event, "ClientBank");
     }
 
     @FXML
     private void insertCarta(ActionEvent event) {
-        changeScene(event, "clientCard");
+        changeScene(event, "ClientCard");
     }
 
     @FXML
     private void back(ActionEvent event) {
-        changeScene(event, "clientApp");
+        changeScene(event, "ClientApp");
     }
 
     @FXML
@@ -147,7 +147,7 @@ public class ClientSelectionController extends Controller {
     private void documentInit() {
         try {
             ResultSet res = this.statement.executeQuery("SELECT NumeroDocumento FROM DOCUMENTI_VIAGGIO WHERE Email = "
-                    + valueFormatter(LoginController.EmailCliente));
+                    + valueFormatter(LoginController.getEmailCliente()));
             while (res.next()) {
                 Documento.getItems().add(res.getString("NumeroDocumento"));
             }

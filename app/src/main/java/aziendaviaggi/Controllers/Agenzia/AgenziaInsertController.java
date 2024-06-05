@@ -18,7 +18,7 @@ import javafx.scene.layout.Pane;
 public class AgenziaInsertController extends Controller {
 
     @FXML
-    private Pane AgenziaInse;
+    private Pane AgenziaInsert;
 
     @FXML
     private TextField Descrizione;
@@ -46,7 +46,7 @@ public class AgenziaInsertController extends Controller {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Agenzia.setText(LoginController.CodAgenzia);
+        Agenzia.setText(LoginController.getCodAgenzia());
         choiceBoxInit("CodAlloggio", "ALLOGGI", Alloggio);
         choiceBoxInit("CodDestinazione", "DESTINAZIONI", Destinazione);
         Guida.getItems().add("NULL");
@@ -56,7 +56,7 @@ public class AgenziaInsertController extends Controller {
 
     @FXML
     private void enter(ActionEvent event) {
-        if (!checkInsert(AgenziaInse))
+        if (!checkInsert(AgenziaInsert))
             return;
         try {
             String codPacchetto = progressiveCode("CodPacchetto", "PACCHETTI_TURISTICI", "P");
@@ -65,7 +65,7 @@ public class AgenziaInsertController extends Controller {
                     + valueFormatter(Nome.getText()) + ", "
                     + valueFormatter(Descrizione.getText()) + ", "
                     + valueFormatter(Prezzo.getText()) + ", "
-                    + valueFormatter(LoginController.CodAgenzia) + ", "
+                    + valueFormatter(LoginController.getCodAgenzia()) + ", "
                     + guidaCheck(Guida.getSelectionModel().getSelectedItem()) + ", "
                     + valueFormatter(Trasporto.getSelectionModel().getSelectedItem()) + ", "
                     + valueFormatter(Alloggio.getSelectionModel().getSelectedItem()) + ", "
@@ -80,7 +80,7 @@ public class AgenziaInsertController extends Controller {
 
     @FXML
     private void back(ActionEvent event) {
-        changeScene(event, "agenziaApp");
+        changeScene(event, "AgenziaApp");
     }
 
     protected String guidaCheck(String guida) {

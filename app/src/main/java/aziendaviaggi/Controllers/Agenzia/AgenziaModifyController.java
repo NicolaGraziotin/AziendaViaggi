@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public class AgenziaModifyController extends AgenziaInsertController {
 
     @FXML
-    private Pane AgenziaInse;
+    private Pane AgenziaModify;
 
     @FXML
     private TextField Descrizione;
@@ -52,7 +52,7 @@ public class AgenziaModifyController extends AgenziaInsertController {
         Nome.setText(selected.getNome());
         Descrizione.setText(selected.getDescrizione());
         Prezzo.setText(selected.getPrezzo());
-        Agenzia.setText(LoginController.CodAgenzia);
+        Agenzia.setText(LoginController.getCodAgenzia());
         Trasporto.getSelectionModel().select(selected.getCodTrasporto());
         Guida.getSelectionModel().select(selected.getCodGuida());
         Alloggio.getSelectionModel().select(selected.getCodAlloggio());
@@ -61,12 +61,12 @@ public class AgenziaModifyController extends AgenziaInsertController {
 
     @FXML
     private void back(ActionEvent event) {
-        changeScene(event, "agenziaApp");
+        changeScene(event, "AgenziaApp");
     }
 
     @FXML
     private void enter(ActionEvent event) {
-        if (!checkInsert(AgenziaInse))
+        if (!checkInsert(AgenziaModify))
             return;
         try {
             String codPacchetto = AgenziaAppController.getSelectedPacchetto().getCodPacchetto();
@@ -74,7 +74,7 @@ public class AgenziaModifyController extends AgenziaInsertController {
                     + "Nome = " + valueFormatter(Nome.getText())
                     + ", Descrizione = " + valueFormatter(Descrizione.getText())
                     + ", Prezzo = " + valueFormatter(Prezzo.getText())
-                    + ", CodAgenzia = " + valueFormatter(LoginController.CodAgenzia)
+                    + ", CodAgenzia = " + valueFormatter(LoginController.getCodAgenzia())
                     + ", CodGuida = " + guidaCheck(Guida.getSelectionModel().getSelectedItem())
                     + ", CodTrasporto = " + valueFormatter(Trasporto.getSelectionModel().getSelectedItem())
                     + ", CodAlloggio = " + valueFormatter(Alloggio.getSelectionModel().getSelectedItem())
