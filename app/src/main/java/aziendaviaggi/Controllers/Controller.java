@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -63,6 +64,9 @@ public class Controller implements Initializable {
                 alertThrower("Seleziona " + elem.getId());
                 return false;
             } else if (elem instanceof TextArea && ((TextArea) elem).getText().isEmpty()) {
+                alertThrower("Inserisci " + elem.getId());
+                return false;
+            } else if (elem instanceof DatePicker && ((DatePicker) elem).getValue() == null) {
                 alertThrower("Inserisci " + elem.getId());
                 return false;
             }

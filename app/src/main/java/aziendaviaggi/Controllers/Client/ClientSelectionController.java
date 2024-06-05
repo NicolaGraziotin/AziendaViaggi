@@ -55,9 +55,21 @@ public class ClientSelectionController extends Controller {
     @FXML
     private ChoiceBox<String> Metodo;
 
+    private static String prezzo;
+
+    private static Pacchetto actual;
+
+    public static String getPrezzo() {
+        return prezzo;
+    }
+
+    public static Pacchetto getActual() {
+        return actual;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Pacchetto actual = ClientAppController.getActual();
+        actual = ClientAppController.getActual();
         Nome.setText(actual.getNome());
         Descrizione.setText(actual.getDescrizione());
         Prezzo.setText(actual.getPrezzo());
@@ -73,6 +85,7 @@ public class ClientSelectionController extends Controller {
     
     @FXML
     private void pay(ActionEvent event) {
+        prezzo = PrezzoTotale.getText();
         if (Metodo.getSelectionModel().getSelectedItem().equals("Carta di Credito")) {
             changeScene(event, "clientPayCard");
         } else {

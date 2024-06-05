@@ -59,8 +59,9 @@ public class AgenziaInsertController extends Controller {
         if (!checkInsert(AgenziaInse))
             return;
         try {
+            String codPacchetto = progressiveCode("CodPacchetto", "PACCHETTI_TURISTICI", "P");
             this.statement.executeUpdate("INSERT INTO PACCHETTI_TURISTICI " + "VALUES ("
-                    + valueFormatter(progressiveCode("CodPacchetto", "PACCHETTI_TURISTICI", "P")) + ", "
+                    + valueFormatter(codPacchetto) + ", "
                     + valueFormatter(Nome.getText()) + ", "
                     + valueFormatter(Descrizione.getText()) + ", "
                     + valueFormatter(Prezzo.getText()) + ", "
@@ -70,6 +71,7 @@ public class AgenziaInsertController extends Controller {
                     + valueFormatter(Alloggio.getSelectionModel().getSelectedItem()) + ", "
                     + valueFormatter(Destinazione.getSelectionModel().getSelectedItem())
                     + ")");
+            System.out.println(codPacchetto);
             back(event);
         } catch (SQLException e) {
             alertThrower(e.getMessage());
