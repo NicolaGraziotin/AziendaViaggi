@@ -52,6 +52,9 @@ public class ClientSelectionController extends Controller {
     @FXML
     private ChoiceBox<String> Documento;
 
+    @FXML
+    private ChoiceBox<String> Metodo;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Pacchetto actual = ClientAppController.getActual();
@@ -65,14 +68,16 @@ public class ClientSelectionController extends Controller {
         Destinazione.setText(actual.getCodDestinazione());
         choiceBoxInit("CodAssicurazione", "ASSICURAZIONI", Assicurazione);
         documentInit();
+        Metodo.getItems().addAll("Carta di Credito", "Bonifico Bancario");
     }
     
     @FXML
     private void pay(ActionEvent event) {
-        if (!checkInsert(ClientSelect)) {
-            return;
+        if (Metodo.getSelectionModel().getSelectedItem().equals("Carta di Credito")) {
+            changeScene(event, "clientPayCard");
+        } else {
+            changeScene(event, "clientPayBank");
         }
-        changeScene(event, "clientSummary");
     }
 
     @FXML
@@ -99,6 +104,11 @@ public class ClientSelectionController extends Controller {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void addMethod(ActionEvent event) {
+        changeScene(event, "clientMethod");
     }
 
     private void choiceBoxInit(String column, String table, ChoiceBox<String> choice) {

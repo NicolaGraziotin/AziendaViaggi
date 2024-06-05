@@ -60,7 +60,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="444.0" layoutY="300.0" text="Prezzo Totale">
+      <Label layoutX="611.0" layoutY="300.0" text="Prezzo Totale">
          <font>
             <Font size="14.0" />
          </font>
@@ -75,7 +75,7 @@
       <TextField fx:id="Destinazione" disable="true" layoutX="578.0" layoutY="240.0" />
       <ChoiceBox fx:id="Assicurazione" layoutX="58.0" layoutY="341.0" onAction="#update" prefWidth="150.0" />
       <ChoiceBox fx:id="Documento" layoutX="232.0" layoutY="341.0" prefWidth="150.0" />
-      <TextField fx:id="PrezzoTotale" disable="true" layoutX="411.0" layoutY="341.0" />
+      <TextField fx:id="PrezzoTotale" disable="true" layoutX="578.0" layoutY="341.0" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: #fcba03;" text="Indietro">
          <font>
             <Font size="14.0" />
@@ -92,7 +92,21 @@
             <DropShadow />
          </effect>
       </Button>
-      <Button layoutX="383.0" layoutY="526.0" mnemonicParsing="false" onAction="#insertDocument" prefHeight="60.0" prefWidth="204.0" style="-fx-background-color: #8cbcff;" text="Inserisci documento">
+      <Button layoutX="423.0" layoutY="526.0" mnemonicParsing="false" onAction="#addMethod" prefHeight="60.0" prefWidth="204.0" style="-fx-background-color: #8cbcff;" text="Aggiungi metodo">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Label layoutX="423.0" layoutY="300.0" text="Metodo Pagamento">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="Metodo" layoutX="410.0" layoutY="341.0" prefWidth="150.0" />
+      <Button layoutX="175.0" layoutY="526.0" mnemonicParsing="false" onAction="#insertDocument" prefHeight="60.0" prefWidth="204.0" style="-fx-background-color: #8cbcff;" text="Inserisci documento">
          <font>
             <Font size="20.0" />
          </font>

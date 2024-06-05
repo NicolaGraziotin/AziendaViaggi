@@ -6,40 +6,28 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
-public class ClientSummaryController extends Controller {
+public class ClientPayCardController extends Controller {
 
     @FXML
-    private TextField Agenzia;
+    private Pane ClientPayCard;
 
     @FXML
-    private TextField Alloggio;
+    private TextField Importo;
 
     @FXML
-    private TextField Assicurazione;
+    private TextField Data;
 
     @FXML
-    private Pane ClientSummary;
+    private TextField Intestatario;
 
     @FXML
-    private TextField Descrizione;
+    private TextField Numero;
 
     @FXML
-    private TextField Destinazione;
+    private TextField DataScadenza;
 
     @FXML
-    private TextField Documento;
-
-    @FXML
-    private TextField Guida;
-
-    @FXML
-    private TextField Nome;
-
-    @FXML
-    private TextField Prezzo;
-
-    @FXML
-    private TextField Trasporto;
+    private TextField CVV;
 
     @FXML
     void back(ActionEvent event) {
