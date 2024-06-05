@@ -2,16 +2,18 @@ package aziendaviaggi.Controllers.Client;
 
 import java.sql.SQLException;
 
+import aziendaviaggi.Controllers.Controller;
+import aziendaviaggi.Controllers.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
-public class ClientPayCardController extends ClientPayController {
+public class ClientCardController extends Controller {
 
     @FXML
-    private Pane ClientPayCard;
+    private Pane ClientCard;
 
     @FXML
     private TextField Intestatario;
@@ -26,23 +28,27 @@ public class ClientPayCardController extends ClientPayController {
     private TextField CVV;
 
     @FXML
-    void pay(ActionEvent event) {
-        if (!checkInsert(ClientPayCard)) {
+    private void back(ActionEvent event) {
+        changeScene(event, "clientSelection");
+    }
+
+    @FXML
+    void add(ActionEvent event) {
+        if (!checkInsert(ClientCard)) {
             return;
         }
         try {
             String codCarta = progressiveCode("CodCartaCredito", "CARTE_CREDITO", "CC");
             this.statement.executeUpdate("INSERT INTO CARTE_CREDITO " + "VALUES ("
                     + valueFormatter(codCarta) + ", "
-                    + valueFormatter(Importo.getText()) + ", "
-                    + valueFormatter(Data.getValue().toString()) + ", "
+                    + valueFormatter(LoginController.EmailCliente) + ", "
                     + valueFormatter(Intestatario.getText()) + ", "
                     + valueFormatter(Numero.getText()) + ", "
                     + valueFormatter(DataScadenza.getValue().toString()) + ", "
                     + valueFormatter(CVV.getText())
                     + ")");
-            System.out.println(codCarta);
-            changeScene(event, "clientApp");
+            System.out.println("Carta " + codCarta + " aggiunta con successo!");
+            changeScene(event, "clientSelection");
         } catch (SQLException e) {
             alertThrower(e.getMessage());
         } catch (Exception e) {

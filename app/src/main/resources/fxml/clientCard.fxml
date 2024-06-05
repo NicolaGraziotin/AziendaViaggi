@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="ClientCard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.Controllers.Client.ClientCardController">
+   <children>
+      <Label layoutX="98.0" layoutY="80.0" text="Intestatario">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="282.0" layoutY="80.0" text="Numero">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="440.0" layoutY="80.0" text="Data Scadenza">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="653.0" layoutY="80.0" text="CVV">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Intestatario" layoutX="58.0" layoutY="120.0" />
+      <TextField fx:id="Numero" layoutX="233.0" layoutY="120.0" />
+      <TextField fx:id="CVV" layoutX="592.0" layoutY="120.0" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: #fcba03;" text="Indietro">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button layoutX="666.0" layoutY="526.0" mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #8cbcff;" text="Aggiungi">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <DatePicker fx:id="DataScadenza" layoutX="411.0" layoutY="120.0" prefHeight="25.0" prefWidth="149.0" />
+   </children>
+</Pane>

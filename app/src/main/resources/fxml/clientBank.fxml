@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="ClientBank" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.Controllers.Client.ClientBankController">
+   <children>
+      <Label layoutX="255.0" layoutY="80.0" text="Conto Ordinante">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="80.0" text="Nome Ordinante">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="107.0" layoutY="200.0" text="Causale">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="427.0" layoutY="80.0" text="Nome Beneficiario">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="NomeOrdinante" layoutX="60.0" layoutY="120.0" />
+      <TextField fx:id="ContoOrdinante" layoutX="233.0" layoutY="120.0" />
+      <TextField fx:id="NomeBeneficiario" layoutX="410.0" layoutY="120.0" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: #fcba03;" text="Indietro">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button layoutX="666.0" layoutY="526.0" mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #8cbcff;" text="Aggiungi">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <TextField fx:id="ContoBeneficiario" layoutX="592.0" layoutY="120.0" />
+      <Label layoutX="609.0" layoutY="80.0" text="Conto Beneficiario">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="Causale" layoutX="60.0" layoutY="231.0" prefHeight="336.0" prefWidth="559.0" />
+   </children>
+</Pane>
