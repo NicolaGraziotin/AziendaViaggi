@@ -1,7 +1,7 @@
-package aziendaviaggi.Controllers.Agenzia;
+package aziendaviaggi.controllers.agenzia;
 
-import aziendaviaggi.Controllers.LoginController;
-import aziendaviaggi.Objects.Pacchetto;
+import aziendaviaggi.controllers.LoginController;
+import aziendaviaggi.objects.Pacchetto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -11,6 +11,11 @@ import java.util.ResourceBundle;
 import java.net.URL;
 import java.sql.SQLException;
 
+/**
+ * The AgenziaModifyController class is responsible for handling the modification of a package in the travel agency application.
+ * It extends the AgenziaInsertController class.
+ * This controller is associated with the AgenziaModify.fxml file.
+ */
 public class AgenziaModifyController extends AgenziaInsertController {
 
     @FXML
@@ -39,16 +44,24 @@ public class AgenziaModifyController extends AgenziaInsertController {
 
     @FXML
     private TextField Agenzia;
-    
+
+    /**
+     * Initializes the controller.
+     * It sets up the choice boxes and populates them with data from the database.
+     * It also sets the initial values for the text fields based on the selected package.
+     * 
+     * @param location The location used to resolve relative paths for the root object.
+     * @param resources The resources used to localize the root object.
+     */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(final URL location, final ResourceBundle resources) {
         choiceBoxInit("CodAlloggio", "ALLOGGI", Alloggio);
         choiceBoxInit("CodDestinazione", "DESTINAZIONI", Destinazione);
         Guida.getItems().add("NULL");
         choiceBoxInit("CodGuida", "GUIDE_TURISTICHE", Guida);
         choiceBoxInit("CodTrasporto", "TRASPORTI", Trasporto);
 
-        Pacchetto selected = AgenziaAppController.getSelectedPacchetto();
+        final Pacchetto selected = AgenziaAppController.getSelectedPacchetto();
         Nome.setText(selected.getNome());
         Descrizione.setText(selected.getDescrizione());
         Prezzo.setText(selected.getPrezzo());
@@ -59,17 +72,30 @@ public class AgenziaModifyController extends AgenziaInsertController {
         Destinazione.getSelectionModel().select(selected.getCodDestinazione());
     }
 
+    /**
+     * Handles the back button action.
+     * It changes the scene to the AgenziaApp scene.
+     * 
+     * @param event The event that triggered the action.
+     */
     @FXML
-    private void back(ActionEvent event) {
+    private void back(final ActionEvent event) {
         changeScene(event, "AgenziaApp");
     }
 
+    /**
+     * Handles the enter button action.
+     * It checks if the input is valid, updates the package in the database, and navigates back to the AgenziaApp scene.
+     * 
+     * @param event The event that triggered the action.
+     */
     @FXML
-    private void enter(ActionEvent event) {
-        if (!checkInsert(AgenziaModify))
+    private void enter(final ActionEvent event) {
+        if (!checkInsert(AgenziaModify)) {
             return;
+        }
         try {
-            String codPacchetto = AgenziaAppController.getSelectedPacchetto().getCodPacchetto();
+            final String codPacchetto = AgenziaAppController.getSelectedPacchetto().getCodPacchetto();
             this.statement.executeUpdate("UPDATE PACCHETTI_TURISTICI SET "
                     + "Nome = " + valueFormatter(Nome.getText())
                     + ", Descrizione = " + valueFormatter(Descrizione.getText())

@@ -1,4 +1,4 @@
-package aziendaviaggi.Controllers.Client;
+package aziendaviaggi.controllers.client;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,9 +8,13 @@ import javafx.scene.layout.Pane;
 
 import java.sql.SQLException;
 
-import aziendaviaggi.Controllers.Controller;
-import aziendaviaggi.Controllers.LoginController;
+import aziendaviaggi.controllers.Controller;
+import aziendaviaggi.controllers.LoginController;
 
+/**
+ * The ClientBankController class is responsible for handling the user
+ * interactions and logic related to the client bank operations.
+ */
 public class ClientBankController extends Controller {
 
     @FXML
@@ -31,18 +35,30 @@ public class ClientBankController extends Controller {
     @FXML
     private TextArea Causale;
 
+    /**
+     * Handles the back button click event.
+     * Changes the scene to the ClientSelection view.
+     * 
+     * @param event The ActionEvent object representing the button click event.
+     */
     @FXML
-    void back(ActionEvent event) {
+    void back(final ActionEvent event) {
         changeScene(event, "ClientSelection");
     }
 
+    /**
+     * Handles the add button click event.
+     * Inserts a new bank transfer record into the database.
+     * 
+     * @param event The ActionEvent object representing the button click event.
+     */
     @FXML
-    void add(ActionEvent event) {
+    void add(final ActionEvent event) {
         if (!checkInsert(ClientBank)) {
             return;
         }
         try {
-            String codBonifico = progressiveCode("CodBonifico", "BONIFICI_BANCARI", "BB");
+            final String codBonifico = progressiveCode("CodBonifico", "BONIFICI_BANCARI", "BB");
             this.statement.executeUpdate("INSERT INTO BONIFICI_BANCARI " + "VALUES ("
                     + valueFormatter(codBonifico) + ", "
                     + valueFormatter(LoginController.getEmailCliente()) + ", "

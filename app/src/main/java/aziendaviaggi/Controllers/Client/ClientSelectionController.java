@@ -1,13 +1,13 @@
-package aziendaviaggi.Controllers.Client;
+package aziendaviaggi.controllers.client;
 
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 import java.sql.SQLException;
 
-import aziendaviaggi.Controllers.Controller;
-import aziendaviaggi.Controllers.LoginController;
-import aziendaviaggi.Objects.Pacchetto;
+import aziendaviaggi.controllers.Controller;
+import aziendaviaggi.controllers.LoginController;
+import aziendaviaggi.objects.Pacchetto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -17,6 +17,10 @@ import javafx.scene.layout.Pane;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * The controller class for the client selection view.
+ * This class extends the base Controller class.
+ */
 public class ClientSelectionController extends Controller {
 
     @FXML
@@ -48,8 +52,14 @@ public class ClientSelectionController extends Controller {
 
     private static Pacchetto actual;
 
+    /**
+     * Initializes the controller.
+     *
+     * @param location  The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resources The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(final URL location, final ResourceBundle resources) {
         actual = ClientAppController.getActual();
         Email.setText(LoginController.getEmailCliente());
         Pacchetto.setText(actual.getCodPacchetto());
@@ -58,13 +68,18 @@ public class ClientSelectionController extends Controller {
         metodoInit();
     }
 
+    /**
+     * Handles the pay button action event.
+     *
+     * @param event The action event.
+     */
     @FXML
-    private void pay(ActionEvent event) {
+    private void pay(final ActionEvent event) {
         if (!checkInsert(ClientSelection)) {
             return;
         }
         try {
-            String codPrenotazione = progressiveCode("CodPrenotazione", "PRENOTAZIONI", "PR");
+            final String codPrenotazione = progressiveCode("CodPrenotazione", "PRENOTAZIONI", "PR");
             this.statement.executeUpdate("INSERT INTO PRENOTAZIONI " + "VALUES ("
                     + valueFormatter(codPrenotazione) + ", "
                     + valueFormatter(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))) + ", "
@@ -87,30 +102,55 @@ public class ClientSelectionController extends Controller {
         }
     }
 
+    /**
+     * Handles the insertDocumento button action event.
+     *
+     * @param event The action event.
+     */
     @FXML
-    private void insertDocumento(ActionEvent event) {
+    private void insertDocumento(final ActionEvent event) {
         changeScene(event, "ClientDocument");
     }
 
+    /**
+     * Handles the insertBonifico button action event.
+     *
+     * @param event The action event.
+     */
     @FXML
-    private void insertBonifico(ActionEvent event) {
+    private void insertBonifico(final ActionEvent event) {
         changeScene(event, "ClientBank");
     }
 
+    /**
+     * Handles the insertCarta button action event.
+     *
+     * @param event The action event.
+     */
     @FXML
-    private void insertCarta(ActionEvent event) {
+    private void insertCarta(final ActionEvent event) {
         changeScene(event, "ClientCard");
     }
 
+    /**
+     * Handles the back button action event.
+     *
+     * @param event The action event.
+     */
     @FXML
-    private void back(ActionEvent event) {
+    private void back(final ActionEvent event) {
         changeScene(event, "ClientApp");
     }
 
+    /**
+     * Handles the update button action event.
+     *
+     * @param event The action event.
+     */
     @FXML
-    private void update(ActionEvent event) {
+    private void update(final ActionEvent event) {
         try {
-            ResultSet res = this.statement.executeQuery("SELECT Prezzo FROM ASSICURAZIONI WHERE CodAssicurazione = "
+            final ResultSet res = this.statement.executeQuery("SELECT Prezzo FROM ASSICURAZIONI WHERE CodAssicurazione = "
                     + valueFormatter(Assicurazione.getValue()));
             if (res.next()) {
                 System.out.println(res.getString("Prezzo"));
@@ -124,16 +164,30 @@ public class ClientSelectionController extends Controller {
         }
     }
 
-    private String chooseMethod(String start) {
-        String selectedMethod = Metodo.getSelectionModel().getSelectedItem();
-        if (selectedMethod.startsWith(start))
+    /**
+     * Chooses the payment method based on the selected method.
+     *
+     * @param start The starting string of the selected method.
+     * @return The formatted payment method or "NULL" if no method is selected.
+     */
+    private String chooseMethod(final String start) {
+        final String selectedMethod = Metodo.getSelectionModel().getSelectedItem();
+        if (selectedMethod.startsWith(start)) {
             return valueFormatter(selectedMethod);
+        }
         return "NULL";
     }
 
-    private void choiceBoxInit(String column, String table, ChoiceBox<String> choice) {
+    /**
+     * Initializes the choice box with values from the specified column and table.
+     *
+     * @param column The column name.
+     * @param table  The table name.
+     * @param choice The choice box to initialize.
+     */
+    private void choiceBoxInit(final String column, final String table, final ChoiceBox<String> choice) {
         try {
-            ResultSet res = this.statement.executeQuery("SELECT " + column + " FROM " + table);
+            final ResultSet res = this.statement.executeQuery("SELECT " + column + " FROM " + table);
             while (res.next()) {
                 choice.getItems().add(res.getString(column));
             }
@@ -144,10 +198,13 @@ public class ClientSelectionController extends Controller {
         }
     }
 
+    /**
+     * Initializes the document choice box with values based on the client's email.
+     */
     private void documentInit() {
         try {
             System.out.println(LoginController.getEmailCliente());
-            ResultSet res = this.statement.executeQuery("SELECT NumeroDocumento FROM DOCUMENTI_VIAGGIO WHERE Email = "
+            final ResultSet res = this.statement.executeQuery("SELECT NumeroDocumento FROM DOCUMENTI_VIAGGIO WHERE Email = "
                     + valueFormatter(LoginController.getEmailCliente()));
             while (res.next()) {
                 Documento.getItems().add(res.getString("NumeroDocumento"));
@@ -159,6 +216,9 @@ public class ClientSelectionController extends Controller {
         }
     }
 
+    /**
+     * Initializes the payment method choice box with values based on the client's email.
+     */
     private void metodoInit() {
         try {
             ResultSet res = this.statement.executeQuery("SELECT * FROM CARTE_CREDITO WHERE Email = "

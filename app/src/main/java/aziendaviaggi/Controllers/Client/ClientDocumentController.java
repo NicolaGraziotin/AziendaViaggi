@@ -1,7 +1,5 @@
-package aziendaviaggi.Controllers.Client;
+package aziendaviaggi.controllers.client;
 
-import aziendaviaggi.Controllers.Controller;
-import aziendaviaggi.Controllers.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -12,6 +10,13 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import aziendaviaggi.controllers.Controller;
+import aziendaviaggi.controllers.LoginController;
+
+/**
+ * This class is the controller for the client document view.
+ * It handles the user interactions and data manipulation related to client documents.
+ */
 public class ClientDocumentController extends Controller {
 
     @FXML
@@ -35,26 +40,44 @@ public class ClientDocumentController extends Controller {
     private String cartaIdentita = "N";
     private String passaporto = "N";
 
+    /**
+     * Initializes the controller.
+     *
+     * @param location  The location used to resolve relative paths for the root object.
+     * @param resources The resources used to localize the root object.
+     */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(final URL location, final ResourceBundle resources) {
         Email.setText(LoginController.getEmailCliente());
         Tipo.getItems().addAll("Carta d'identita", "Passaporto");
     }
 
+    /**
+     * Handles the back button action.
+     *
+     * @param event The event triggered by the back button.
+     */
     @FXML
-    private void back(ActionEvent event) {
+    private void back(final ActionEvent event) {
         changeScene(event, "ClientSelection");
     }
 
+    /**
+     * Handles the enter button action.
+     *
+     * @param event The event triggered by the enter button.
+     */
     @FXML
-    private void enter(ActionEvent event) {
-        if (!checkInsert(ClientDocument))
+    private void enter(final ActionEvent event) {
+        if (!checkInsert(ClientDocument)) {
             return;
+        }
         try {
-            if (Tipo.getSelectionModel().getSelectedItem().equals("Carta d'identita"))
+            if ("Carta d'identita".equals(Tipo.getSelectionModel().getSelectedItem())) {
                 this.cartaIdentita = "S";
-            else
+            } else {
                 this.passaporto = "S";
+            }
             this.statement.executeUpdate(
                     "INSERT INTO DOCUMENTI_VIAGGIO " + "VALUES (" + valueFormatter(NumeroDocumento.getText()) + ", "
                             + valueFormatter(Email.getText()) + ", "

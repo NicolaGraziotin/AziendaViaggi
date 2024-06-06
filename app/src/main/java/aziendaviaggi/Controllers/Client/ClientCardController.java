@@ -1,15 +1,19 @@
-package aziendaviaggi.Controllers.Client;
+package aziendaviaggi.controllers.client;
 
 import java.sql.SQLException;
 
-import aziendaviaggi.Controllers.Controller;
-import aziendaviaggi.Controllers.LoginController;
+import aziendaviaggi.controllers.Controller;
+import aziendaviaggi.controllers.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
+/**
+ * The ClientCardController class is responsible for managing the client card functionality.
+ * It handles the addition of credit card information and navigation to the client selection screen.
+ */
 public class ClientCardController extends Controller {
 
     @FXML
@@ -27,18 +31,30 @@ public class ClientCardController extends Controller {
     @FXML
     private TextField CVV;
 
+    /**
+     * Handles the back button click event.
+     * Changes the scene to the client selection screen.
+     * 
+     * @param event The ActionEvent triggered by the back button click.
+     */
     @FXML
-    private void back(ActionEvent event) {
+    private void back(final ActionEvent event) {
         changeScene(event, "ClientSelection");
     }
 
+    /**
+     * Handles the add button click event.
+     * Adds the credit card information to the database.
+     * 
+     * @param event The ActionEvent triggered by the add button click.
+     */
     @FXML
-    void add(ActionEvent event) {
+    void add(final ActionEvent event) {
         if (!checkInsert(ClientCard)) {
             return;
         }
         try {
-            String codCarta = progressiveCode("CodCartaCredito", "CARTE_CREDITO", "CC");
+            final String codCarta = progressiveCode("CodCartaCredito", "CARTE_CREDITO", "CC");
             this.statement.executeUpdate("INSERT INTO CARTE_CREDITO " + "VALUES ("
                     + valueFormatter(codCarta) + ", "
                     + valueFormatter(LoginController.getEmailCliente()) + ", "

@@ -1,13 +1,17 @@
-package aziendaviaggi.Controllers.Client;
+package aziendaviaggi.controllers.client;
 
 import java.sql.SQLException;
 
-import aziendaviaggi.Controllers.ControllerRegistration;
+import aziendaviaggi.controllers.ControllerRegistration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
+/**
+ * This class represents the controller for the client registration functionality.
+ * It extends the ControllerRegistration class.
+ */
 public class ClientRegistrationController extends ControllerRegistration {
 
     @FXML
@@ -22,12 +26,20 @@ public class ClientRegistrationController extends ControllerRegistration {
     @FXML
     private TextField Cognome;
 
+    /**
+     * Handles the enter button action event.
+     * It checks the input fields, inserts the client data into the database,
+     * and prints a success message if the registration is successful.
+     * If an exception occurs, it displays an error message.
+     * @param event The action event triggered by the enter button.
+     */
     @FXML
-    private void enter(ActionEvent event) {
-        if (!checkInsert(ClientRegistration))
+    private void enter(final ActionEvent event) {
+        if (!checkInsert(ClientRegistration)) {
             return;
+        }
         try {
-            this.statement.executeUpdate("INSERT INTO CLIENTI " + "VALUES ("
+            this.statement.executeUpdate("INSERT INTO CLIENTI VALUES ("
                     + valueFormatter(Email.getText()) + ", "
                     + valueFormatter(CodiceFiscale.getText()) + ", "
                     + valueFormatter(Nome.getText()) + ", "
