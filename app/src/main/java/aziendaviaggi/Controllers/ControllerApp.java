@@ -4,6 +4,7 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
+import aziendaviaggi.Objects.Attivita;
 import aziendaviaggi.Objects.Pacchetto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,72 +12,68 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import java.sql.SQLException;
 
 public class ControllerApp extends Controller {
 
     @FXML
-    protected TableView<Pacchetto> TableV;
+    protected TableView<Pacchetto> TablePacchetti;
 
     @FXML
-    protected TableView<Pacchetto> TableV2;
+    protected TableColumn<Pacchetto, String> ColumnAgenzia;
 
     @FXML
-    protected TableView<Pacchetto> TableV3;
-
-    @FXML
-    protected TableColumn<Pacchetto, String> ColumnAgen;
-
-    @FXML
-    protected TableColumn<Pacchetto, String> ColumnDesc;
+    protected TableColumn<Pacchetto, String> ColumnDescrizione;
 
     @FXML
     protected TableColumn<Pacchetto, String> ColumnNome;
-    
-    @FXML
-    protected TableColumn<Pacchetto, String> ColumnPrez;
 
     @FXML
-    protected TableColumn<Pacchetto, String> ColumnGuid;
+    protected TableColumn<Pacchetto, String> ColumnPrezzo;
 
     @FXML
-    protected TableColumn<Pacchetto, String> ColumnTras;
+    protected TextField Guida;
 
     @FXML
-    protected TableColumn<Pacchetto, String> ColumnAllo;
+    protected TextField Trasporto;
 
     @FXML
-    protected TableColumn<Pacchetto, String> ColumnDest;
-    
+    protected TextField Alloggio;
+
     @FXML
-    protected TableColumn<Pacchetto, String> ColumnAtt;
-    
+    protected TextField Destinazione;
+
     @FXML
-    protected TableColumn<Pacchetto, String> ColumnNomeAtt;
-    
+    protected TableView<Attivita> TableAttivita;
+
     @FXML
-    protected TableColumn<Pacchetto, String> ColumnDescAtt;
-    
+    protected TableColumn<Attivita, String> ColumnNomeAttivita;
+
     @FXML
-    protected TableColumn<Pacchetto, String> ColumnOrar;
-    
+    protected TableColumn<Attivita, String> ColumnDescrizioneAttivita;
+
     @FXML
-    protected TableColumn<Pacchetto, String> ColumnDura;
+    protected TableColumn<Attivita, String> ColumnOrario;
+
+    @FXML
+    protected TableColumn<Attivita, String> ColumnDurata;
 
     @Override
     public final void initialize(URL location, ResourceBundle resources) {
-        cellInit(ColumnAgen, "codAgenzia");
-        cellInit(ColumnNome, "nome");
-        cellInit(ColumnDesc, "descrizione");
-        cellInit(ColumnPrez, "prezzo");
+        cellInitPac(ColumnAgenzia, "CodAgenzia");
+        cellInitPac(ColumnNome, "Nome");
+        cellInitPac(ColumnDescrizione, "Descrizione");
+        cellInitPac(ColumnPrezzo, "Prezzo");
 
-        cellInit(ColumnGuid, "codGuida");
-        cellInit(ColumnTras, "codTrasporto");
-        cellInit(ColumnAllo, "codAlloggio");
-        cellInit(ColumnDest, "codDestinazione");
+        cellInitAtt(ColumnNomeAttivita, "Nome");
+        cellInitAtt(ColumnDescrizioneAttivita, "Descrizione");
+        cellInitAtt(ColumnOrario, "Orario");
+        cellInitAtt(ColumnDurata, "Durata");
 
-        TableV.setItems(fillTableView());
+        TablePacchetti.setItems(fillTableView());
     }
 
     @FXML
@@ -86,13 +83,20 @@ public class ControllerApp extends Controller {
 
     @FXML
     protected final void update(MouseEvent event) {
-        Pacchetto sel = TableV.getSelectionModel().getSelectedItem();
-        ObservableList<Pacchetto> list = FXCollections.observableArrayList(sel);
-        TableV2.setItems(list);
+        Pacchetto sel = TablePacchetti.getSelectionModel().getSelectedItem();
+        Guida.setText(sel.getCodGuida());
+        Trasporto.setText(sel.getCodTrasporto());
+        Alloggio.setText(sel.getCodAlloggio());
+        Destinazione.setText(sel.getCodDestinazione());
+        TableAttivita.setItems(fillAttivita());
     }
 
-    protected final void cellInit(TableColumn<Pacchetto, String> cell, String value) {
+    protected void cellInitPac(TableColumn<Pacchetto, String> cell, String value) {
         cell.setCellValueFactory(new PropertyValueFactory<Pacchetto, String>(value));
+    }
+    
+    protected void cellInitAtt(TableColumn<Attivita, String> cell, String value) {
+        cell.setCellValueFactory(new PropertyValueFactory<Attivita, String>(value));
     }
 
     protected final ObservableList<Pacchetto> fillTableView() {
@@ -105,6 +109,29 @@ public class ControllerApp extends Controller {
                         res.getString("CodGuida"), res.getString("CodTrasporto"), res.getString("CodAlloggio"),
                         res.getString("CodDestinazione")));
             }
+        } catch (SQLException e) {
+            alertThrower(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    private ObservableList<Attivita> fillAttivita() {
+        ObservableList<Attivita> list = FXCollections.observableArrayList();
+        try {
+            Pacchetto sel = TablePacchetti.getSelectionModel().getSelectedItem();
+            ResultSet res = this.statement.executeQuery(
+                    "SELECT A.* " +
+                    "FROM ITINERARI I RIGHT JOIN ATTIVITA A ON(I.CodAttivita = A.CodAttivita) " +
+                    "WHERE I.CodPacchetto = " + valueFormatter(sel.getCodPacchetto()));
+            while (res.next()) {
+                list.add(new Attivita(res.getString("CodAttivita"), res.getString("Nome"),
+                        res.getString("Descrizione"), res.getString("Orario"),
+                        res.getString("Durata")));
+            }
+        } catch (SQLException e) {
+            alertThrower(e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }

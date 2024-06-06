@@ -1,62 +1,62 @@
 package aziendaviaggi.Objects;
 
 public class Pacchetto {
-    private String codPacchetto;
-    private String nome;
-    private String descrizione;
-    private String prezzo;
-    private String codAgenzia;
-    private String codGuida;
-    private String codTrasporto;
-    private String codAlloggio;
-    private String codDestinazione;
+    private String CodPacchetto;
+    private String Nome;
+    private String Descrizione;
+    private String Prezzo;
+    private String CodAgenzia;
+    private String CodGuida;
+    private String CodTrasporto;
+    private String CodAlloggio;
+    private String CodDestinazione;
 
     public Pacchetto(String codPacchetto, String nome, String descrizione, String prezzo, String codAgenzia,
             String codGuida, String codTrasporto, String codAlloggio, String codDestinazione) {
-        this.codPacchetto = codPacchetto;
-        this.nome = nome;
-        this.descrizione = descrizione;
-        this.prezzo = prezzo;
-        this.codAgenzia = codAgenzia;
-        this.codGuida = codGuida;
-        this.codTrasporto = codTrasporto;
-        this.codAlloggio = codAlloggio;
-        this.codDestinazione = codDestinazione;
+        this.CodPacchetto = codPacchetto;
+        this.Nome = nome;
+        this.Descrizione = descrizione;
+        this.Prezzo = prezzo;
+        this.CodAgenzia = codAgenzia;
+        this.CodGuida = codGuida;
+        this.CodTrasporto = codTrasporto;
+        this.CodAlloggio = codAlloggio;
+        this.CodDestinazione = codDestinazione;
     }
 
     public String getCodPacchetto() {
-        return this.codPacchetto;
+        return this.CodPacchetto;
     }
 
     public String getNome() {
-        return this.nome;
+        return this.Nome;
     }
 
     public String getDescrizione() {
-        return this.descrizione;
+        return this.Descrizione;
     }
 
     public String getPrezzo() {
-        return this.prezzo;
+        return this.Prezzo;
     }
 
     public String getCodAgenzia() {
-        return this.codAgenzia;
+        return this.CodAgenzia;
     }
 
     public String getCodGuida() {
-        return this.codGuida;
+        return this.CodGuida;
     }
 
     public String getCodTrasporto() {
-        return this.codTrasporto;
+        return this.CodTrasporto;
     }
 
     public String getCodAlloggio() {
-        return this.codAlloggio;
+        return this.CodAlloggio;
     }
 
     public String getCodDestinazione() {
-        return this.codDestinazione;
+        return this.CodDestinazione;
     }
 }

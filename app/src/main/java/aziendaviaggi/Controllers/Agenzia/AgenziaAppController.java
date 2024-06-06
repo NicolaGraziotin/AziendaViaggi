@@ -21,20 +21,20 @@ public class AgenziaAppController extends ControllerApp {
 
     @FXML
     private void delete(ActionEvent event) {
-        Pacchetto selected = TableV.getSelectionModel().getSelectedItem();
+        Pacchetto selected = TablePacchetti.getSelectionModel().getSelectedItem();
         if (checkSelected(selected, "eliminare") && Utils.confirmThrower("Sei sicuro di volere eliminare il pacchetto?"))
             remove(selected);
     }
 
     @FXML
     private void modify(ActionEvent event) {
-        selectedPacchetto = TableV.getSelectionModel().getSelectedItem();
+        selectedPacchetto = TablePacchetti.getSelectionModel().getSelectedItem();
         if (checkSelected(selectedPacchetto, "modificare"))
             changeScene(event, "AgenziaModify");
     }
 
     private void remove(Pacchetto selected) {
-        ObservableList<Pacchetto> list = TableV.getItems();
+        ObservableList<Pacchetto> list = TablePacchetti.getItems();
         try {
             this.statement.executeUpdate(
                     "DELETE FROM PACCHETTI_TURISTICI WHERE CodPacchetto=" + selected.getCodPacchetto());

@@ -55,8 +55,7 @@ public class ClientSelectionController extends Controller {
         Pacchetto.setText(actual.getCodPacchetto());
         choiceBoxInit("CodAssicurazione", "ASSICURAZIONI", Assicurazione);
         documentInit();
-        choiceBoxInit("CodCartaCredito", "CARTE_CREDITO", Metodo);
-        choiceBoxInit("CodBonifico", "BONIFICI_BANCARI", Metodo);
+        metodoInit();
     }
 
     @FXML
@@ -86,12 +85,6 @@ public class ClientSelectionController extends Controller {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-    private String chooseMethod(String start) {
-        String selectedMethod = Metodo.getSelectionModel().getSelectedItem();
-        if (selectedMethod.startsWith(start))
-            return valueFormatter(selectedMethod);
-        return "NULL";
     }
 
     @FXML
@@ -131,6 +124,13 @@ public class ClientSelectionController extends Controller {
         }
     }
 
+    private String chooseMethod(String start) {
+        String selectedMethod = Metodo.getSelectionModel().getSelectedItem();
+        if (selectedMethod.startsWith(start))
+            return valueFormatter(selectedMethod);
+        return "NULL";
+    }
+
     private void choiceBoxInit(String column, String table, ChoiceBox<String> choice) {
         try {
             ResultSet res = this.statement.executeQuery("SELECT " + column + " FROM " + table);
@@ -146,10 +146,30 @@ public class ClientSelectionController extends Controller {
 
     private void documentInit() {
         try {
+            System.out.println(LoginController.getEmailCliente());
             ResultSet res = this.statement.executeQuery("SELECT NumeroDocumento FROM DOCUMENTI_VIAGGIO WHERE Email = "
                     + valueFormatter(LoginController.getEmailCliente()));
             while (res.next()) {
                 Documento.getItems().add(res.getString("NumeroDocumento"));
+            }
+        } catch (SQLException e) {
+            alertThrower(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void metodoInit() {
+        try {
+            ResultSet res = this.statement.executeQuery("SELECT * FROM CARTE_CREDITO WHERE Email = "
+                    + valueFormatter(LoginController.getEmailCliente()));
+            while (res.next()) {
+                Metodo.getItems().add(res.getString("CodCartaCredito"));
+            }
+            res = this.statement.executeQuery("SELECT * FROM BONIFICI_BANCARI WHERE Email = "
+                    + valueFormatter(LoginController.getEmailCliente()));
+            while (res.next()) {
+                Metodo.getItems().add(res.getString("CodBonifico"));
             }
         } catch (SQLException e) {
             alertThrower(e.getMessage());

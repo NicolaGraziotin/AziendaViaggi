@@ -11,7 +11,7 @@ public class ClientAppController extends ControllerApp {
 
     @FXML
     private void select(ActionEvent event) {
-        selectedPacchetto = TableV.getSelectionModel().getSelectedItem();
+        selectedPacchetto = TablePacchetti.getSelectionModel().getSelectedItem();
         if (selectedPacchetto != null) {
             changeScene(event, "ClientSelection");
         } else {
@@ -21,7 +21,7 @@ public class ClientAppController extends ControllerApp {
 
     @FXML
     private void review(ActionEvent event) {
-        selectedPacchetto = TableV.getSelectionModel().getSelectedItem();
+        selectedPacchetto = TablePacchetti.getSelectionModel().getSelectedItem();
         if (selectedPacchetto != null) {
             changeScene(event, "ClientReview");
         } else {
