@@ -27,7 +27,7 @@ public class AgenziaRegistrationController extends ControllerRegistration {
      */
     @FXML
     private void enter(final ActionEvent event) {
-        if (!checkInsert(AgenziaRegistration)) {
+        if (!checkInsert(AgenziaRegistration.getChildren())) {
             return;
         }
         executeTryBlock(() -> {

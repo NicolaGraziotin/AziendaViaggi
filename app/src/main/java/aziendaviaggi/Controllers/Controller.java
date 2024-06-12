@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import aziendaviaggi.SQLDatabaseConnection;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,7 +20,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -88,8 +88,8 @@ public class Controller implements Initializable {
      * @return true if all required fields are filled, false otherwise.
      */
     @SuppressWarnings("unchecked")
-    protected final boolean checkInsert(final Pane pane) {
-        for (final Node elem : pane.getChildren()) {
+    protected final boolean checkInsert(final ObservableList<Node> children) {
+        for (final Node elem : children) {
             if (elem instanceof TextField && ((TextField) elem).getText().isEmpty()) {
                 alertThrower("Inserisci " + elem.getId());
                 return false;

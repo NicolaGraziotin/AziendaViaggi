@@ -67,7 +67,7 @@ public class ClientReviewController extends Controller {
      */
     @FXML
     private void post(final ActionEvent event) {
-        if (!checkInsert(ClientReview)) {
+        if (!checkInsert(ClientReview.getChildren())) {
             return;
         }
         executeTryBlock(() -> {

@@ -103,7 +103,7 @@ public class ClientSelectionController extends Controller {
      */
     @FXML
     private void pay(final ActionEvent event) {
-        if (!checkInsert(ClientSelection)) {
+        if (!checkInsert(ClientSelection.getChildren())) {
             return;
         }
         executeTryBlock(() -> {
@@ -172,7 +172,7 @@ public class ClientSelectionController extends Controller {
      * @param event The action event.
      */
     @FXML
-    private void updateAssicurazione(final ActionEvent event) {
+    private void printAssicurazione(final ActionEvent event) {
         executeTryBlock(() -> {
             ResultSet res = this.statement
                     .executeQuery("SELECT Prezzo FROM ASSICURAZIONI WHERE CodAssicurazione = "
@@ -197,7 +197,7 @@ public class ClientSelectionController extends Controller {
      * @param event The event that triggered the update.
      */
     @FXML
-    private void updateDocumento(final ActionEvent event) {
+    private void printDocumento(final ActionEvent event) {
         executeTryBlock(() -> {
             ResultSet res = this.statement.executeQuery(
                     "SELECT * FROM DOCUMENTI_VIAGGIO WHERE NumeroDocumento = " + valueFormatter(Documento.getValue()));
@@ -218,7 +218,7 @@ public class ClientSelectionController extends Controller {
      * @param event the action event that triggered the update
      */
     @FXML
-    private void updateMetodo(final ActionEvent event) {
+    private void printMetodo(final ActionEvent event) {
         executeTryBlock(() -> {
             if (Metodo.getValue().startsWith("CC")) {
                 ResultSet res = this.statement.executeQuery(

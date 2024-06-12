@@ -68,7 +68,7 @@ public class ClientDocumentController extends Controller {
      */
     @FXML
     private void enter(final ActionEvent event) {
-        if (!checkInsert(ClientDocument)) {
+        if (!checkInsert(ClientDocument.getChildren())) {
             return;
         }
         executeTryBlock(() -> {

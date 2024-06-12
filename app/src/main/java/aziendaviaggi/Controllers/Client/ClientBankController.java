@@ -52,7 +52,7 @@ public class ClientBankController extends Controller {
      */
     @FXML
     void add(final ActionEvent event) {
-        if (!checkInsert(ClientBank)) {
+        if (!checkInsert(ClientBank.getChildren())) {
             return;
         }
         executeTryBlock(() -> {

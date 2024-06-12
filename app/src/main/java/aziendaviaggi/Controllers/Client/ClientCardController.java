@@ -48,7 +48,7 @@ public class ClientCardController extends Controller {
      */
     @FXML
     void add(final ActionEvent event) {
-        if (!checkInsert(ClientCard)) {
+        if (!checkInsert(ClientCard.getChildren())) {
             return;
         }
         executeTryBlock(() -> {

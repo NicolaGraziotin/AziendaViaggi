@@ -33,7 +33,7 @@ public class LoginController extends Controller {
      */
     @FXML
     private void loginAgenzia(final ActionEvent event) {
-        if (!checkInsert(Login)) {
+        if (!checkInsert(Login.getChildren())) {
             return;
         }
         try {
@@ -61,7 +61,7 @@ public class LoginController extends Controller {
      */
     @FXML
     private void loginCliente(final ActionEvent event) {
-        if (!checkInsert(Login)) {
+        if (!checkInsert(Login.getChildren())) {
             return;
         }
         try {

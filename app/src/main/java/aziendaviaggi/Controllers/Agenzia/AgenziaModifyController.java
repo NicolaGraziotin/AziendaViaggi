@@ -90,7 +90,7 @@ public class AgenziaModifyController extends AgenziaInsertController {
      */
     @FXML
     private void enter(final ActionEvent event) {
-        if (!checkInsert(AgenziaModify)) {
+        if (!checkInsert(AgenziaModify.getChildren())) {
             return;
         }
         executeTryBlock(() -> {

@@ -33,7 +33,7 @@ public class ClientRegistrationController extends ControllerRegistration {
      */
     @FXML
     private void enter(final ActionEvent event) {
-        if (!checkInsert(ClientRegistration)) {
+        if (!checkInsert(ClientRegistration.getChildren())) {
             return;
         }
         executeTryBlock(() -> {
