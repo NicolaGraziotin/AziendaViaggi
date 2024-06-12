@@ -28,9 +28,6 @@ import javafx.stage.Stage;
  */
 public class Controller implements Initializable {
 
-    /**
-     * The SQL statement used for executing queries on the database.
-     */
     protected Statement statement = SQLDatabaseConnection.getStatement();
 
     /**
@@ -104,7 +101,7 @@ public class Controller implements Initializable {
                 alertThrower("Inserisci " + elem.getId());
                 return false;
             } else if (elem instanceof DatePicker && ((DatePicker) elem).getValue() == null) {
-                alertThrower("Inserisci " + elem.getId());
+                alertThrower("Scegli " + elem.getId());
                 return false;
             }
         }

@@ -178,7 +178,6 @@ public class ClientSelectionController extends Controller {
                     .executeQuery("SELECT Prezzo FROM ASSICURAZIONI WHERE CodAssicurazione = "
                             + valueFormatter(Assicurazione.getValue()));
             if (res.next()) {
-                System.out.println(res.getString("Prezzo"));
                 PrezzoTotale.setText(String
                         .valueOf(Float.parseFloat(actual.getPrezzo()) + Float.parseFloat(res.getString("Prezzo"))));
             }
@@ -298,7 +297,6 @@ public class ClientSelectionController extends Controller {
      */
     private void documentInit() {
         executeTryBlock(() -> {
-            System.out.println(LoginController.getEmailCliente());
             final ResultSet res = this.statement
                     .executeQuery("SELECT NumeroDocumento FROM DOCUMENTI_VIAGGIO WHERE Email = "
                             + valueFormatter(LoginController.getEmailCliente()));

@@ -10,15 +10,9 @@ import javafx.scene.control.TextField;
  */
 public class ControllerRegistration extends Controller {
 
-    /**
-     * The email text field.
-     */
     @FXML
     protected TextField Email;
 
-    /**
-     * The password text field.
-     */
     @FXML
     protected TextField Nome;
 

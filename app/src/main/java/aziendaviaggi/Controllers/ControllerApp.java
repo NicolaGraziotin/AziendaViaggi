@@ -16,7 +16,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import java.sql.SQLException;
 
 /**
  * The ControllerApp class is responsible for controlling the main application view.
@@ -24,87 +23,45 @@ import java.sql.SQLException;
  */
 public class ControllerApp extends Controller {
 
-    /**
-     * The table view for the pacchetti.
-     */
     @FXML
     protected TableView<Pacchetto> TablePacchetti;
 
-    /**
-     * The table columns for the pacchetti.
-     */
     @FXML
     protected TableColumn<Pacchetto, String> ColumnAgenzia;
 
-    /**
-     * The table columns for the pacchetti.
-     */
     @FXML
     protected TableColumn<Pacchetto, String> ColumnDescrizione;
 
-    /**
-     * The table columns for the pacchetti.
-     */
     @FXML
     protected TableColumn<Pacchetto, String> ColumnNome;
 
-    /**
-     * The table columns for the pacchetti.
-     */
     @FXML
     protected TableColumn<Pacchetto, String> ColumnPrezzo;
 
-    /**
-     * The text field for the guida.
-     */
     @FXML
     protected TextField Guida;
 
-    /**
-     * The text field for the trasporto.
-     */
     @FXML
     protected TextField Trasporto;
 
-    /**
-     * The text field for the alloggio.
-     */
     @FXML
     protected TextField Alloggio;
 
-    /**
-     * The text field for the destinazione.
-     */
     @FXML
     protected TextField Destinazione;
 
-    /**
-     * The table view for the attivita.
-     */
     @FXML
     protected TableView<Attivita> TableAttivita;
 
-    /**
-     * The table columns for the attivita.
-     */
     @FXML
     protected TableColumn<Attivita, String> ColumnNomeAttivita;
 
-    /**
-     * The table columns for the attivita.
-     */
     @FXML
     protected TableColumn<Attivita, String> ColumnDescrizioneAttivita;
 
-    /**
-     * The table columns for the attivita.
-     */
     @FXML
     protected TableColumn<Attivita, String> ColumnOrario;
 
-    /**
-     * The table columns for the attivita.
-     */
     @FXML
     protected TableColumn<Attivita, String> ColumnDurata;
 
@@ -153,7 +110,7 @@ public class ControllerApp extends Controller {
      */
     @FXML
     protected final void update(final MouseEvent event) {
-        Pacchetto sel = TablePacchetti.getSelectionModel().getSelectedItem();
+        final Pacchetto sel = TablePacchetti.getSelectionModel().getSelectedItem();
         Guida.setText(sel.getCodGuida());
         Trasporto.setText(sel.getCodTrasporto());
         Alloggio.setText(sel.getCodAlloggio());
@@ -161,9 +118,14 @@ public class ControllerApp extends Controller {
         TableAttivita.setItems(fillAttivita());
     }
 
+    /**
+     * Prints the details of a tour guide based on the provided guide code.
+     * 
+     * @param event The mouse event that triggered the method.
+     */
     @FXML
     protected final void printGuida(final MouseEvent event) {
-        try {
+        executeTryBlock(() -> {
             final ResultSet res = this.statement.executeQuery("SELECT * FROM GUIDE_TURISTICHE WHERE CodGuida = " + valueFormatter(Guida.getText()));
             if (res.next()) {
                 print("Nome: " + res.getString("Nome") + "\n"
@@ -171,16 +133,17 @@ public class ControllerApp extends Controller {
                         + "Lingua: " + res.getString("Lingua") + "\n"
                         + "Esperienza: " + res.getString("Esperienza"));
             }
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 
+    /**
+     * Prints the details of a transportation record based on the given input.
+     *
+     * @param event The mouse event that triggered the method.
+     */
     @FXML
     protected final void printTrasporto(final MouseEvent event) {
-        try {
+        executeTryBlock(() -> {
             final ResultSet res = this.statement.executeQuery("SELECT * FROM TRASPORTI WHERE CodTrasporto = " + valueFormatter(Trasporto.getText()));
             if (res.next()) {
                 print("Compagnia: " + res.getString("Compagnia") + "\n"
@@ -191,16 +154,17 @@ public class ControllerApp extends Controller {
                         + "Autobus: " + res.getString("AUTOBUS") + "\n"
                         + "Aereo: " + res.getString("AEREO"));
             }
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 
+    /**
+     * Prints information about an accommodation based on the provided CodAlloggio value.
+     * 
+     * @param event The MouseEvent that triggered the method.
+     */
     @FXML
     protected final void printAlloggio(final MouseEvent event) {
-        try {
+        executeTryBlock(() -> {
             final ResultSet res = this.statement.executeQuery("SELECT * FROM ALLOGGI WHERE CodAlloggio = " + valueFormatter(Alloggio.getText()));
             if (res.next()) {
                 print("Nome: " + res.getString("Nome") + "\n"
@@ -212,29 +176,31 @@ public class ControllerApp extends Controller {
                         + "Formula: " + res.getString("Formula") + "\n"
                         + "Appartamento: " + res.getString("APPARTAMENTO"));
             }
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 
+    /**
+     * Prints the details of a destination based on the provided CodDestinazione value.
+     * 
+     * @param event The MouseEvent that triggered the method.
+     */
     @FXML
     protected final void printDestinazione(final MouseEvent event) {
-        try {
+        executeTryBlock(() -> {
             final ResultSet res = this.statement.executeQuery("SELECT * FROM DESTINAZIONI WHERE CodDestinazione = " + valueFormatter(Destinazione.getText()));
             if (res.next()) {
                 print("Paese: " + res.getString("Paese") + "\n"
                         + "Citta: " + res.getString("Citta") + "\n"
                         + "Descrizione: " + res.getString("Descrizione"));
             }
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 
+    /**
+     * Prints the given message to the Specifiche text field.
+     *
+     * @param msg the message to be printed
+     */
     private final void print(String msg) {
         Specifiche.setText(msg);
     }
@@ -266,19 +232,15 @@ public class ControllerApp extends Controller {
      */
     protected final ObservableList<Pacchetto> fillTableView() {
         ObservableList<Pacchetto> list = FXCollections.observableArrayList();
-        try {
-            ResultSet res = this.statement.executeQuery("SELECT * FROM PACCHETTI_TURISTICI");
+        executeTryBlock(() -> {
+            final ResultSet res = this.statement.executeQuery("SELECT * FROM PACCHETTI_TURISTICI");
             while (res.next()) {
                 list.add(new Pacchetto(res.getString("CodPacchetto"), res.getString("Nome"),
                         res.getString("Descrizione"), res.getString("Prezzo"), res.getString("CodAgenzia"),
                         res.getString("CodGuida"), res.getString("CodTrasporto"), res.getString("CodAlloggio"),
                         res.getString("CodDestinazione")));
             }
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
         return list;
     }
 
@@ -288,10 +250,10 @@ public class ControllerApp extends Controller {
      * @return The observable list of attivita to populate the table view.
      */
     private ObservableList<Attivita> fillAttivita() {
-        ObservableList<Attivita> list = FXCollections.observableArrayList();
-        try {
-            Pacchetto sel = TablePacchetti.getSelectionModel().getSelectedItem();
-            ResultSet res = this.statement.executeQuery(
+        final ObservableList<Attivita> list = FXCollections.observableArrayList();
+        executeTryBlock(() -> {
+            final Pacchetto sel = TablePacchetti.getSelectionModel().getSelectedItem();
+            final ResultSet res = this.statement.executeQuery(
                     "SELECT A.* "
                     + "FROM ITINERARI I RIGHT JOIN ATTIVITA A ON(I.CodAttivita = A.CodAttivita) "
                     + "WHERE I.CodPacchetto = " + valueFormatter(sel.getCodPacchetto()));
@@ -300,11 +262,7 @@ public class ControllerApp extends Controller {
                         res.getString("Descrizione"), res.getString("Orario"),
                         res.getString("Durata")));
             }
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
         return list;
     }
 }

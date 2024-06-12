@@ -38,9 +38,11 @@ public class LoginController extends Controller {
         }
         try {
             ResultSet result = this.statement
-                    .executeQuery("SELECT CodAgenzia FROM AGENZIE_VIAGGIO WHERE Email = " + valueFormatter(Email.getText()));
+                    .executeQuery(
+                            "SELECT CodAgenzia FROM AGENZIE_VIAGGIO WHERE Email = " + valueFormatter(Email.getText()));
             if (result.next()) {
                 CodAgenzia = result.getString("CodAgenzia");
+                System.out.println(CodAgenzia + " ha eseguito l'accesso.");
                 changeScene(event, "AgenziaApp");
             } else {
                 alertThrower("Email non valida!");
@@ -67,6 +69,7 @@ public class LoginController extends Controller {
                     .executeQuery("SELECT Email FROM CLIENTI WHERE Email = " + valueFormatter(Email.getText()));
             if (result.next()) {
                 EmailCliente = result.getString("Email");
+                System.out.println(EmailCliente + " ha eseguito l'accesso.");
                 changeScene(event, "ClientApp");
             } else {
                 alertThrower("Email non valida!");
