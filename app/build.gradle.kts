@@ -10,7 +10,6 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     java
     application
-    //id("org.danilopianini.gradle-java-qa") version "1.52.0"
 }
 
 repositories {

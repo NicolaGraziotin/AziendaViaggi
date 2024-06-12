@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -107,6 +108,9 @@ public class ControllerApp extends Controller {
     @FXML
     protected TableColumn<Attivita, String> ColumnDurata;
 
+    @FXML
+    protected TextArea Specifiche;
+
     /**
      * Initializes the ControllerApp view.
      * This method is automatically called after the FXML file has been loaded.
@@ -155,6 +159,84 @@ public class ControllerApp extends Controller {
         Alloggio.setText(sel.getCodAlloggio());
         Destinazione.setText(sel.getCodDestinazione());
         TableAttivita.setItems(fillAttivita());
+    }
+
+    @FXML
+    protected final void printGuida(final MouseEvent event) {
+        try {
+            final ResultSet res = this.statement.executeQuery("SELECT * FROM GUIDE_TURISTICHE WHERE CodGuida = " + valueFormatter(Guida.getText()));
+            if (res.next()) {
+                print("Nome: " + res.getString("Nome") + "\n"
+                        + "Cognome: " + res.getString("Cognome") + "\n"
+                        + "Lingua: " + res.getString("Lingua") + "\n"
+                        + "Esperienza: " + res.getString("Esperienza"));
+            }
+        } catch (SQLException e) {
+            alertThrower(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected final void printTrasporto(final MouseEvent event) {
+        try {
+            final ResultSet res = this.statement.executeQuery("SELECT * FROM TRASPORTI WHERE CodTrasporto = " + valueFormatter(Trasporto.getText()));
+            if (res.next()) {
+                print("Compagnia: " + res.getString("Compagnia") + "\n"
+                        + "Partenza: " + res.getString("Partenza") + "\n"
+                        + "Destinazione: " + res.getString("Destinazione") + "\n"
+                        + "Orario: " + res.getString("Orario") + "\n"
+                        + "Traghetto: " + res.getString("TRAGHETTO") + "\n"
+                        + "Autobus: " + res.getString("AUTOBUS") + "\n"
+                        + "Aereo: " + res.getString("AEREO"));
+            }
+        } catch (SQLException e) {
+            alertThrower(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected final void printAlloggio(final MouseEvent event) {
+        try {
+            final ResultSet res = this.statement.executeQuery("SELECT * FROM ALLOGGI WHERE CodAlloggio = " + valueFormatter(Alloggio.getText()));
+            if (res.next()) {
+                print("Nome: " + res.getString("Nome") + "\n"
+                        + "Citta: " + res.getString("Ind_Citta") + "\n"
+                        + "Via: " + res.getString("Ind_Via") + "\n"
+                        + "Numero civico: " + res.getString("Ind_NumeroCivico") + "\n"
+                        + "Numero camere: " + res.getString("NumeroCamere") + "\n"
+                        + "Hotel: " + res.getString("HOTEL") + "\n"
+                        + "Formula: " + res.getString("Formula") + "\n"
+                        + "Appartamento: " + res.getString("APPARTAMENTO"));
+            }
+        } catch (SQLException e) {
+            alertThrower(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected final void printDestinazione(final MouseEvent event) {
+        try {
+            final ResultSet res = this.statement.executeQuery("SELECT * FROM DESTINAZIONI WHERE CodDestinazione = " + valueFormatter(Destinazione.getText()));
+            if (res.next()) {
+                print("Paese: " + res.getString("Paese") + "\n"
+                        + "Citta: " + res.getString("Citta") + "\n"
+                        + "Descrizione: " + res.getString("Descrizione"));
+            }
+        } catch (SQLException e) {
+            alertThrower(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private final void print(String msg) {
+        Specifiche.setText(msg);
     }
 
     /**

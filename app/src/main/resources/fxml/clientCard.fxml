@@ -8,31 +8,31 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="ClientCard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.controllers.client.ClientCardController">
+<Pane fx:id="ClientCard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.controllers.client.ClientCardController">
    <children>
       <Label layoutX="98.0" layoutY="80.0" text="Intestatario">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="282.0" layoutY="80.0" text="Numero">
+      <Label layoutX="368.0" layoutY="80.0" text="Numero">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="440.0" layoutY="80.0" text="Data Scadenza">
+      <Label layoutX="598.0" layoutY="80.0" text="Data Scadenza">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="653.0" layoutY="80.0" text="CVV">
+      <Label layoutX="849.0" layoutY="80.0" text="CVV">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <TextField fx:id="Intestatario" layoutX="58.0" layoutY="120.0" />
-      <TextField fx:id="Numero" layoutX="233.0" layoutY="120.0" />
-      <TextField fx:id="CVV" layoutX="592.0" layoutY="120.0" />
+      <TextField fx:id="Numero" layoutX="319.0" layoutY="120.0" />
+      <TextField fx:id="CVV" layoutX="788.0" layoutY="120.0" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: #fcba03;" text="Indietro">
          <font>
             <Font size="14.0" />
@@ -41,7 +41,7 @@
             <DropShadow />
          </effect>
       </Button>
-      <Button layoutX="666.0" layoutY="526.0" mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #8cbcff;" text="Aggiungi">
+      <Button layoutX="1066.0" layoutY="726.0" mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #8cbcff;" text="Aggiungi">
          <font>
             <Font size="20.0" />
          </font>
@@ -49,6 +49,6 @@
             <DropShadow />
          </effect>
       </Button>
-      <DatePicker fx:id="DataScadenza" layoutX="411.0" layoutY="120.0" prefHeight="25.0" prefWidth="149.0" />
+      <DatePicker fx:id="DataScadenza" layoutX="569.0" layoutY="120.0" prefHeight="25.0" prefWidth="149.0" />
    </children>
 </Pane>

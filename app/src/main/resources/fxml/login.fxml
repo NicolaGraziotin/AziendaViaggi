@@ -7,19 +7,19 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="Login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.controllers.LoginController">
+<Pane fx:id="Login" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.controllers.LoginController">
    <children>
-      <Label layoutX="222.0" layoutY="127.0" text="Inserisci la tua email per accedere">
+      <Label layoutX="422.0" layoutY="115.0" text="Inserisci la tua email per accedere">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="Email" layoutX="222.0" layoutY="191.0" prefHeight="25.0" prefWidth="355.0">
+      <TextField fx:id="Email" layoutX="422.0" layoutY="176.0" prefHeight="25.0" prefWidth="355.0">
          <font>
             <Font size="18.0" />
          </font>
       </TextField>
-      <Button layoutX="222.0" layoutY="269.0" mnemonicParsing="false" onAction="#loginAgenzia" style="-fx-background-color: #8cbcff;" text="Login Agenzia">
+      <Button layoutX="422.0" layoutY="270.0" mnemonicParsing="false" onAction="#loginAgenzia" style="-fx-background-color: #8cbcff;" text="Login Agenzia">
          <font>
             <Font size="18.0" />
          </font>
@@ -27,7 +27,7 @@
             <DropShadow />
          </effect>
       </Button>
-      <Button layoutX="448.0" layoutY="269.0" mnemonicParsing="false" onAction="#loginCliente" style="-fx-background-color: #8cbcff;" text="Login Cliente">
+      <Button layoutX="647.0" layoutY="270.0" mnemonicParsing="false" onAction="#loginCliente" style="-fx-background-color: #8cbcff;" text="Login Cliente">
          <font>
             <Font size="18.0" />
          </font>
@@ -35,12 +35,12 @@
             <DropShadow />
          </effect>
       </Button>
-      <Label layoutX="251.0" layoutY="354.0" text="Se non sei registrato seleziona un metodo per registrarti" />
-      <Button layoutX="251.0" layoutY="384.0" mnemonicParsing="false" onAction="#registrationAgenzia" style="-fx-background-color: #8cbcff;" text="Registrazione Agenzia">
+      <Label layoutX="451.0" layoutY="653.0" text="Se non sei registrato seleziona un metodo per registrarti" />
+      <Button layoutX="424.0" layoutY="697.0" mnemonicParsing="false" onAction="#registrationAgenzia" style="-fx-background-color: #8cbcff;" text="Registrazione Agenzia">
          <effect>
             <DropShadow />
          </effect></Button>
-      <Button layoutX="420.0" layoutY="384.0" mnemonicParsing="false" onAction="#registrationCliente" style="-fx-background-color: #8cbcff;" text="Registrazione Cliente">
+      <Button layoutX="648.0" layoutY="697.0" mnemonicParsing="false" onAction="#registrationCliente" style="-fx-background-color: #8cbcff;" text="Registrazione Cliente">
          <effect>
             <DropShadow />
          </effect></Button>

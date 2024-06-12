@@ -72,14 +72,12 @@ public class ClientReviewController extends Controller {
             return;
         }
         try {
-            final String codRecensione = progressiveCode("CodRecensione", "RECENSIONI", "R");
             statement.executeUpdate("INSERT INTO RECENSIONI VALUES ("
-                    + valueFormatter(codRecensione) + ", "
                     + valueFormatter(Pacchetto.getText()) + ", "
                     + valueFormatter(Email.getText()) + ", "
                     + valueFormatter(Voto.getText()) + ", "
                     + valueFormatter(Commento.getText()) + ")");
-            System.out.println("Recensione " + codRecensione + " inserita con successo");
+            System.out.println("Recensione inserita con successo");
             changeScene(event, "ClientApp");
         } catch (SQLException e) {
             alertThrower(e.getMessage());

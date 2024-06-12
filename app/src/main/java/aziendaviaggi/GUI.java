@@ -26,6 +26,7 @@ public class GUI extends Application {
         final Parent root = loader.load();
         final Image icon = new Image("/logo.png");
 
+        primaryStage.resizableProperty().setValue(Boolean.FALSE);
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("Azienda Viaggi");
         primaryStage.setScene(new Scene(root));

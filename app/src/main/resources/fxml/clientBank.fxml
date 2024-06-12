@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="ClientBank" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.controllers.client.ClientBankController">
+<Pane fx:id="ClientBank" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.controllers.client.ClientBankController">
    <children>
-      <Label layoutX="255.0" layoutY="80.0" text="Conto Ordinante">
+      <Label layoutX="342.0" layoutY="80.0" text="Conto Ordinante">
          <font>
             <Font size="14.0" />
          </font>
@@ -25,14 +25,14 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="427.0" layoutY="80.0" text="Nome Beneficiario">
+      <Label layoutX="585.0" layoutY="80.0" text="Nome Beneficiario">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <TextField fx:id="NomeOrdinante" layoutX="60.0" layoutY="120.0" />
-      <TextField fx:id="ContoOrdinante" layoutX="233.0" layoutY="120.0" />
-      <TextField fx:id="NomeBeneficiario" layoutX="410.0" layoutY="120.0" />
+      <TextField fx:id="ContoOrdinante" layoutX="320.0" layoutY="120.0" />
+      <TextField fx:id="NomeBeneficiario" layoutX="568.0" layoutY="120.0" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: #fcba03;" text="Indietro">
          <font>
             <Font size="14.0" />
@@ -41,7 +41,7 @@
             <DropShadow />
          </effect>
       </Button>
-      <Button layoutX="666.0" layoutY="526.0" mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #8cbcff;" text="Aggiungi">
+      <Button layoutX="1066.0" layoutY="726.0" mnemonicParsing="false" onAction="#add" prefHeight="60.0" prefWidth="120.0" style="-fx-background-color: #8cbcff;" text="Aggiungi">
          <font>
             <Font size="20.0" />
          </font>
@@ -49,12 +49,12 @@
             <DropShadow />
          </effect>
       </Button>
-      <TextField fx:id="ContoBeneficiario" layoutX="592.0" layoutY="120.0" />
-      <Label layoutX="609.0" layoutY="80.0" text="Conto Beneficiario">
+      <TextField fx:id="ContoBeneficiario" layoutX="803.0" layoutY="120.0" />
+      <Label layoutX="821.0" layoutY="80.0" text="Conto Beneficiario">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextArea fx:id="Causale" layoutX="60.0" layoutY="231.0" prefHeight="336.0" prefWidth="559.0" />
+      <TextArea fx:id="Causale" layoutX="60.0" layoutY="231.0" prefHeight="301.0" prefWidth="890.0" />
    </children>
 </Pane>

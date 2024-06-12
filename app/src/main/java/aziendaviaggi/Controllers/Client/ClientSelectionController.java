@@ -8,11 +8,18 @@ import java.sql.SQLException;
 import aziendaviaggi.controllers.Controller;
 import aziendaviaggi.controllers.LoginController;
 import aziendaviaggi.objects.Pacchetto;
+import aziendaviaggi.objects.Recensione;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -50,13 +57,30 @@ public class ClientSelectionController extends Controller {
     @FXML
     private TextField PrezzoTotale;
 
+    @FXML
+    private TableView<Recensione> TableRecensioni;
+
+    @FXML
+    private TableColumn<Recensione, String> ColumnEmail;
+
+    @FXML
+    private TableColumn<Recensione, String> ColumnVoto;
+
+    @FXML
+    private TableColumn<Recensione, String> ColumnCommento;
+
+    @FXML
+    private TextArea Specifiche;
+
     private static Pacchetto actual;
 
     /**
      * Initializes the controller.
      *
-     * @param location  The location used to resolve relative paths for the root object, or null if the location is not known.
-     * @param resources The resources used to localize the root object, or null if the root object was not localized.
+     * @param location  The location used to resolve relative paths for the root
+     *                  object, or null if the location is not known.
+     * @param resources The resources used to localize the root object, or null if
+     *                  the root object was not localized.
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -66,6 +90,11 @@ public class ClientSelectionController extends Controller {
         choiceBoxInit("CodAssicurazione", "ASSICURAZIONI", Assicurazione);
         documentInit();
         metodoInit();
+
+        cellInitRec(ColumnEmail, "Email");
+        cellInitRec(ColumnVoto, "Voto");
+        cellInitRec(ColumnCommento, "Commento");
+        TableRecensioni.setItems(fillTableView());
     }
 
     /**
@@ -148,20 +177,90 @@ public class ClientSelectionController extends Controller {
      * @param event The action event.
      */
     @FXML
-    private void update(final ActionEvent event) {
+    private void updateAssicurazione(final ActionEvent event) {
         try {
-            final ResultSet res = this.statement.executeQuery("SELECT Prezzo FROM ASSICURAZIONI WHERE CodAssicurazione = "
-                    + valueFormatter(Assicurazione.getValue()));
+            ResultSet res = this.statement
+                    .executeQuery("SELECT Prezzo FROM ASSICURAZIONI WHERE CodAssicurazione = "
+                            + valueFormatter(Assicurazione.getValue()));
             if (res.next()) {
                 System.out.println(res.getString("Prezzo"));
                 PrezzoTotale.setText(String
                         .valueOf(Float.parseFloat(actual.getPrezzo()) + Float.parseFloat(res.getString("Prezzo"))));
+            }
+            res = this.statement.executeQuery(
+                    "SELECT * FROM ASSICURAZIONI WHERE CodAssicurazione = " + valueFormatter(Assicurazione.getValue()));
+            if (res.next()) {
+                print("Tipo: " + res.getString("Tipo")+ "\n"
+                        + "Copertura: " + res.getString("Copertura") + "\n"
+                        + "Prezzo: " + res.getString("Prezzo"));
             }
         } catch (SQLException e) {
             alertThrower(e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void updateDocumento(final ActionEvent event) {
+        try {
+            ResultSet res = this.statement.executeQuery(
+                    "SELECT * FROM DOCUMENTI_VIAGGIO WHERE NumeroDocumento = " + valueFormatter(Documento.getValue()));
+            if (res.next()) {
+                print("Luogo rilascio: " + res.getString("LuogoRilascio") + "\n"
+                        + "Data scadenza" + res.getString("DataScadenza") + "\n"
+                        + "Passaporto: " + res.getString("PASSAPORTO") + "\n"
+                        + "Carta d'identita: " + res.getString("CARTA_IDENTITA"));
+            }
+        } catch (SQLException e) {
+            alertThrower(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void updateMetodo(final ActionEvent event) {
+        try {
+            if (Metodo.getValue().startsWith("CC")) {
+                ResultSet res = this.statement.executeQuery(
+                        "SELECT * FROM CARTE_CREDITO WHERE CodCartaCredito = " + valueFormatter(Metodo.getValue()));
+                if (res.next()) {
+                    print("Intestatario: " + res.getString("Intestatario") + "\n"
+                            + "Data scadenza: " + res.getString("DataScadenza") + "\n"
+                            + "CVV: " + res.getString("CVV"));
+                }
+                
+            } else {
+                ResultSet res = this.statement.executeQuery(
+                        "SELECT * FROM BONIFICI_BANCARI WHERE CodBonifico = " + valueFormatter(Metodo.getValue()));
+                if (res.next()) {
+                    print("Nome ordinante: " + res.getString("NomeOrdinante") + "\n"
+                            + "Conto ordinante: " + res.getString("ContoOrdinante") + "\n"
+                            + "Nome beneficiario: " + res.getString("NomeBeneficiario") + "\n"
+                            + "Conto beneficiario: " + res.getString("ContoBeneficiario") + "\n"
+                            + "Causale: " + res.getString("Causale"));
+                }
+            }
+        } catch (SQLException e) {
+            alertThrower(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void print(String msg) {
+        Specifiche.setText(msg);
+    }
+
+    /**
+     * Initializes a table column for the Recensione class.
+     *
+     * @param cell  The table column to initialize.
+     * @param value The value to set as the cell value factory.
+     */
+    protected void cellInitRec(final TableColumn<Recensione, String> cell, final String value) {
+        cell.setCellValueFactory(new PropertyValueFactory<Recensione, String>(value));
     }
 
     /**
@@ -204,8 +303,9 @@ public class ClientSelectionController extends Controller {
     private void documentInit() {
         try {
             System.out.println(LoginController.getEmailCliente());
-            final ResultSet res = this.statement.executeQuery("SELECT NumeroDocumento FROM DOCUMENTI_VIAGGIO WHERE Email = "
-                    + valueFormatter(LoginController.getEmailCliente()));
+            final ResultSet res = this.statement
+                    .executeQuery("SELECT NumeroDocumento FROM DOCUMENTI_VIAGGIO WHERE Email = "
+                            + valueFormatter(LoginController.getEmailCliente()));
             while (res.next()) {
                 Documento.getItems().add(res.getString("NumeroDocumento"));
             }
@@ -217,7 +317,8 @@ public class ClientSelectionController extends Controller {
     }
 
     /**
-     * Initializes the payment method choice box with values based on the client's email.
+     * Initializes the payment method choice box with values based on the client's
+     * email.
      */
     private void metodoInit() {
         try {
@@ -236,5 +337,27 @@ public class ClientSelectionController extends Controller {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Fills the table view with recensione data.
+     *
+     * @return The observable list of recensioni to populate the table view.
+     */
+    protected final ObservableList<Recensione> fillTableView() {
+        ObservableList<Recensione> list = FXCollections.observableArrayList();
+        try {
+            final ResultSet res = this.statement.executeQuery("SELECT * FROM RECENSIONI WHERE CodPacchetto = "
+                    + valueFormatter(actual.getCodPacchetto()));
+            while (res.next()) {
+                list.add(new Recensione(res.getString("CodPacchetto"), res.getString("Email"),
+                        res.getString("Voto"), res.getString("Commento")));
+            }
+        } catch (SQLException e) {
+            alertThrower(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }
