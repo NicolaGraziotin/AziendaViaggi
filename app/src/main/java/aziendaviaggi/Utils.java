@@ -10,7 +10,8 @@ import javafx.scene.control.ButtonType;
 public class Utils {
 
     /**
-     * Displays a confirmation dialog with the given message and returns true if the user selects "Si" (Yes), false otherwise.
+     * Displays a confirmation dialog with the given message and returns true if the
+     * user selects "Si" (Yes), false otherwise.
      *
      * @param msg the message to display in the confirmation dialog
      * @return true if the user selects "Si" (Yes), false otherwise

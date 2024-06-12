@@ -140,6 +140,13 @@ public class Controller implements Initializable {
         void execute() throws SQLException, Exception;
     }
 
+    /**
+     * Executes the provided TryBlock by invoking its execute() method within a try-catch block.
+     * If a SQLException is caught, it calls the alertThrower() method with the error message.
+     * If any other exception is caught, it prints the stack trace.
+     *
+     * @param block the TryBlock to execute
+     */
     protected void executeTryBlock(final TryBlock block) {
         try {
             block.execute();

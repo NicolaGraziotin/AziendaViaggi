@@ -1,7 +1,6 @@
 package aziendaviaggi.controllers.client;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;

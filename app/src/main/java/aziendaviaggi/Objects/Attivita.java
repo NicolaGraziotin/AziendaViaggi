@@ -2,7 +2,8 @@ package aziendaviaggi.objects;
 
 /**
  * The Attivita class represents an activity in a travel agency.
- * It contains information about the code, name, description, schedule, and duration of the activity.
+ * It contains information about the code, name, description, schedule, and
+ * duration of the activity.
  */
 public class Attivita {
     private final String CodAttivita;

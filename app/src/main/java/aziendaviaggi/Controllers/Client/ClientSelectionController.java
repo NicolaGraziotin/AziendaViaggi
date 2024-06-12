@@ -192,6 +192,11 @@ public class ClientSelectionController extends Controller {
         });
     }
 
+    /**
+     * Updates the document based on the selected value.
+     *
+     * @param event The event that triggered the update.
+     */
     @FXML
     private void updateDocumento(final ActionEvent event) {
         executeTryBlock(() -> {
@@ -206,6 +211,13 @@ public class ClientSelectionController extends Controller {
         });
     }
 
+    /**
+     * Updates the method based on the selected value.
+     * If the selected value starts with "CC", it retrieves information from the "CARTE_CREDITO" table.
+     * If the selected value does not start with "CC", it retrieves information from the "BONIFICI_BANCARI" table.
+     *
+     * @param event the action event that triggered the update
+     */
     @FXML
     private void updateMetodo(final ActionEvent event) {
         executeTryBlock(() -> {
@@ -232,6 +244,11 @@ public class ClientSelectionController extends Controller {
         });
     }
 
+    /**
+     * Prints the given message to the Specifiche text field.
+     *
+     * @param msg the message to be printed
+     */
     private void print(String msg) {
         Specifiche.setText(msg);
     }

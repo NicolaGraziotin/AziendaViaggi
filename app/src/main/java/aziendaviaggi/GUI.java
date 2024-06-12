@@ -8,12 +8,14 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
- * The GUI class is responsible for creating and displaying the graphical user interface of the Azienda Viaggi application.
+ * The GUI class is responsible for creating and displaying the graphical user
+ * interface of the Azienda Viaggi application.
  */
 public class GUI extends Application {
 
     /**
-     * The start method is called when the application is launched. It sets up the main stage, loads the login screen,
+     * The start method is called when the application is launched. It sets up the
+     * main stage, loads the login screen,
      * sets the application icon, and handles the close request event.
      *
      * @param primaryStage the primary stage of the application
