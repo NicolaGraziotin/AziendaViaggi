@@ -6,8 +6,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
-import java.sql.SQLException;
-
 import aziendaviaggi.controllers.Controller;
 import aziendaviaggi.controllers.LoginController;
 
@@ -57,7 +55,7 @@ public class ClientBankController extends Controller {
         if (!checkInsert(ClientBank)) {
             return;
         }
-        try {
+        executeTryBlock(() -> {
             final String codBonifico = progressiveCode("CodBonifico", "BONIFICI_BANCARI", "BB");
             this.statement.executeUpdate("INSERT INTO BONIFICI_BANCARI " + "VALUES ("
                     + valueFormatter(codBonifico) + ", "
@@ -70,10 +68,6 @@ public class ClientBankController extends Controller {
                     + ")");
             System.out.println("Bonifico " + codBonifico + " aggiunto con successo!");
             changeScene(event, "ClientSelection");
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 }

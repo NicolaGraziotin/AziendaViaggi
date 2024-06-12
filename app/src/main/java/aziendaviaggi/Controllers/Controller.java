@@ -134,4 +134,19 @@ public class Controller implements Initializable {
         }
         return prefix + String.format("%03d", Integer.parseInt(num) + 1);
     }
+
+    @FunctionalInterface
+    protected interface TryBlock {
+        void execute() throws SQLException, Exception;
+    }
+
+    protected void executeTryBlock(final TryBlock block) {
+        try {
+            block.execute();
+        } catch (SQLException e) {
+            alertThrower(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

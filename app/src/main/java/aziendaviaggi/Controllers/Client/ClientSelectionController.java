@@ -3,7 +3,6 @@ package aziendaviaggi.controllers.client;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
-import java.sql.SQLException;
 
 import aziendaviaggi.controllers.Controller;
 import aziendaviaggi.controllers.LoginController;
@@ -107,7 +106,7 @@ public class ClientSelectionController extends Controller {
         if (!checkInsert(ClientSelection)) {
             return;
         }
-        try {
+        executeTryBlock(() -> {
             final String codPrenotazione = progressiveCode("CodPrenotazione", "PRENOTAZIONI", "PR");
             this.statement.executeUpdate("INSERT INTO PRENOTAZIONI " + "VALUES ("
                     + valueFormatter(codPrenotazione) + ", "
@@ -124,11 +123,7 @@ public class ClientSelectionController extends Controller {
                     + ")");
             System.out.println("Prenotazione " + codPrenotazione + " aggiunta con successo!");
             changeScene(event, "ClientApp");
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 
     /**
@@ -178,7 +173,7 @@ public class ClientSelectionController extends Controller {
      */
     @FXML
     private void updateAssicurazione(final ActionEvent event) {
-        try {
+        executeTryBlock(() -> {
             ResultSet res = this.statement
                     .executeQuery("SELECT Prezzo FROM ASSICURAZIONI WHERE CodAssicurazione = "
                             + valueFormatter(Assicurazione.getValue()));
@@ -194,16 +189,12 @@ public class ClientSelectionController extends Controller {
                         + "Copertura: " + res.getString("Copertura") + "\n"
                         + "Prezzo: " + res.getString("Prezzo"));
             }
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 
     @FXML
     private void updateDocumento(final ActionEvent event) {
-        try {
+        executeTryBlock(() -> {
             ResultSet res = this.statement.executeQuery(
                     "SELECT * FROM DOCUMENTI_VIAGGIO WHERE NumeroDocumento = " + valueFormatter(Documento.getValue()));
             if (res.next()) {
@@ -212,16 +203,12 @@ public class ClientSelectionController extends Controller {
                         + "Passaporto: " + res.getString("PASSAPORTO") + "\n"
                         + "Carta d'identita: " + res.getString("CARTA_IDENTITA"));
             }
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 
     @FXML
     private void updateMetodo(final ActionEvent event) {
-        try {
+        executeTryBlock(() -> {
             if (Metodo.getValue().startsWith("CC")) {
                 ResultSet res = this.statement.executeQuery(
                         "SELECT * FROM CARTE_CREDITO WHERE CodCartaCredito = " + valueFormatter(Metodo.getValue()));
@@ -242,11 +229,7 @@ public class ClientSelectionController extends Controller {
                             + "Causale: " + res.getString("Causale"));
                 }
             }
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 
     private void print(String msg) {
@@ -285,23 +268,19 @@ public class ClientSelectionController extends Controller {
      * @param choice The choice box to initialize.
      */
     private void choiceBoxInit(final String column, final String table, final ChoiceBox<String> choice) {
-        try {
+        executeTryBlock(() -> {
             final ResultSet res = this.statement.executeQuery("SELECT " + column + " FROM " + table);
             while (res.next()) {
                 choice.getItems().add(res.getString(column));
             }
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 
     /**
      * Initializes the document choice box with values based on the client's email.
      */
     private void documentInit() {
-        try {
+        executeTryBlock(() -> {
             System.out.println(LoginController.getEmailCliente());
             final ResultSet res = this.statement
                     .executeQuery("SELECT NumeroDocumento FROM DOCUMENTI_VIAGGIO WHERE Email = "
@@ -309,11 +288,7 @@ public class ClientSelectionController extends Controller {
             while (res.next()) {
                 Documento.getItems().add(res.getString("NumeroDocumento"));
             }
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 
     /**
@@ -321,7 +296,7 @@ public class ClientSelectionController extends Controller {
      * email.
      */
     private void metodoInit() {
-        try {
+        executeTryBlock(() -> {
             ResultSet res = this.statement.executeQuery("SELECT * FROM CARTE_CREDITO WHERE Email = "
                     + valueFormatter(LoginController.getEmailCliente()));
             while (res.next()) {
@@ -332,11 +307,7 @@ public class ClientSelectionController extends Controller {
             while (res.next()) {
                 Metodo.getItems().add(res.getString("CodBonifico"));
             }
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 
     /**
@@ -346,18 +317,14 @@ public class ClientSelectionController extends Controller {
      */
     protected final ObservableList<Recensione> fillTableView() {
         ObservableList<Recensione> list = FXCollections.observableArrayList();
-        try {
+        executeTryBlock(() -> {
             final ResultSet res = this.statement.executeQuery("SELECT * FROM RECENSIONI WHERE CodPacchetto = "
                     + valueFormatter(actual.getCodPacchetto()));
             while (res.next()) {
                 list.add(new Recensione(res.getString("CodPacchetto"), res.getString("Email"),
                         res.getString("Voto"), res.getString("Commento")));
             }
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
         return list;
     }
 }

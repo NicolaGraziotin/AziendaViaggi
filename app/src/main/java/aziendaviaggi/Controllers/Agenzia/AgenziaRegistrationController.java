@@ -1,7 +1,5 @@
 package aziendaviaggi.controllers.agenzia;
 
-import java.sql.SQLException;
-
 import aziendaviaggi.controllers.ControllerRegistration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,7 +30,7 @@ public class AgenziaRegistrationController extends ControllerRegistration {
         if (!checkInsert(AgenziaRegistration)) {
             return;
         }
-        try {
+        executeTryBlock(() -> {
             final String code = progressiveCode("CodAgenzia", "AGENZIE_VIAGGIO", "AG");
             this.statement.executeUpdate("INSERT INTO AGENZIE_VIAGGIO " + "VALUES ("
                     + valueFormatter(Email.getText()) + ", "
@@ -41,10 +39,6 @@ public class AgenziaRegistrationController extends ControllerRegistration {
                     + valueFormatter(Sede.getText()) + ")");
             System.out.println("Agenzia " + code + " registrata con successo.");
             back(event);
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 }

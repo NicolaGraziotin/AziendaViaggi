@@ -8,7 +8,6 @@ import aziendaviaggi.controllers.LoginController;
 import aziendaviaggi.objects.Attivita;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -105,7 +104,7 @@ public class AgenziaInsertController extends Controller {
         if (!checkInsert(AgenziaInsert)) {
             return;
         }
-        try {
+        executeTryBlock(() -> {
             final String codPacchetto = progressiveCode("CodPacchetto", "PACCHETTI_TURISTICI", "PT");
             this.statement.executeUpdate("INSERT INTO PACCHETTI_TURISTICI VALUES ("
                     + valueFormatter(codPacchetto) + ", "
@@ -129,9 +128,7 @@ public class AgenziaInsertController extends Controller {
                         "Attivita: " + attivita.getCodAttivita() + " aggiunta al pacchetto " + codPacchetto + ".");
             }
             back(event);
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        }
+        });
     }
 
     /**
@@ -151,15 +148,13 @@ public class AgenziaInsertController extends Controller {
      */
     private ObservableList<Attivita> fillTableView() {
         final ObservableList<Attivita> list = FXCollections.observableArrayList();
-        try {
+        executeTryBlock(() -> {
             final ResultSet res = this.statement.executeQuery("SELECT * FROM ATTIVITA");
             while (res.next()) {
                 list.add(new Attivita(res.getString("CodAttivita"), res.getString("Nome"), res.getString("Descrizione"),
                         res.getString("Orario"), res.getString("Durata")));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
         return list;
     }
 
@@ -191,13 +186,11 @@ public class AgenziaInsertController extends Controller {
      * @param choice The ChoiceBox to initialize.
      */
     protected void choiceBoxInit(final String column, final String table, final ChoiceBox<String> choice) {
-        try {
+        executeTryBlock(() -> {
             final ResultSet res = this.statement.executeQuery("SELECT " + column + " FROM " + table);
             while (res.next()) {
                 choice.getItems().add(res.getString(column));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 }

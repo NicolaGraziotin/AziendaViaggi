@@ -1,7 +1,5 @@
 package aziendaviaggi.controllers.client;
 
-import java.sql.SQLException;
-
 import aziendaviaggi.controllers.ControllerRegistration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,7 +36,7 @@ public class ClientRegistrationController extends ControllerRegistration {
         if (!checkInsert(ClientRegistration)) {
             return;
         }
-        try {
+        executeTryBlock(() -> {
             this.statement.executeUpdate("INSERT INTO CLIENTI VALUES ("
                     + valueFormatter(Email.getText()) + ", "
                     + valueFormatter(CodiceFiscale.getText()) + ", "
@@ -48,10 +46,6 @@ public class ClientRegistrationController extends ControllerRegistration {
                     + ")");
             System.out.println("Cliente " + CodiceFiscale.getText() + " registrato con successo.");
             back(event);
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 }

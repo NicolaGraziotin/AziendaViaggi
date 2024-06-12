@@ -71,7 +71,7 @@ public class ClientReviewController extends Controller {
         if (!checkInsert(ClientReview)) {
             return;
         }
-        try {
+        executeTryBlock(() -> {
             statement.executeUpdate("INSERT INTO RECENSIONI VALUES ("
                     + valueFormatter(Pacchetto.getText()) + ", "
                     + valueFormatter(Email.getText()) + ", "
@@ -79,10 +79,6 @@ public class ClientReviewController extends Controller {
                     + valueFormatter(Commento.getText()) + ")");
             System.out.println("Recensione inserita con successo");
             changeScene(event, "ClientApp");
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 }

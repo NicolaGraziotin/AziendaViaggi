@@ -1,7 +1,5 @@
 package aziendaviaggi.controllers.agenzia;
 
-import java.sql.SQLException;
-
 import aziendaviaggi.Utils;
 import aziendaviaggi.controllers.ControllerApp;
 import aziendaviaggi.controllers.LoginController;
@@ -64,13 +62,11 @@ public class AgenziaAppController extends ControllerApp {
      */
     private void remove(final Pacchetto selected) {
         final ObservableList<Pacchetto> list = TablePacchetti.getItems();
-        try {
+        executeTryBlock(() -> {
             this.statement.executeUpdate(
                     "DELETE FROM PACCHETTI_TURISTICI WHERE CodPacchetto=" + selected.getCodPacchetto());
             list.remove(selected);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        });
     }
 
     /**

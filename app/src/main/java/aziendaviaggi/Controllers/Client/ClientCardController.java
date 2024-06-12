@@ -1,7 +1,5 @@
 package aziendaviaggi.controllers.client;
 
-import java.sql.SQLException;
-
 import aziendaviaggi.controllers.Controller;
 import aziendaviaggi.controllers.LoginController;
 import javafx.event.ActionEvent;
@@ -53,7 +51,7 @@ public class ClientCardController extends Controller {
         if (!checkInsert(ClientCard)) {
             return;
         }
-        try {
+        executeTryBlock(() -> {
             final String codCarta = progressiveCode("CodCartaCredito", "CARTE_CREDITO", "CC");
             this.statement.executeUpdate("INSERT INTO CARTE_CREDITO " + "VALUES ("
                     + valueFormatter(codCarta) + ", "
@@ -65,10 +63,6 @@ public class ClientCardController extends Controller {
                     + ")");
             System.out.println("Carta " + codCarta + " aggiunta con successo!");
             changeScene(event, "ClientSelection");
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 }

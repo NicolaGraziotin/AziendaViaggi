@@ -9,7 +9,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import java.util.ResourceBundle;
 import java.net.URL;
-import java.sql.SQLException;
 
 /**
  * The AgenziaModifyController class is responsible for handling the modification of a package in the travel agency application.
@@ -94,7 +93,7 @@ public class AgenziaModifyController extends AgenziaInsertController {
         if (!checkInsert(AgenziaModify)) {
             return;
         }
-        try {
+        executeTryBlock(() -> {
             final String codPacchetto = AgenziaAppController.getSelectedPacchetto().getCodPacchetto();
             this.statement.executeUpdate("UPDATE PACCHETTI_TURISTICI SET "
                     + "Nome = " + valueFormatter(Nome.getText())
@@ -108,10 +107,6 @@ public class AgenziaModifyController extends AgenziaInsertController {
                     + " WHERE CodPacchetto = " + valueFormatter(codPacchetto));
             System.out.println("Pacchetto " + codPacchetto + " modificato con successo.");
             back(event);
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 }

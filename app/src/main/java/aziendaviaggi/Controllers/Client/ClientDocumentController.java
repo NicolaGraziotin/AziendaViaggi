@@ -7,7 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import aziendaviaggi.controllers.Controller;
@@ -72,7 +71,7 @@ public class ClientDocumentController extends Controller {
         if (!checkInsert(ClientDocument)) {
             return;
         }
-        try {
+        executeTryBlock(() -> {
             if ("Carta d'identita".equals(Tipo.getSelectionModel().getSelectedItem())) {
                 this.cartaIdentita = "S";
             } else {
@@ -88,10 +87,6 @@ public class ClientDocumentController extends Controller {
                             + ")");
             System.out.println("Documento " + NumeroDocumento.getText() + " registrato con successo.");
             back(event);
-        } catch (SQLException e) {
-            alertThrower(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        });
     }
 }
