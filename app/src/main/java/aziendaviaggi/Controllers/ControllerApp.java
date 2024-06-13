@@ -18,8 +18,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 /**
- * The ControllerApp class is responsible for controlling the main application view.
- * It handles the initialization of the view, event handling, and data retrieval.
+ * The ControllerApp class is responsible for controlling the main application
+ * view.
+ * It handles the initialization of the view, event handling, and data
+ * retrieval.
  */
 public class ControllerApp extends Controller {
 
@@ -73,11 +75,13 @@ public class ControllerApp extends Controller {
      * This method is automatically called after the FXML file has been loaded.
      * It sets up the table columns and populates the table view with data.
      *
-     * @param location  The location used to resolve relative paths for the root object, or null if the location is not known.
-     * @param resources The resources used to localize the root object, or null if the root object was not localized.
+     * @param location  The location used to resolve relative paths for the root
+     *                  object, or null if the location is not known.
+     * @param resources The resources used to localize the root object, or null if
+     *                  the root object was not localized.
      */
     @Override
-    public final void initialize(final URL location, final ResourceBundle resources) {
+    public void initialize(final URL location, final ResourceBundle resources) {
         cellInitPac(ColumnAgenzia, "CodAgenzia");
         cellInitPac(ColumnNome, "Nome");
         cellInitPac(ColumnDescrizione, "Descrizione");
@@ -98,18 +102,19 @@ public class ControllerApp extends Controller {
      * @param event The action event triggered by the back button click.
      */
     @FXML
-    protected final void back(final ActionEvent event) {
+    protected void back(final ActionEvent event) {
         changeScene(event, "Login");
     }
 
     /**
      * Handles the table view row selection event.
-     * It updates the text fields with the selected pacchetto's data and populates the attivita table view.
+     * It updates the text fields with the selected pacchetto's data and populates
+     * the attivita table view.
      *
      * @param event The mouse event triggered by the table view row selection.
      */
     @FXML
-    protected final void update(final MouseEvent event) {
+    protected void update(final MouseEvent event) {
         final Pacchetto sel = TablePacchetti.getSelectionModel().getSelectedItem();
         Guida.setText(sel.getCodGuida());
         Trasporto.setText(sel.getCodTrasporto());
@@ -124,9 +129,10 @@ public class ControllerApp extends Controller {
      * @param event The mouse event that triggered the method.
      */
     @FXML
-    protected final void printGuida(final MouseEvent event) {
+    protected void printGuida(final MouseEvent event) {
         executeTryBlock(() -> {
-            final ResultSet res = this.statement.executeQuery("SELECT * FROM GUIDE_TURISTICHE WHERE CodGuida = " + valueFormatter(Guida.getText()));
+            final ResultSet res = this.statement
+                    .executeQuery("SELECT * FROM GUIDE_TURISTICHE WHERE CodGuida = " + valueFormatter(Guida.getText()));
             if (res.next()) {
                 print("Nome: " + res.getString("Nome") + "\n"
                         + "Cognome: " + res.getString("Cognome") + "\n"
@@ -142,9 +148,10 @@ public class ControllerApp extends Controller {
      * @param event The mouse event that triggered the method.
      */
     @FXML
-    protected final void printTrasporto(final MouseEvent event) {
+    protected void printTrasporto(final MouseEvent event) {
         executeTryBlock(() -> {
-            final ResultSet res = this.statement.executeQuery("SELECT * FROM TRASPORTI WHERE CodTrasporto = " + valueFormatter(Trasporto.getText()));
+            final ResultSet res = this.statement.executeQuery(
+                    "SELECT * FROM TRASPORTI WHERE CodTrasporto = " + valueFormatter(Trasporto.getText()));
             if (res.next()) {
                 print("Compagnia: " + res.getString("Compagnia") + "\n"
                         + "Partenza: " + res.getString("Partenza") + "\n"
@@ -158,14 +165,16 @@ public class ControllerApp extends Controller {
     }
 
     /**
-     * Prints information about an accommodation based on the provided CodAlloggio value.
+     * Prints information about an accommodation based on the provided CodAlloggio
+     * value.
      * 
      * @param event The MouseEvent that triggered the method.
      */
     @FXML
-    protected final void printAlloggio(final MouseEvent event) {
+    protected void printAlloggio(final MouseEvent event) {
         executeTryBlock(() -> {
-            final ResultSet res = this.statement.executeQuery("SELECT * FROM ALLOGGI WHERE CodAlloggio = " + valueFormatter(Alloggio.getText()));
+            final ResultSet res = this.statement
+                    .executeQuery("SELECT * FROM ALLOGGI WHERE CodAlloggio = " + valueFormatter(Alloggio.getText()));
             if (res.next()) {
                 print("Nome: " + res.getString("Nome") + "\n"
                         + "Citta: " + res.getString("Ind_Citta") + "\n"
@@ -180,14 +189,16 @@ public class ControllerApp extends Controller {
     }
 
     /**
-     * Prints the details of a destination based on the provided CodDestinazione value.
+     * Prints the details of a destination based on the provided CodDestinazione
+     * value.
      * 
      * @param event The MouseEvent that triggered the method.
      */
     @FXML
-    protected final void printDestinazione(final MouseEvent event) {
+    protected void printDestinazione(final MouseEvent event) {
         executeTryBlock(() -> {
-            final ResultSet res = this.statement.executeQuery("SELECT * FROM DESTINAZIONI WHERE CodDestinazione = " + valueFormatter(Destinazione.getText()));
+            final ResultSet res = this.statement.executeQuery(
+                    "SELECT * FROM DESTINAZIONI WHERE CodDestinazione = " + valueFormatter(Destinazione.getText()));
             if (res.next()) {
                 print("Paese: " + res.getString("Paese") + "\n"
                         + "Citta: " + res.getString("Citta") + "\n"
@@ -201,7 +212,7 @@ public class ControllerApp extends Controller {
      *
      * @param msg the message to be printed
      */
-    private final void print(String msg) {
+    protected void print(String msg) {
         Specifiche.setText(msg);
     }
 
@@ -230,7 +241,7 @@ public class ControllerApp extends Controller {
      *
      * @return The observable list of pacchetti to populate the table view.
      */
-    protected final ObservableList<Pacchetto> fillTableView() {
+    protected ObservableList<Pacchetto> fillTableView() {
         ObservableList<Pacchetto> list = FXCollections.observableArrayList();
         executeTryBlock(() -> {
             final ResultSet res = this.statement.executeQuery("SELECT * FROM PACCHETTI_TURISTICI");
@@ -255,8 +266,8 @@ public class ControllerApp extends Controller {
             final Pacchetto sel = TablePacchetti.getSelectionModel().getSelectedItem();
             final ResultSet res = this.statement.executeQuery(
                     "SELECT A.* "
-                    + "FROM ITINERARI I RIGHT JOIN ATTIVITA A ON(I.CodAttivita = A.CodAttivita) "
-                    + "WHERE I.CodPacchetto = " + valueFormatter(sel.getCodPacchetto()));
+                            + "FROM ITINERARI I RIGHT JOIN ATTIVITA A ON(I.CodAttivita = A.CodAttivita) "
+                            + "WHERE I.CodPacchetto = " + valueFormatter(sel.getCodPacchetto()));
             while (res.next()) {
                 list.add(new Attivita(res.getString("CodAttivita"), res.getString("Nome"),
                         res.getString("Descrizione"), res.getString("Orario"),

@@ -44,14 +44,6 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Button layoutX="887.0" layoutY="726.0" mnemonicParsing="false" onAction="#review" prefHeight="60.0" prefWidth="137.0" style="-fx-background-color: #8cbcff;" text="Recensione">
-         <font>
-            <Font size="20.0" />
-         </font>
-         <effect>
-            <DropShadow />
-         </effect>
-      </Button>
       <TableView fx:id="TableAttivita" editable="false" layoutX="13.0" layoutY="418.0" prefHeight="289.0" prefWidth="858.0">
          <columns>
             <TableColumn fx:id="ColumnNomeAttivita" prefWidth="159.0" text="Nome" />
@@ -88,5 +80,13 @@
       <TextField fx:id="Alloggio" editable="false" layoutX="502.0" layoutY="357.0" onMouseClicked="#printAlloggio" />
       <TextField fx:id="Destinazione" editable="false" layoutX="722.0" layoutY="357.0" onMouseClicked="#printDestinazione" />
       <TextArea fx:id="Specifiche" editable="false" layoutX="903.0" layoutY="70.0" prefHeight="428.0" prefWidth="254.0" />
+      <Button layoutX="871.0" layoutY="726.0" mnemonicParsing="false" onAction="#reservations" prefHeight="60.0" prefWidth="163.0" style="-fx-background-color: #8cbcff;" text="Prenotazioni">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
    </children>
 </Pane>

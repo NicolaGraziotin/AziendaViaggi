@@ -203,7 +203,7 @@ public class ClientSelectionController extends Controller {
                     "SELECT * FROM DOCUMENTI_VIAGGIO WHERE NumeroDocumento = " + valueFormatter(Documento.getValue()));
             if (res.next()) {
                 print("Luogo rilascio: " + res.getString("LuogoRilascio") + "\n"
-                        + "Data scadenza" + res.getString("DataScadenza") + "\n"
+                        + "Data scadenza: " + res.getString("DataScadenza") + "\n"
                         + "Passaporto: " + res.getString("PASSAPORTO") + "\n"
                         + "Carta d'identita: " + res.getString("CARTA_IDENTITA"));
             }
@@ -225,6 +225,7 @@ public class ClientSelectionController extends Controller {
                         "SELECT * FROM CARTE_CREDITO WHERE CodCartaCredito = " + valueFormatter(Metodo.getValue()));
                 if (res.next()) {
                     print("Intestatario: " + res.getString("Intestatario") + "\n"
+                            + "Numero carta: " + res.getString("Numero") + "\n"
                             + "Data scadenza: " + res.getString("DataScadenza") + "\n"
                             + "CVV: " + res.getString("CVV"));
                 }
@@ -330,7 +331,7 @@ public class ClientSelectionController extends Controller {
      *
      * @return The observable list of recensioni to populate the table view.
      */
-    protected final ObservableList<Recensione> fillTableView() {
+    protected ObservableList<Recensione> fillTableView() {
         ObservableList<Recensione> list = FXCollections.observableArrayList();
         executeTryBlock(() -> {
             final ResultSet res = this.statement.executeQuery("SELECT * FROM RECENSIONI WHERE CodPacchetto = "

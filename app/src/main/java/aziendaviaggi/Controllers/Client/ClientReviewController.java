@@ -42,7 +42,7 @@ public class ClientReviewController extends Controller {
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        final Pacchetto selected = ClientAppController.getActual();
+        final Pacchetto selected = ClientReservationsController.getActual();
         Pacchetto.setText(selected.getCodPacchetto());
         Email.setText(LoginController.getEmailCliente());
     }
@@ -55,7 +55,7 @@ public class ClientReviewController extends Controller {
      */
     @FXML
     private void back(final ActionEvent event) {
-        changeScene(event, "ClientApp");
+        changeScene(event, "ClientReservations");
     }
 
     /**
@@ -77,7 +77,7 @@ public class ClientReviewController extends Controller {
                     + valueFormatter(Voto.getText()) + ", "
                     + valueFormatter(Commento.getText()) + ")");
             System.out.println("Recensione inserita con successo");
-            changeScene(event, "ClientApp");
+            back(event);
         });
     }
 }

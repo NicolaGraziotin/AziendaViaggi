@@ -11,7 +11,7 @@ import javafx.fxml.FXML;
  */
 public class ClientAppController extends ControllerApp {
 
-    private static Pacchetto selectedPacchetto;
+    protected static Pacchetto selectedPacchetto;
 
     /**
      * Handles the selection of a pacchetto (package) by the client.
@@ -31,20 +31,14 @@ public class ClientAppController extends ControllerApp {
     }
 
     /**
-     * Handles the review of a pacchetto (package) by the client.
-     * If a pacchetto is selected, it changes the scene to "ClientReview".
-     * If no pacchetto is selected, it displays an alert message.
-     *
-     * @param event the action event triggered by the review
+     * Handles the action when the "reservations" button is clicked.
+     * Changes the scene to the "ClientReservations" view.
+     * 
+     * @param event The action event triggered by clicking the button.
      */
     @FXML
-    private void review(final ActionEvent event) {
-        selectedPacchetto = TablePacchetti.getSelectionModel().getSelectedItem();
-        if (selectedPacchetto != null) {
-            changeScene(event, "ClientReview");
-        } else {
-            alertThrower("Non hai selezionato un pacchetto!");
-        }
+    private void reservations(final ActionEvent event) {
+        changeScene(event, "ClientReservations");
     }
 
     /**

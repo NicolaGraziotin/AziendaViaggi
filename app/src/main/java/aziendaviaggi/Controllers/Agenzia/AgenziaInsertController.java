@@ -72,14 +72,6 @@ public class AgenziaInsertController extends Controller {
     @FXML
     private TextArea Specifiche;
 
-    /**
-     * Initializes the controller.
-     * 
-     * @param location  The location used to resolve relative paths for the root
-     *                  object, or null if the location is not known.
-     * @param resources The resources used to localize the root object, or null if
-     *                  the root object was not localized.
-     */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         Agenzia.setText(LoginController.getCodAgenzia());

@@ -47,7 +47,7 @@ public class Controller implements Initializable {
      * @param event The event that triggered the scene change.
      * @param panel The name of the panel to change to.
      */
-    protected final void changeScene(final ActionEvent event, final String panel) {
+    protected void changeScene(final ActionEvent event, final String panel) {
         try {
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + panel + ".fxml"));
             final Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -63,7 +63,7 @@ public class Controller implements Initializable {
      *
      * @param msg The message to display in the alert.
      */
-    protected final void alertThrower(final String msg) {
+    protected void alertThrower(final String msg) {
         final Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Attenzione");
         alert.setHeaderText(null);
@@ -77,7 +77,7 @@ public class Controller implements Initializable {
      * @param msg The string value to format.
      * @return The formatted string value.
      */
-    protected final String valueFormatter(final String msg) {
+    protected String valueFormatter(final String msg) {
         return "'" + msg + "'";
     }
 
@@ -88,7 +88,7 @@ public class Controller implements Initializable {
      * @return true if all required fields are filled, false otherwise.
      */
     @SuppressWarnings("unchecked")
-    protected final boolean checkInsert(final ObservableList<Node> children) {
+    protected boolean checkInsert(final ObservableList<Node> children) {
         for (final Node elem : children) {
             if (elem instanceof TextField && ((TextField) elem).getText().isEmpty()) {
                 alertThrower("Inserisci " + elem.getId());
