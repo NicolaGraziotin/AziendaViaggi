@@ -31,28 +31,28 @@ public class AgenziaInsertController extends Controller {
     private Pane AgenziaInsert;
 
     @FXML
-    private TextField Descrizione;
+    protected TextField Descrizione;
 
     @FXML
-    private TextField Nome;
+    protected TextField Nome;
 
     @FXML
-    private TextField Prezzo;
+    protected TextField Prezzo;
 
     @FXML
-    private ChoiceBox<String> Alloggio;
+    protected ChoiceBox<String> Alloggio;
 
     @FXML
-    private ChoiceBox<String> Destinazione;
+    protected ChoiceBox<String> Destinazione;
 
     @FXML
-    private ChoiceBox<String> Guida;
+    protected ChoiceBox<String> Guida;
 
     @FXML
-    private ChoiceBox<String> Trasporto;
+    protected ChoiceBox<String> Trasporto;
 
     @FXML
-    private TextField Agenzia;
+    protected TextField Agenzia;
 
     @FXML
     private TableView<Attivita> TableAttivita;
@@ -70,7 +70,7 @@ public class AgenziaInsertController extends Controller {
     private TableColumn<Attivita, String> ColumnDurata;
 
     @FXML
-    private TextArea Specifiche;
+    protected TextArea Specifiche;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -226,7 +226,7 @@ public class AgenziaInsertController extends Controller {
      *
      * @param msg the message to be printed
      */
-    private final void print(String msg) {
+    protected final void print(String msg) {
         Specifiche.setText(msg);
     }
 

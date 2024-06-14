@@ -35,9 +35,9 @@ public class AgenziaAppController extends ControllerApp {
      */
     @FXML
     private void delete(final ActionEvent event) {
-        final Pacchetto selected = TablePacchetti.getSelectionModel().getSelectedItem();
-        if (checkSelected(selected, "eliminare") && Utils.confirmThrower("Sei sicuro di volere eliminare il pacchetto?")) {
-            remove(selected);
+        selectedPacchetto = TablePacchetti.getSelectionModel().getSelectedItem();
+        if (checkSelected(selectedPacchetto, "eliminare") && Utils.confirmThrower("Sei sicuro di volere eliminare il pacchetto?")) {
+            remove(selectedPacchetto);
         }
     }
 
@@ -64,7 +64,7 @@ public class AgenziaAppController extends ControllerApp {
         final ObservableList<Pacchetto> list = TablePacchetti.getItems();
         executeTryBlock(() -> {
             this.statement.executeUpdate(
-                    "DELETE FROM PACCHETTI_TURISTICI WHERE CodPacchetto=" + selected.getCodPacchetto());
+                    "DELETE FROM PACCHETTI_TURISTICI WHERE CodPacchetto=" + valueFormatter(selected.getCodPacchetto()));
             list.remove(selected);
         });
     }
@@ -80,11 +80,13 @@ public class AgenziaAppController extends ControllerApp {
         try {
             if (LoginController.getCodAgenzia().equals(selected.getCodAgenzia())) {
                 return true;
+            } else {
+                alertThrower("Non puoi " + msg + " un pacchetto non inserito da te!");
             }
         } catch (NullPointerException e) {
             alertThrower("Non hai selezionato un pacchetto!");
         } catch (Exception e) {
-            alertThrower("Non puoi " + msg + " un pacchetto non inserito da te!");
+            e.printStackTrace();
         }
         return false;
     }

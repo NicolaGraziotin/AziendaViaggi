@@ -55,10 +55,10 @@
       <TextField fx:id="Descrizione" layoutX="308.0" layoutY="120.0" />
       <TextField fx:id="Prezzo" layoutX="581.0" layoutY="120.0" />
       <TextField fx:id="Agenzia" disable="true" layoutX="824.0" layoutY="120.0" />
-      <ChoiceBox fx:id="Trasporto" layoutX="58.0" layoutY="240.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="Guida" layoutX="307.0" layoutY="240.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="Alloggio" layoutX="580.0" layoutY="240.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="Destinazione" layoutX="823.0" layoutY="240.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="Trasporto" layoutX="58.0" layoutY="240.0" prefWidth="150.0" onAction="#printTrasporto" />
+      <ChoiceBox fx:id="Guida" layoutX="307.0" layoutY="240.0" prefWidth="150.0" onAction="#printGuida" />
+      <ChoiceBox fx:id="Alloggio" layoutX="580.0" layoutY="240.0" prefWidth="150.0" onAction="#printAlloggio" />
+      <ChoiceBox fx:id="Destinazione" layoutX="823.0" layoutY="240.0" prefWidth="150.0" onAction="#printDestinazione" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: #fcba03;" text="Indietro">
          <font>
             <Font size="14.0" />

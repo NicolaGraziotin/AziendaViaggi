@@ -4,8 +4,6 @@ import aziendaviaggi.controllers.LoginController;
 import aziendaviaggi.objects.Pacchetto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import java.util.ResourceBundle;
 import java.net.URL;
@@ -19,30 +17,6 @@ public class AgenziaModifyController extends AgenziaInsertController {
 
     @FXML
     private Pane AgenziaModify;
-
-    @FXML
-    private TextField Descrizione;
-
-    @FXML
-    private TextField Nome;
-
-    @FXML
-    private TextField Prezzo;
-
-    @FXML
-    private ChoiceBox<String> Alloggio;
-
-    @FXML
-    private ChoiceBox<String> Destinazione;
-
-    @FXML
-    private ChoiceBox<String> Guida;
-
-    @FXML
-    private ChoiceBox<String> Trasporto;
-
-    @FXML
-    private TextField Agenzia;
 
     /**
      * Initializes the controller.
@@ -69,6 +43,7 @@ public class AgenziaModifyController extends AgenziaInsertController {
         Guida.getSelectionModel().select(selected.getCodGuida());
         Alloggio.getSelectionModel().select(selected.getCodAlloggio());
         Destinazione.getSelectionModel().select(selected.getCodDestinazione());
+        Specifiche.setText("");
     }
 
     /**
