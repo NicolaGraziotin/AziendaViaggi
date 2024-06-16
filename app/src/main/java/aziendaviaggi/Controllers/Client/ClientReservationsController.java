@@ -42,15 +42,15 @@ public class ClientReservationsController extends ClientAppController {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        cellInitPac(ColumnAgenzia, "CodAgenzia");
-        cellInitPac(ColumnNome, "Nome");
-        cellInitPac(ColumnDescrizione, "Descrizione");
-        cellInitPac(ColumnPrezzo, "Prezzo");
+        cellInit(ColumnAgenzia, "CodAgenzia");
+        cellInit(ColumnNome, "Nome");
+        cellInit(ColumnDescrizione, "Descrizione");
+        cellInit(ColumnPrezzo, "Prezzo");
 
-        cellInitAtt(ColumnNomeAttivita, "Nome");
-        cellInitAtt(ColumnDescrizioneAttivita, "Descrizione");
-        cellInitAtt(ColumnOrario, "Orario");
-        cellInitAtt(ColumnDurata, "Durata");
+        cellInit(ColumnNomeAttivita, "Nome");
+        cellInit(ColumnDescrizioneAttivita, "Descrizione");
+        cellInit(ColumnOrario, "Orario");
+        cellInit(ColumnDurata, "Durata");
 
         TablePacchetti.setItems(fillTableView());
     }
@@ -82,76 +82,19 @@ public class ClientReservationsController extends ClientAppController {
         }
     }
 
-    /**
-     * Handles the update button action event.
-     *
-     * @param event The action event.
-     */
     @FXML
     private void printAssicurazione(final MouseEvent event) {
-        executeTryBlock(() -> {
-            final ResultSet res = this.statement.executeQuery(
-                    "SELECT * FROM ASSICURAZIONI WHERE CodAssicurazione = " + valueFormatter(Assicurazione.getText()));
-            if (res.next()) {
-                print("Tipo: " + res.getString("Tipo") + "\n"
-                        + "Copertura: " + res.getString("Copertura") + "\n"
-                        + "Prezzo: " + res.getString("Prezzo"));
-            }
-        });
+        super.printAssicurazione(Assicurazione.getText(), Specifiche);
     }
 
-    /**
-     * Updates the document based on the selected value.
-     *
-     * @param event The event that triggered the update.
-     */
     @FXML
     private void printDocumento(final MouseEvent event) {
-        executeTryBlock(() -> {
-            final ResultSet res = this.statement.executeQuery(
-                    "SELECT * FROM DOCUMENTI_VIAGGIO WHERE NumeroDocumento = " + valueFormatter(Documento.getText()));
-            if (res.next()) {
-                print("Luogo rilascio: " + res.getString("LuogoRilascio") + "\n"
-                        + "Data scadenza: " + res.getString("DataScadenza") + "\n"
-                        + "Passaporto: " + res.getString("PASSAPORTO") + "\n"
-                        + "Carta d'identita: " + res.getString("CARTA_IDENTITA"));
-            }
-        });
+        super.printDocumento(Documento.getText(), Specifiche);
     }
 
-    /**
-     * Updates the method based on the selected value.
-     * If the selected value starts with "CC", it retrieves information from the
-     * "CARTE_CREDITO" table.
-     * If the selected value does not start with "CC", it retrieves information from
-     * the "BONIFICI_BANCARI" table.
-     *
-     * @param event the action event that triggered the update
-     */
     @FXML
     private void printMetodo(final MouseEvent event) {
-        executeTryBlock(() -> {
-            if (Metodo.getText().startsWith("CC")) {
-                final ResultSet res = this.statement.executeQuery(
-                        "SELECT * FROM CARTE_CREDITO WHERE CodCartaCredito = " + valueFormatter(Metodo.getText()));
-                if (res.next()) {
-                    print("Intestatario: " + res.getString("Intestatario") + "\n"
-                            + "Numero carta: " + res.getString("Numero") + "\n"
-                            + "Data scadenza: " + res.getString("DataScadenza") + "\n"
-                            + "CVV: " + res.getString("CVV"));
-                }
-            } else {
-                final ResultSet res = this.statement.executeQuery(
-                        "SELECT * FROM BONIFICI_BANCARI WHERE CodBonifico = " + valueFormatter(Metodo.getText()));
-                if (res.next()) {
-                    print("Nome ordinante: " + res.getString("NomeOrdinante") + "\n"
-                            + "Conto ordinante: " + res.getString("ContoOrdinante") + "\n"
-                            + "Nome beneficiario: " + res.getString("NomeBeneficiario") + "\n"
-                            + "Conto beneficiario: " + res.getString("ContoBeneficiario") + "\n"
-                            + "Causale: " + res.getString("Causale"));
-                }
-            }
-        });
+        super.printMetodo(Metodo.getText(), Specifiche);
     }
 
     /**

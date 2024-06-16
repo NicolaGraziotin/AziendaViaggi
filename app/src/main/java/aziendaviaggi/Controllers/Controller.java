@@ -18,8 +18,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -138,8 +140,10 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Executes the provided TryBlock by invoking its execute() method within a try-catch block.
-     * If a SQLException is caught, it calls the alertThrower() method with the error message.
+     * Executes the provided TryBlock by invoking its execute() method within a
+     * try-catch block.
+     * If a SQLException is caught, it calls the alertThrower() method with the
+     * error message.
      * If any other exception is caught, it prints the stack trace.
      *
      * @param block the TryBlock to execute
@@ -152,5 +156,131 @@ public class Controller implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Prints the details of a document based on the given document number.
+     *
+     * @param Documento  the document number to search for
+     * @param Specifiche the TextArea where the document details will be displayed
+     */
+    protected void printDocumento(final String Documento, final TextArea Specifiche) {
+        executeTryBlock(() -> {
+            final ResultSet res = this.statement.executeQuery(
+                    "SELECT * FROM DOCUMENTI_VIAGGIO WHERE NumeroDocumento = " + valueFormatter(Documento));
+            if (res.next()) {
+                Specifiche.setText("DOCUMENTO:\n"
+                        + "Luogo rilascio: " + res.getString("LuogoRilascio") + "\n"
+                        + "Data scadenza: " + res.getString("DataScadenza") + "\n"
+                        + "Passaporto: " + res.getString("PASSAPORTO") + "\n"
+                        + "Carta d'identita: " + res.getString("CARTA_IDENTITA"));
+            }
+        });
+    }
+
+    protected final void printGuida(final String Guida, final TextArea Specifiche) {
+        executeTryBlock(() -> {
+            final ResultSet res = this.statement
+                    .executeQuery("SELECT * FROM GUIDE_TURISTICHE WHERE CodGuida = " + valueFormatter(Guida));
+            if (res.next()) {
+                Specifiche.setText("GUIDA:\n"
+                        + "Nome: " + res.getString("Nome") + "\n"
+                        + "Cognome: " + res.getString("Cognome") + "\n"
+                        + "Lingua: " + res.getString("Lingua") + "\n"
+                        + "Esperienza: " + res.getString("Esperienza"));
+            }
+        });
+    }
+
+    protected void printTrasporto(final String Trasporto, final TextArea Specifiche) {
+        executeTryBlock(() -> {
+            final ResultSet res = this.statement.executeQuery(
+                    "SELECT * FROM TRASPORTI WHERE CodTrasporto = " + valueFormatter(Trasporto));
+            if (res.next()) {
+                Specifiche.setText("TRASPORTO:\n"
+                        + "Compagnia: " + res.getString("Compagnia") + "\n"
+                        + "Partenza: " + res.getString("Partenza") + "\n"
+                        + "Destinazione: " + res.getString("Destinazione") + "\n"
+                        + "Orario: " + res.getString("Orario") + "\n"
+                        + "Traghetto: " + res.getString("TRAGHETTO") + "\n"
+                        + "Autobus: " + res.getString("AUTOBUS") + "\n"
+                        + "Aereo: " + res.getString("AEREO"));
+            }
+        });
+    }
+
+    protected final void printAlloggio(final String Alloggio, final TextArea Specifiche) {
+        executeTryBlock(() -> {
+            final ResultSet res = this.statement
+                    .executeQuery("SELECT * FROM ALLOGGI WHERE CodAlloggio = " + valueFormatter(Alloggio));
+            if (res.next()) {
+                Specifiche.setText("ALLOGGIO:\n"
+                        + "Nome: " + res.getString("Nome") + "\n"
+                        + "Citta: " + res.getString("Ind_Citta") + "\n"
+                        + "Via: " + res.getString("Ind_Via") + "\n"
+                        + "Numero civico: " + res.getString("Ind_NumeroCivico") + "\n"
+                        + "Numero camere: " + res.getString("NumeroCamere") + "\n"
+                        + "Hotel: " + res.getString("HOTEL") + "\n"
+                        + "Formula: " + res.getString("Formula") + "\n"
+                        + "Appartamento: " + res.getString("APPARTAMENTO"));
+            }
+        });
+    }
+
+    protected void printDestinazione(final String Destinazione, final TextArea Specifiche) {
+        executeTryBlock(() -> {
+            final ResultSet res = this.statement.executeQuery(
+                    "SELECT * FROM DESTINAZIONI WHERE CodDestinazione = " + valueFormatter(Destinazione));
+            if (res.next()) {
+                Specifiche.setText("DESTINAZIONE:\n"
+                        + "Paese: " + res.getString("Paese") + "\n"
+                        + "Citta: " + res.getString("Citta") + "\n"
+                        + "Descrizione: " + res.getString("Descrizione"));
+            }
+        });
+    }
+
+    protected void printAssicurazione(final String Assicurazione, final TextArea Specifiche) {
+        executeTryBlock(() -> {
+            final ResultSet res = this.statement.executeQuery(
+                    "SELECT * FROM ASSICURAZIONI WHERE CodAssicurazione = " + valueFormatter(Assicurazione));
+            if (res.next()) {
+                Specifiche.setText("ASSICURAZIONE:\n"
+                        + "Tipo: " + res.getString("Tipo") + "\n"
+                        + "Copertura: " + res.getString("Copertura") + "\n"
+                        + "Prezzo: " + res.getString("Prezzo"));
+            }
+        });
+    }
+
+    protected void printMetodo(final String Metodo, final TextArea Specifiche) {
+        executeTryBlock(() -> {
+            if (Metodo.startsWith("CC")) {
+                final ResultSet res = this.statement.executeQuery(
+                        "SELECT * FROM CARTE_CREDITO WHERE CodCartaCredito = " + valueFormatter(Metodo));
+                if (res.next()) {
+                    Specifiche.setText("CARTA DI CREDITO:\n"
+                            + "Intestatario: " + res.getString("Intestatario") + "\n"
+                            + "Numero carta: " + res.getString("Numero") + "\n"
+                            + "Data scadenza: " + res.getString("DataScadenza") + "\n"
+                            + "CVV: " + res.getString("CVV"));
+                }
+            } else {
+                final ResultSet res = this.statement.executeQuery(
+                        "SELECT * FROM BONIFICI_BANCARI WHERE CodBonifico = " + valueFormatter(Metodo));
+                if (res.next()) {
+                    Specifiche.setText("BONIFICO BANCARIO:\n"
+                            + "Nome ordinante: " + res.getString("NomeOrdinante") + "\n"
+                            + "Conto ordinante: " + res.getString("ContoOrdinante") + "\n"
+                            + "Nome beneficiario: " + res.getString("NomeBeneficiario") + "\n"
+                            + "Conto beneficiario: " + res.getString("ContoBeneficiario") + "\n"
+                            + "Causale: " + res.getString("Causale"));
+                }
+            }
+        });
+    }
+
+    protected <T> void cellInit(final TableColumn<T, String> cell, final String value) {
+        cell.setCellValueFactory(new PropertyValueFactory<T, String>(value));
     }
 }

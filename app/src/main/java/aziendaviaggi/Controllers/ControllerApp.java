@@ -14,7 +14,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -82,15 +81,15 @@ public class ControllerApp extends Controller {
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        cellInitPac(ColumnAgenzia, "CodAgenzia");
-        cellInitPac(ColumnNome, "Nome");
-        cellInitPac(ColumnDescrizione, "Descrizione");
-        cellInitPac(ColumnPrezzo, "Prezzo");
+        cellInit(ColumnAgenzia, "CodAgenzia");
+        cellInit(ColumnNome, "Nome");
+        cellInit(ColumnDescrizione, "Descrizione");
+        cellInit(ColumnPrezzo, "Prezzo");
 
-        cellInitAtt(ColumnNomeAttivita, "Nome");
-        cellInitAtt(ColumnDescrizioneAttivita, "Descrizione");
-        cellInitAtt(ColumnOrario, "Orario");
-        cellInitAtt(ColumnDurata, "Durata");
+        cellInit(ColumnNomeAttivita, "Nome");
+        cellInit(ColumnDescrizioneAttivita, "Descrizione");
+        cellInit(ColumnOrario, "Orario");
+        cellInit(ColumnDurata, "Durata");
 
         TablePacchetti.setItems(fillTableView());
     }
@@ -123,117 +122,24 @@ public class ControllerApp extends Controller {
         TableAttivita.setItems(fillAttivita());
     }
 
-    /**
-     * Prints the details of a tour guide based on the provided guide code.
-     * 
-     * @param event The mouse event that triggered the method.
-     */
     @FXML
     protected void printGuida(final MouseEvent event) {
-        executeTryBlock(() -> {
-            final ResultSet res = this.statement
-                    .executeQuery("SELECT * FROM GUIDE_TURISTICHE WHERE CodGuida = " + valueFormatter(Guida.getText()));
-            if (res.next()) {
-                print("Nome: " + res.getString("Nome") + "\n"
-                        + "Cognome: " + res.getString("Cognome") + "\n"
-                        + "Lingua: " + res.getString("Lingua") + "\n"
-                        + "Esperienza: " + res.getString("Esperienza"));
-            }
-        });
+        super.printGuida(Guida.getText(), Specifiche);
     }
 
-    /**
-     * Prints the details of a transportation record based on the given input.
-     *
-     * @param event The mouse event that triggered the method.
-     */
     @FXML
     protected void printTrasporto(final MouseEvent event) {
-        executeTryBlock(() -> {
-            final ResultSet res = this.statement.executeQuery(
-                    "SELECT * FROM TRASPORTI WHERE CodTrasporto = " + valueFormatter(Trasporto.getText()));
-            if (res.next()) {
-                print("Compagnia: " + res.getString("Compagnia") + "\n"
-                        + "Partenza: " + res.getString("Partenza") + "\n"
-                        + "Destinazione: " + res.getString("Destinazione") + "\n"
-                        + "Orario: " + res.getString("Orario") + "\n"
-                        + "Traghetto: " + res.getString("TRAGHETTO") + "\n"
-                        + "Autobus: " + res.getString("AUTOBUS") + "\n"
-                        + "Aereo: " + res.getString("AEREO"));
-            }
-        });
+        super.printTrasporto(Trasporto.getText(), Specifiche);
     }
 
-    /**
-     * Prints information about an accommodation based on the provided CodAlloggio
-     * value.
-     * 
-     * @param event The MouseEvent that triggered the method.
-     */
     @FXML
     protected void printAlloggio(final MouseEvent event) {
-        executeTryBlock(() -> {
-            final ResultSet res = this.statement
-                    .executeQuery("SELECT * FROM ALLOGGI WHERE CodAlloggio = " + valueFormatter(Alloggio.getText()));
-            if (res.next()) {
-                print("Nome: " + res.getString("Nome") + "\n"
-                        + "Citta: " + res.getString("Ind_Citta") + "\n"
-                        + "Via: " + res.getString("Ind_Via") + "\n"
-                        + "Numero civico: " + res.getString("Ind_NumeroCivico") + "\n"
-                        + "Numero camere: " + res.getString("NumeroCamere") + "\n"
-                        + "Hotel: " + res.getString("HOTEL") + "\n"
-                        + "Formula: " + res.getString("Formula") + "\n"
-                        + "Appartamento: " + res.getString("APPARTAMENTO"));
-            }
-        });
+        super.printAlloggio(Alloggio.getText(), Specifiche);
     }
 
-    /**
-     * Prints the details of a destination based on the provided CodDestinazione
-     * value.
-     * 
-     * @param event The MouseEvent that triggered the method.
-     */
     @FXML
     protected void printDestinazione(final MouseEvent event) {
-        executeTryBlock(() -> {
-            final ResultSet res = this.statement.executeQuery(
-                    "SELECT * FROM DESTINAZIONI WHERE CodDestinazione = " + valueFormatter(Destinazione.getText()));
-            if (res.next()) {
-                print("Paese: " + res.getString("Paese") + "\n"
-                        + "Citta: " + res.getString("Citta") + "\n"
-                        + "Descrizione: " + res.getString("Descrizione"));
-            }
-        });
-    }
-
-    /**
-     * Prints the given message to the Specifiche text field.
-     *
-     * @param msg the message to be printed
-     */
-    protected void print(String msg) {
-        Specifiche.setText(msg);
-    }
-
-    /**
-     * Initializes a table column for the Pacchetto class.
-     *
-     * @param cell  The table column to initialize.
-     * @param value The value to set as the cell value factory.
-     */
-    protected void cellInitPac(final TableColumn<Pacchetto, String> cell, final String value) {
-        cell.setCellValueFactory(new PropertyValueFactory<Pacchetto, String>(value));
-    }
-
-    /**
-     * Initializes a table column for the Attivita class.
-     *
-     * @param cell  The table column to initialize.
-     * @param value The value to set as the cell value factory.
-     */
-    protected void cellInitAtt(final TableColumn<Attivita, String> cell, final String value) {
-        cell.setCellValueFactory(new PropertyValueFactory<Attivita, String>(value));
+        super.printDestinazione(Destinazione.getText(), Specifiche);
     }
 
     /**

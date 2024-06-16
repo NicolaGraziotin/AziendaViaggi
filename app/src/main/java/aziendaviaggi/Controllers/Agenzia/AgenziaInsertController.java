@@ -19,7 +19,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 
 /**
@@ -133,82 +132,24 @@ public class AgenziaInsertController extends Controller {
         });
     }
 
-    /**
-     * Prints the details of a tour guide based on the provided guide code.
-     * 
-     * @param event The mouse event that triggered the method.
-     */
     @FXML
-    protected final void printGuida(final ActionEvent event) {
-        executeTryBlock(() -> {
-            final ResultSet res = this.statement.executeQuery("SELECT * FROM GUIDE_TURISTICHE WHERE CodGuida = " + valueFormatter(Guida.getValue()));
-            if (res.next()) {
-                print("Nome: " + res.getString("Nome") + "\n"
-                        + "Cognome: " + res.getString("Cognome") + "\n"
-                        + "Lingua: " + res.getString("Lingua") + "\n"
-                        + "Esperienza: " + res.getString("Esperienza"));
-            }
-        });
+    protected void printGuida(final ActionEvent event) {
+        super.printGuida(Guida.getValue(), Specifiche);
     }
 
-    /**
-     * Prints the details of a transportation record based on the given input.
-     *
-     * @param event The mouse event that triggered the method.
-     */
     @FXML
-    protected final void printTrasporto(final ActionEvent event) {
-        executeTryBlock(() -> {
-            final ResultSet res = this.statement.executeQuery("SELECT * FROM TRASPORTI WHERE CodTrasporto = " + valueFormatter(Trasporto.getValue()));
-            if (res.next()) {
-                print("Compagnia: " + res.getString("Compagnia") + "\n"
-                        + "Partenza: " + res.getString("Partenza") + "\n"
-                        + "Destinazione: " + res.getString("Destinazione") + "\n"
-                        + "Orario: " + res.getString("Orario") + "\n"
-                        + "Traghetto: " + res.getString("TRAGHETTO") + "\n"
-                        + "Autobus: " + res.getString("AUTOBUS") + "\n"
-                        + "Aereo: " + res.getString("AEREO"));
-            }
-        });
+    protected void printTrasporto(final ActionEvent event) {
+        super.printTrasporto(Trasporto.getValue(), Specifiche);
     }
 
-    /**
-     * Prints information about an accommodation based on the provided CodAlloggio value.
-     * 
-     * @param event The MouseEvent that triggered the method.
-     */
     @FXML
-    protected final void printAlloggio(final ActionEvent event) {
-        executeTryBlock(() -> {
-            final ResultSet res = this.statement.executeQuery("SELECT * FROM ALLOGGI WHERE CodAlloggio = " + valueFormatter(Alloggio.getValue()));
-            if (res.next()) {
-                print("Nome: " + res.getString("Nome") + "\n"
-                        + "Citta: " + res.getString("Ind_Citta") + "\n"
-                        + "Via: " + res.getString("Ind_Via") + "\n"
-                        + "Numero civico: " + res.getString("Ind_NumeroCivico") + "\n"
-                        + "Numero camere: " + res.getString("NumeroCamere") + "\n"
-                        + "Hotel: " + res.getString("HOTEL") + "\n"
-                        + "Formula: " + res.getString("Formula") + "\n"
-                        + "Appartamento: " + res.getString("APPARTAMENTO"));
-            }
-        });
+    protected void printAlloggio(final ActionEvent event) {
+        super.printAlloggio(Alloggio.getValue(), Specifiche);
     }
 
-    /**
-     * Prints the details of a destination based on the provided CodDestinazione value.
-     * 
-     * @param event The MouseEvent that triggered the method.
-     */
     @FXML
     protected final void printDestinazione(final ActionEvent event) {
-        executeTryBlock(() -> {
-            final ResultSet res = this.statement.executeQuery("SELECT * FROM DESTINAZIONI WHERE CodDestinazione = " + valueFormatter(Destinazione.getValue()));
-            if (res.next()) {
-                print("Paese: " + res.getString("Paese") + "\n"
-                        + "Citta: " + res.getString("Citta") + "\n"
-                        + "Descrizione: " + res.getString("Descrizione"));
-            }
-        });
+        super.printDestinazione(Destinazione.getValue(), Specifiche);
     }
 
     /**
@@ -219,15 +160,6 @@ public class AgenziaInsertController extends Controller {
     @FXML
     private void back(final ActionEvent event) {
         changeScene(event, "AgenziaApp");
-    }
-
-    /**
-     * Prints the given message to the Specifiche text field.
-     *
-     * @param msg the message to be printed
-     */
-    protected final void print(String msg) {
-        Specifiche.setText(msg);
     }
 
     /**
@@ -245,16 +177,6 @@ public class AgenziaInsertController extends Controller {
             }
         });
         return list;
-    }
-
-    /**
-     * Initializes a TableColumn with a specific value.
-     * 
-     * @param cell  The TableColumn to initialize.
-     * @param value The value to set for the TableColumn.
-     */
-    private void cellInit(final TableColumn<Attivita, String> cell, final String value) {
-        cell.setCellValueFactory(new PropertyValueFactory<Attivita, String>(value));
     }
 
     /**

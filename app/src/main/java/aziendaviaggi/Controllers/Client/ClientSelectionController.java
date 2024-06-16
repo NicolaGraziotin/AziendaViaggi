@@ -111,8 +111,8 @@ public class ClientSelectionController extends Controller {
             this.statement.executeUpdate("INSERT INTO PRENOTAZIONI " + "VALUES ("
                     + valueFormatter(codPrenotazione) + ", "
                     + valueFormatter(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))) + ", "
-                    + valueFormatter(DataPartenza.getValue().toString()) + ", "
-                    + valueFormatter(DataRitorno.getValue().toString()) + ", "
+                    + valueFormatter(DataPartenza.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString()) + ", "
+                    + valueFormatter(DataRitorno.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString()) + ", "
                     + valueFormatter(PrezzoTotale.getText()) + ", "
                     + valueFormatter(Email.getText()) + ", "
                     + valueFormatter(actual.getCodPacchetto()) + ", "
@@ -184,7 +184,8 @@ public class ClientSelectionController extends Controller {
             res = this.statement.executeQuery(
                     "SELECT * FROM ASSICURAZIONI WHERE CodAssicurazione = " + valueFormatter(Assicurazione.getValue()));
             if (res.next()) {
-                print("Tipo: " + res.getString("Tipo")+ "\n"
+                print("ASSICURAZIONE:\n"
+                        + "Tipo: " + res.getString("Tipo")+ "\n"
                         + "Copertura: " + res.getString("Copertura") + "\n"
                         + "Prezzo: " + res.getString("Prezzo"));
             }
@@ -198,16 +199,7 @@ public class ClientSelectionController extends Controller {
      */
     @FXML
     private void printDocumento(final ActionEvent event) {
-        executeTryBlock(() -> {
-            ResultSet res = this.statement.executeQuery(
-                    "SELECT * FROM DOCUMENTI_VIAGGIO WHERE NumeroDocumento = " + valueFormatter(Documento.getValue()));
-            if (res.next()) {
-                print("Luogo rilascio: " + res.getString("LuogoRilascio") + "\n"
-                        + "Data scadenza: " + res.getString("DataScadenza") + "\n"
-                        + "Passaporto: " + res.getString("PASSAPORTO") + "\n"
-                        + "Carta d'identita: " + res.getString("CARTA_IDENTITA"));
-            }
-        });
+        super.printDocumento(Documento.getValue(), Specifiche);
     }
 
     /**
@@ -224,7 +216,8 @@ public class ClientSelectionController extends Controller {
                 ResultSet res = this.statement.executeQuery(
                         "SELECT * FROM CARTE_CREDITO WHERE CodCartaCredito = " + valueFormatter(Metodo.getValue()));
                 if (res.next()) {
-                    print("Intestatario: " + res.getString("Intestatario") + "\n"
+                    print("CARTA DI CREDITO:\n"
+                            + "Intestatario: " + res.getString("Intestatario") + "\n"
                             + "Numero carta: " + res.getString("Numero") + "\n"
                             + "Data scadenza: " + res.getString("DataScadenza") + "\n"
                             + "CVV: " + res.getString("CVV"));
@@ -234,7 +227,8 @@ public class ClientSelectionController extends Controller {
                 ResultSet res = this.statement.executeQuery(
                         "SELECT * FROM BONIFICI_BANCARI WHERE CodBonifico = " + valueFormatter(Metodo.getValue()));
                 if (res.next()) {
-                    print("Nome ordinante: " + res.getString("NomeOrdinante") + "\n"
+                    print("BONIFICO BANCARIO:\n"
+                            + "Nome ordinante: " + res.getString("NomeOrdinante") + "\n"
                             + "Conto ordinante: " + res.getString("ContoOrdinante") + "\n"
                             + "Nome beneficiario: " + res.getString("NomeBeneficiario") + "\n"
                             + "Conto beneficiario: " + res.getString("ContoBeneficiario") + "\n"
