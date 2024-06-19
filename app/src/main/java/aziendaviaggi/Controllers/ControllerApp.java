@@ -115,11 +115,15 @@ public class ControllerApp extends Controller {
     @FXML
     protected void update(final MouseEvent event) {
         final Pacchetto sel = TablePacchetti.getSelectionModel().getSelectedItem();
+        if (sel == null) {
+            return;
+        }
         Guida.setText(sel.getCodGuida());
         Trasporto.setText(sel.getCodTrasporto());
         Alloggio.setText(sel.getCodAlloggio());
         Destinazione.setText(sel.getCodDestinazione());
         TableAttivita.setItems(fillAttivita());
+        printAgenzia();
     }
 
     @FXML
@@ -181,5 +185,19 @@ public class ControllerApp extends Controller {
             }
         });
         return list;
+    }
+
+    private void printAgenzia() {
+        executeTryBlock(() -> {
+            final ResultSet res = this.statement.executeQuery(
+                    "SELECT * FROM AGENZIE_VIAGGIO WHERE CodAgenzia = "
+                            + valueFormatter(TablePacchetti.getSelectionModel().getSelectedItem().getCodAgenzia()));
+            if (res.next()) {
+                Specifiche.setText("AGENZIA:\n" 
+                            + "Email: " + res.getString("Email") + "\n"
+                            + "Nome: " + res.getString("Nome") + "\n"
+                            + "Sede: " + res.getString("Sede") + "\n");
+            }
+        });
     }
 }

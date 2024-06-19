@@ -40,33 +40,33 @@ INSERT INTO CLIENTI
 	('cliente3@example.com', 'MNOPQR34F56G789H', 'Luca', 'Bianchi', '3661122334'),
 	('cliente4@example.com', 'STUVWX45H67I890L', 'Giulia', 'Neri', '3478765432'),
 	('cliente5@example.com', 'YZ1234567890ABCD', 'Paolo', 'Gialli', '3801122334'),
-	('nicolagraziotin@gmail.com', 'NCLGRZ', 'Nicola', 'Graziotin', '32722'),
+	('nicolagraziotin@gmail.com', 'GRZNCL', 'Nicola', 'Graziotin', '32722'),
 	('nico', '0', '0', '0', '0')
 GO
 
 INSERT INTO DESTINAZIONI
 	VALUES
-	('D001', 'Italia', 'Roma', 'Storia e cultura millenaria.'),
-	('D002', 'Francia', 'Parigi', 'Città dell amore e dell arte.'),
-	('D003', 'Spagna', 'Barcellona', 'Arte e vita notturna.'),
-	('D004', 'Stati Uniti', 'New York', 'La città che non dorme.'),
-	('D005', 'Giappone', 'Tokyo', 'Futuristica e tradizionale.')
+	('DS001', 'Italia', 'Roma', 'Storia e cultura millenaria.'),
+	('DS002', 'Francia', 'Parigi', 'Città dell amore e dell arte.'),
+	('DS003', 'Spagna', 'Barcellona', 'Arte e vita notturna.'),
+	('DS004', 'Stati Uniti', 'New York', 'La città che non dorme.'),
+	('DS005', 'Giappone', 'Tokyo', 'Futuristica e tradizionale.')
 GO
 
 INSERT INTO GUIDE_TURISTICHE
 	VALUES
-	('G001', 'Marco', 'Bianchi', 'Italiano', 'Tour storico'),
-	('G002', 'Sophie', 'Dubois', 'Francese', 'Tour gastronomico'),
-	('G003', 'Juan', 'Martinez', 'Spagnolo', 'Tour culturale'),
-	('G004', 'Emily', 'Johnson', 'Inglese', 'Tour in barca'),
-	('G005', 'Hiroshi', 'Tanaka', 'Giapponese', 'Tour di shopping')
+	('GT001', 'Marco', 'Bianchi', 'Italiano', 'Tour storico'),
+	('GT002', 'Sophie', 'Dubois', 'Francese', 'Tour gastronomico'),
+	('GT003', 'Juan', 'Martinez', 'Spagnolo', 'Tour culturale'),
+	('GT004', 'Emily', 'Johnson', 'Inglese', 'Tour in barca'),
+	('GT005', 'Hiroshi', 'Tanaka', 'Giapponese', 'Tour di shopping')
 GO
 
 INSERT INTO TRASPORTI
 	VALUES
-	('T001', 'Mediterranea Lines', 'Napoli', 'Palermo', '09:00', 'S', 'N', 'N'),
-	('T002', 'Eurolines', 'Roma', 'Berlino', '14:30', 'N', 'S', 'N'),
-	('T003', 'Air France', 'Parigi', 'New York', '11:45', 'N', 'N', 'S'),
-	('T004', 'Italo', 'Milano', 'Firenze', '10:15', 'N', 'S', 'N'),
-	('T005', 'Japan Airlines', 'Tokyo', 'Seoul', '13:20', 'N', 'N', 'S')
+	('TR001', 'Mediterranea Lines', 'Napoli', 'Palermo', '09:00', 'S', 'N', 'N'),
+	('TR002', 'Eurolines', 'Roma', 'Berlino', '14:30', 'N', 'S', 'N'),
+	('TR003', 'Air France', 'Parigi', 'New York', '11:45', 'N', 'N', 'S'),
+	('TR004', 'Italo', 'Milano', 'Firenze', '10:15', 'N', 'S', 'N'),
+	('TR005', 'Japan Airlines', 'Tokyo', 'Seoul', '13:20', 'N', 'N', 'S')
 GO

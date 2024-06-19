@@ -7,12 +7,16 @@ import aziendaviaggi.objects.Pacchetto;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.layout.Pane;
 
 /**
  * The AgenziaAppController class is responsible for handling the actions and events related to the Agenzia App UI.
  * It extends the ControllerApp class and provides methods for inserting, deleting, modifying, and retrieving Pacchetto objects.
  */
 public class AgenziaAppController extends ControllerApp {
+
+    @FXML
+    private Pane AgenziaApp;
 
     private static Pacchetto selectedPacchetto;
 
@@ -38,6 +42,12 @@ public class AgenziaAppController extends ControllerApp {
         selectedPacchetto = TablePacchetti.getSelectionModel().getSelectedItem();
         if (checkSelected(selectedPacchetto, "eliminare") && Utils.confirmThrower("Sei sicuro di volere eliminare il pacchetto?")) {
             remove(selectedPacchetto);
+            Alloggio.setText(null);
+            Destinazione.setText(null);
+            Guida.setText(null);
+            Trasporto.setText(null);
+            Specifiche.setText(null);
+            TableAttivita.getItems().clear();
         }
     }
 

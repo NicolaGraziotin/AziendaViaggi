@@ -1,5 +1,7 @@
 package aziendaviaggi.controllers.client;
 
+import java.time.format.DateTimeFormatter;
+
 import aziendaviaggi.controllers.Controller;
 import aziendaviaggi.controllers.LoginController;
 import javafx.event.ActionEvent;
@@ -58,7 +60,7 @@ public class ClientCardController extends Controller {
                     + valueFormatter(LoginController.getEmailCliente()) + ", "
                     + valueFormatter(Intestatario.getText()) + ", "
                     + valueFormatter(Numero.getText()) + ", "
-                    + valueFormatter(DataScadenza.getValue().toString()) + ", "
+                    + valueFormatter(DataScadenza.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString()) + ", "
                     + valueFormatter(CVV.getText())
                     + ")");
             System.out.println("Carta " + codCarta + " aggiunta con successo!");

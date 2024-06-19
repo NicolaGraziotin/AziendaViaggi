@@ -3,10 +3,12 @@ package aziendaviaggi.controllers.client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import aziendaviaggi.controllers.Controller;
@@ -28,7 +30,7 @@ public class ClientDocumentController extends Controller {
     private TextField LuogoRilascio;
 
     @FXML
-    private TextField DataScadenza;
+    private DatePicker DataScadenza;
 
     @FXML
     private TextField Email;
@@ -72,7 +74,7 @@ public class ClientDocumentController extends Controller {
             return;
         }
         executeTryBlock(() -> {
-            if ("Carta d'identita".equals(Tipo.getSelectionModel().getSelectedItem())) {
+            if (Tipo.getSelectionModel().getSelectedItem().equals("Carta d'identita")) {
                 this.cartaIdentita = "S";
             } else {
                 this.passaporto = "S";
@@ -81,9 +83,9 @@ public class ClientDocumentController extends Controller {
                     "INSERT INTO DOCUMENTI_VIAGGIO " + "VALUES (" + valueFormatter(NumeroDocumento.getText()) + ", "
                             + valueFormatter(Email.getText()) + ", "
                             + valueFormatter(LuogoRilascio.getText()) + ", "
-                            + valueFormatter(DataScadenza.getText()) + ", "
-                            + valueFormatter(this.cartaIdentita) + ", "
-                            + valueFormatter(this.passaporto)
+                            + valueFormatter(DataScadenza.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString()) + ", "
+                            + valueFormatter(this.passaporto) + ", "
+                            + valueFormatter(this.cartaIdentita)
                             + ")");
             System.out.println("Documento " + NumeroDocumento.getText() + " registrato con successo.");
             back(event);
