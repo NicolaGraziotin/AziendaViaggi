@@ -1,6 +1,6 @@
-package aziendaviaggi.contro.clie;
+package aziendaviaggi.controllers.client;
 
-import aziendaviaggi.contro.ControllerRegistration;
+import aziendaviaggi.controllers.ControllerRegistration;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

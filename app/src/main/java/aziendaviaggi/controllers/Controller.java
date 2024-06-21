@@ -1,4 +1,4 @@
-package aziendaviaggi.contro;
+package aziendaviaggi.controllers;
 
 import java.io.IOException;
 import java.net.URL;

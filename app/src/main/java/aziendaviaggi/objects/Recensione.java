@@ -1,4 +1,4 @@
-package aziendaviaggi.obje;
+package aziendaviaggi.objects;
 
 /**
  * The Recensione class represents a review for a package.

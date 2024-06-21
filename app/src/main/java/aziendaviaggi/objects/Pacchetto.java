@@ -1,4 +1,4 @@
-package aziendaviaggi.obje;
+package aziendaviaggi.objects;
 
 /**
  * The Pacchetto class represents a package offered by a travel agency.

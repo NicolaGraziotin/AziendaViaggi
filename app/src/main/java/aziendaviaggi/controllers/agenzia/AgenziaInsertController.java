@@ -1,11 +1,11 @@
-package aziendaviaggi.contro.age;
+package aziendaviaggi.controllers.agenzia;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import aziendaviaggi.contro.Controller;
-import aziendaviaggi.contro.LoginController;
-import aziendaviaggi.obje.Attivita;
+import aziendaviaggi.controllers.Controller;
+import aziendaviaggi.controllers.LoginController;
+import aziendaviaggi.objects.Attivita;
 
 import java.sql.ResultSet;
 

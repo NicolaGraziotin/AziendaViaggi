@@ -1,9 +1,9 @@
-package aziendaviaggi.contro.age;
+package aziendaviaggi.controllers.agenzia;
 
 import aziendaviaggi.Utils;
-import aziendaviaggi.contro.ControllerApp;
-import aziendaviaggi.contro.LoginController;
-import aziendaviaggi.obje.Pacchetto;
+import aziendaviaggi.controllers.ControllerApp;
+import aziendaviaggi.controllers.LoginController;
+import aziendaviaggi.objects.Pacchetto;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

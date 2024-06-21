@@ -1,4 +1,4 @@
-package aziendaviaggi.contro;
+package aziendaviaggi.controllers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
