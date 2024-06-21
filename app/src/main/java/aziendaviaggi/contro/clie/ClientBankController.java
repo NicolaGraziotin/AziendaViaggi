@@ -1,13 +1,12 @@
-package aziendaviaggi.controllers.client;
+package aziendaviaggi.contro.clie;
 
+import aziendaviaggi.contro.Controller;
+import aziendaviaggi.contro.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-
-import aziendaviaggi.controllers.Controller;
-import aziendaviaggi.controllers.LoginController;
 
 /**
  * The ClientBankController class is responsible for handling the user

@@ -1,9 +1,9 @@
-package aziendaviaggi.controllers.client;
+package aziendaviaggi.contro.clie;
 
 import java.time.format.DateTimeFormatter;
 
-import aziendaviaggi.controllers.Controller;
-import aziendaviaggi.controllers.LoginController;
+import aziendaviaggi.contro.Controller;
+import aziendaviaggi.contro.LoginController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;

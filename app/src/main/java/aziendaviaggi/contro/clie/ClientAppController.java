@@ -1,7 +1,7 @@
-package aziendaviaggi.controllers.client;
+package aziendaviaggi.contro.clie;
 
-import aziendaviaggi.controllers.ControllerApp;
-import aziendaviaggi.objects.Pacchetto;
+import aziendaviaggi.contro.ControllerApp;
+import aziendaviaggi.obje.Pacchetto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 

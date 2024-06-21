@@ -1,11 +1,11 @@
-package aziendaviaggi.controllers;
+package aziendaviaggi.contro;
 
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
-import aziendaviaggi.objects.Attivita;
-import aziendaviaggi.objects.Pacchetto;
+import aziendaviaggi.obje.Attivita;
+import aziendaviaggi.obje.Pacchetto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

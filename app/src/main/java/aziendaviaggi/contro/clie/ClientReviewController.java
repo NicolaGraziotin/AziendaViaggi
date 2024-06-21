@@ -1,4 +1,4 @@
-package aziendaviaggi.controllers.client;
+package aziendaviaggi.contro.clie;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -8,9 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import aziendaviaggi.controllers.Controller;
-import aziendaviaggi.controllers.LoginController;
-import aziendaviaggi.objects.Pacchetto;
+import aziendaviaggi.contro.Controller;
+import aziendaviaggi.contro.LoginController;
+import aziendaviaggi.obje.Pacchetto;
 
 /**
  * The ClientReviewController class is responsible for managing the client review functionality.

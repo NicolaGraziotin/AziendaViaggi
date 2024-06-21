@@ -1,13 +1,13 @@
-package aziendaviaggi.controllers.client;
+package aziendaviaggi.contro.clie;
 
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
-import aziendaviaggi.controllers.Controller;
-import aziendaviaggi.controllers.LoginController;
-import aziendaviaggi.objects.Pacchetto;
-import aziendaviaggi.objects.Recensione;
+import aziendaviaggi.contro.Controller;
+import aziendaviaggi.contro.LoginController;
+import aziendaviaggi.obje.Pacchetto;
+import aziendaviaggi.obje.Recensione;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

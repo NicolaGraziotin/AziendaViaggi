@@ -1,4 +1,4 @@
-package aziendaviaggi.controllers.client;
+package aziendaviaggi.contro.clie;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,8 +11,8 @@ import java.sql.ResultSet;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import aziendaviaggi.controllers.LoginController;
-import aziendaviaggi.objects.Pacchetto;
+import aziendaviaggi.contro.LoginController;
+import aziendaviaggi.obje.Pacchetto;
 
 public class ClientReservationsController extends ClientAppController {
 

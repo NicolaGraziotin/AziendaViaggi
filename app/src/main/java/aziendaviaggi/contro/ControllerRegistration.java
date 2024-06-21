@@ -1,4 +1,4 @@
-package aziendaviaggi.controllers;
+package aziendaviaggi.contro;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

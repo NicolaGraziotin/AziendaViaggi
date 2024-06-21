@@ -1,4 +1,4 @@
-package aziendaviaggi.controllers.client;
+package aziendaviaggi.contro.clie;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,8 +11,8 @@ import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-import aziendaviaggi.controllers.Controller;
-import aziendaviaggi.controllers.LoginController;
+import aziendaviaggi.contro.Controller;
+import aziendaviaggi.contro.LoginController;
 
 /**
  * This class is the controller for the client document view.

@@ -1,4 +1,4 @@
-package aziendaviaggi.objects;
+package aziendaviaggi.obje;
 
 /**
  * The Attivita class represents an activity in a travel agency.
