@@ -108,6 +108,9 @@ public class ClientReservationsController extends ClientAppController {
     protected void update(final MouseEvent event) {
         super.update(event);
         selectedPacchetto = TablePacchetti.getSelectionModel().getSelectedItem();
+        if (selectedPacchetto == null) {
+            return;
+        }
         executeTryBlock(() -> {
             final ResultSet res = this.statement.executeQuery(
                     "SELECT * FROM PRENOTAZIONI WHERE CodPacchetto = "
