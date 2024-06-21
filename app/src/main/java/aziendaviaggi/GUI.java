@@ -3,7 +3,6 @@ package aziendaviaggi;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -24,14 +23,15 @@ public class GUI extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
         new SQLDatabaseConnection().connect();
-        final FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
         final Parent root = loader.load();
         final Image icon = new Image("/logo.png");
+
+        primaryStage.setScene(Utils.resizeScene(root));
 
         primaryStage.resizableProperty().setValue(Boolean.FALSE);
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("Azienda Viaggi");
-        primaryStage.setScene(new Scene(root));
         primaryStage.setOnCloseRequest(event -> {
             if (!Utils.confirmThrower("Sei sicuro di volere uscire?")) {
                 event.consume();

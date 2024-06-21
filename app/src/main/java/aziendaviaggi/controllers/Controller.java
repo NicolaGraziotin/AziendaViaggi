@@ -8,12 +8,13 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import aziendaviaggi.SQLDatabaseConnection;
+import aziendaviaggi.Utils;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ChoiceBox;
@@ -53,7 +54,8 @@ public class Controller implements Initializable {
         try {
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + panel + ".fxml"));
             final Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(loader.load()));
+            Parent root = loader.load();
+            stage.setScene(Utils.resizeScene(root));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
