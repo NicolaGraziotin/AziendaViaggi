@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="AgenziaApp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.controllers.agenzia.AgenziaAppController">
+<Pane fx:id="AgenziaApp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: white;" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aziendaviaggi.controllers.agenzia.AgenziaAppController">
    <children>
       <Label layoutX="383.0" layoutY="29.0" text="Pacchetti turistici">
          <font>
@@ -91,7 +91,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="Guida" editable="false" layoutX="20.0" layoutY="420.0"  onMouseClicked="#printGuida"/>
+      <TextField fx:id="Guida" editable="false" layoutX="20.0" layoutY="420.0" onMouseClicked="#printGuida" />
       <TextField fx:id="Trasporto" editable="false" layoutX="279.0" layoutY="420.0" onMouseClicked="#printTrasporto" />
       <TextField fx:id="Alloggio" editable="false" layoutX="551.0" layoutY="420.0" onMouseClicked="#printAlloggio" />
       <TextField fx:id="Destinazione" editable="false" layoutX="806.0" layoutY="420.0" onMouseClicked="#printDestinazione" />
